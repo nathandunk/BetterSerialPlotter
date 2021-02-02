@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\c1b473444d75c9d6dff63fed64c67f98\mahi-daq-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\c1b473444d75c9d6dff63fed64c67f98\mahi-daq-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\c1b473444d75c9d6dff63fed64c67f98\mahi-daq-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\c1b473444d75c9d6dff63fed64c67f98\mahi-daq-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\c1b473444d75c9d6dff63fed64c67f98\mahi-daq-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\c1b473444d75c9d6dff63fed64c67f98\mahi-daq-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\c1b473444d75c9d6dff63fed64c67f98\mahi-daq-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\c1b473444d75c9d6dff63fed64c67f98\mahi-daq-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\e580b7e7cd01a257b0e5bce22e70a49c\mahi-daq-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\9e7b87e57ffab00232c158d8429a4383\mahi-daq-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-daq-subbuild\CMakeFiles\mahi-daq-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{325ACE03-FDA4-38AD-B953-DE8D9476C90E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

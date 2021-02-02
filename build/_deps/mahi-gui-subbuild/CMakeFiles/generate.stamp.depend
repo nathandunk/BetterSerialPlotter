@@ -1,0 +1,15 @@
+# CMake generation dependency list for this directory.
+C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/3.14.0-rc2/CMakeSystem.cmake
+C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeLists.txt
+C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/mahi-gui-populate-prefix/tmp/mahi-gui-populate-cfgcmd.txt.in
+C:/Program Files/CMake/share/cmake-3.14/Modules/CMakeGenericSystem.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/CMakeInitializeConfigs.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/ExternalProject.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/FindGit.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/Platform/Windows.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/Platform/WindowsPaths.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/RepositoryInfo.txt.in

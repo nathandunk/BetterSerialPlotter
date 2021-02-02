@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Device.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Types.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Coroutine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Concurrency\Lock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Concurrency\Mutex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Concurrency\NamedMutex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Concurrency\Spinlock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Logging\Csv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Logging\File.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Logging\Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Logging\LogUtil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Math\Butterworth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Math\Chirp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Math\Differentiator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Math\Filter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Math\Functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Math\Integrator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Math\TimeFunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Math\Waveform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Timing\Clock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Timing\Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Timing\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Timing\Timestamp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\src\Mahi\Util\Timing\Frequency.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Concurrency\Lock.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Concurrency\Mutex.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Concurrency\NamedMutex.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Concurrency\Spinlock.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Console.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Coroutine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Device.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Event.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Csv.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Detail\Csv.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Detail\LogUtil.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Detail\StreamMeta.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\File.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Formatters\FuncMessageFormatter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Formatters\MessageOnlyFormatter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Formatters\TxtFormatter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Log.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Writers\ColorConsoleWriter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Writers\ConsoleWriter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Writers\RollingFileWriter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Logging\Writers\Writer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Math\Butterworth.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Math\Chirp.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Math\Constants.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Math\Detail\Functions.inl">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Math\Differentiator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Math\Filter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Math\Functions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Math\Integrator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Math\TimeFunction.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Math\Waveform.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\NonCopyable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Print.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Random.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Range.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\StlStreams.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\System.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Templates\RingBuffer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Templates\SPSCQueue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Templates\Singleton.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Templates\TypeErasure.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Timing\Clock.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Timing\Frequency.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Timing\Time.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Timing\Timer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Timing\Timestamp.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\include\Mahi\Util\Types.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1C4D8272-AAE1-327F-953D-F89144042522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{FCFC775A-8A26-3963-B401-3AD34DF4D248}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

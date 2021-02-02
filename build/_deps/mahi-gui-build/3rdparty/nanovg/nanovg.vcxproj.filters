@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-gui-src\3rdparty\nanovg\src\nanovg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-gui-src\3rdparty\nanovg\src\fontstash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-gui-src\3rdparty\nanovg\src\nanovg_gl_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-gui-src\3rdparty\nanovg\src\nanovg_gl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-gui-src\3rdparty\nanovg\src\nanovg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-gui-src\3rdparty\nanovg\src\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-gui-src\3rdparty\nanovg\src\stb_truetype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-gui-src\3rdparty\nanovg\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1C4D8272-AAE1-327F-953D-F89144042522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{FCFC775A-8A26-3963-B401-3AD34DF4D248}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

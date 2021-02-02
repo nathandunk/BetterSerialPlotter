@@ -1,0 +1,184 @@
+#include <tchar.h>
+#include <codecvt>
+#include <locale>
+#include <iostream>
+#include <BetterSerialPlotter/BSP.hpp>
+#include <BetterSerialPlotter/Utility.hpp>
+#include <Mahi/Gui.hpp>
+#include <Mahi/Util.hpp>
+
+
+BSP::BSP(/* args */) : 
+    mahi::gui::Application(),
+    PrintBuffer(10)
+{
+    begin_serial();
+    program_clock.restart();
+}
+
+BSP::~BSP()
+{
+}
+
+void BSP::update(){
+    auto num_data = all_data.size();
+    float time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
+    ImGui::Begin("Better Serial Plotter", &open);
+    
+    // drag and droppable notes
+    for (int i = 0; i < num_data; ++i) {
+        ImGui::Selectable(all_data[i].name.c_str(), false, 0, ImVec2(100, 0));
+        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) {// try ImGuiDragDropFlags_AcceptBeforeDelivery
+            ImGui::SetDragDropPayload("DND_PLOT", &i, sizeof(int));
+            ImGui::TextUnformatted(all_data[i].name.c_str());
+            ImGui::EndDragDropSource();
+        }
+    }
+
+    ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 3);
+    ImPlot::SetNextPlotLimitsX(time - 10, time, ImGuiCond_Always);
+    // ImPlot::SetNextPlotLimitsY(-90,90);
+    if(ImPlot::BeginPlot("##Better Serial Plot Monitor", "Time (s)", "Value", {-1,600}, 0, 0, 0)){
+        for (auto i = 0; i < all_data.size(); i++) {
+            // all_data[i].show = false;
+            if (all_data[i].show){
+                // mahi::util::print_var(all_data[i].name);
+                plot_data(all_data[i]);
+                // ImPlot::PlotLine(all_data[i].name.c_str(), &all_data[i].Data[0].x, &all_data[i].Data[0].y, all_data[i].Data.size(), all_data[i].Offset, 2 * sizeof(float));    
+            }
+        }
+        if (ImGui::BeginDragDropTarget()) {
+            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
+                int i = *(int*)payload->Data;
+                all_data[i].show = true;
+                // yAxis[i] = 0;
+                // set specific y-axis if hovered
+                // for (int y = 0; y < 3; y++) {
+                //     if (ImPlot::IsPlotYAxisHovered(y))
+                //         yAxis[i] = y;
+                // }
+            }
+            ImGui::EndDragDropTarget();
+        }
+        ImPlot::EndPlot();
+    }
+    
+    ImGui::End();
+    
+    if(!open) quit();
+    read_serial();
+    // std::cout << "after serial";
+}
+
+void BSP::begin_serial(){
+    std::wstring com_prefix = L"\\\\.\\COM";
+    std::wstring com_suffix = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(std::to_string(comport_num));
+    std::wstring comID = com_prefix + com_suffix;
+
+    hSerial = CreateFileW(comID.c_str(),
+                            GENERIC_READ | GENERIC_WRITE,
+                            0,
+                            0,
+                            OPEN_EXISTING,
+                            FILE_ATTRIBUTE_NORMAL,
+                            0);
+
+    DCB dcbSerialParams = {0};
+    dcbSerialParams.DCBlength=sizeof(dcbSerialParams);
+
+    if (!GetCommState(hSerial, &dcbSerialParams)) {
+        std::cout << "Could not get com state" << std::endl;
+    }
+
+    dcbSerialParams.BaudRate=CBR_9600;
+    dcbSerialParams.ByteSize=8;
+    dcbSerialParams.StopBits=ONESTOPBIT;
+    dcbSerialParams.Parity=NOPARITY;
+    if(!SetCommState(hSerial, &dcbSerialParams)){
+        std::cout << "could not set com state" << std::endl;
+    }
+
+    COMMTIMEOUTS timeouts={0};
+    timeouts.ReadIntervalTimeout=MAXDWORD;
+    timeouts.ReadTotalTimeoutConstant=0;
+    timeouts.ReadTotalTimeoutMultiplier=0;
+    
+    if(!SetCommTimeouts(hSerial, &timeouts)){
+        std::cout << "could not set timeouts" << std::endl;
+    }
+
+    PurgeComm(hSerial,PURGE_TXABORT);
+    PurgeComm(hSerial,PURGE_RXABORT);
+    PurgeComm(hSerial,PURGE_RXCLEAR);
+	PurgeComm(hSerial,PURGE_TXCLEAR);
+}
+
+void BSP::read_serial(){
+    DWORD dwBytesRead = 0;
+    bool line_done = false;
+    do{
+        if(!ReadFile(hSerial, message, packet_size, &dwBytesRead, NULL)){
+            std::cout << "error reading from serial" << std::endl;
+        }
+        else{
+            if(dwBytesRead > 0 ){
+                    // std::cout << "bytesread: " << dwBytesRead << "\n";
+                    // GETTING TO NEWLINE BEFORE DOING ANYTHING
+                    for (size_t i = 0; i < dwBytesRead; i++){
+                        // std::cout << "int: " << (int)message[i] << "\n";
+                        // std::cout << "char: " << message[i] << "\n";
+                        // if tab (0x09) or space (0x20)
+                        if ((message[i] == 0x09 || message[i] == 0x20) && read_once){
+                            curr_data.push_back(std::stof(curr_number_buff));
+                            curr_number_buff = "";
+                            if (verbose) std::cout << "\t";
+                        }
+                        // if new line
+                        else if (message[i] == 0x0a && read_once){
+                            curr_data.push_back(std::stof(curr_number_buff));
+                            curr_number_buff = "";
+                            append_all_data(curr_data);
+                            // std::cout << std::endl << "size: " << curr_data.size();
+                            // for (auto &&i : curr_data)
+                            // {
+                            //     std::cout << i;
+                            // }
+                            if (verbose) std::cout << std::endl;
+                            
+                            curr_data.clear();
+                            line_done = true;
+                            read_once = true;
+                        }
+                        else if ((message[i] >= '0' && message[i] <= '9' || message[i] == '.' || message[i] == '-') && read_once){
+                            curr_number_buff += message[i];
+                            if (verbose) std::cout << message[i];
+                        }
+                        else if (message[i] != 0x0d && read_once) {
+                            std::cout << "invalid character: " << message[i] << std::endl;
+                        }
+                        else if (message[i] == 0x0a){
+                            read_once = true;
+                        }
+                }
+            }
+        }
+    } while (!line_done && dwBytesRead > 0);
+    
+    // if (!output.empty()) PrintBuffer.push_back(output);
+}
+
+void BSP::append_all_data(std::vector<float> curr_data){
+    auto old_size = all_data.size();
+    if (old_size != curr_data.size()){
+        // ScrollingData NewScrollingData;
+        all_data.resize(curr_data.size(),"data " + std::to_string(all_data.size()+1));
+        for (auto i = old_size; i < all_data.size(); i++){
+            all_data[i].set_name("data " + std::to_string(i));
+        }
+        
+    }
+    float curr_time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
+    for (auto i = 0; i < curr_data.size(); i++){
+        all_data[i].AddPoint(curr_time, curr_data[i]);
+    }
+}

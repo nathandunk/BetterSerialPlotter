@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/mahi-gui-populate"
+		},
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/dac8f72e1b0348dad6be7560365ddd5e/mahi-gui-populate.rule"
+		},
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/3051251de12945dd56048497b464a4a3/mahi-gui-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/54fe6d893fbd2dfd0a1d75f86d9153c8/mahi-gui-populate-install.rule"
+		},
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/54fe6d893fbd2dfd0a1d75f86d9153c8/mahi-gui-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/54fe6d893fbd2dfd0a1d75f86d9153c8/mahi-gui-populate-download.rule"
+		},
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/54fe6d893fbd2dfd0a1d75f86d9153c8/mahi-gui-populate-update.rule"
+		},
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/54fe6d893fbd2dfd0a1d75f86d9153c8/mahi-gui-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/54fe6d893fbd2dfd0a1d75f86d9153c8/mahi-gui-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/54fe6d893fbd2dfd0a1d75f86d9153c8/mahi-gui-populate-build.rule"
+		},
+		{
+			"file" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/54fe6d893fbd2dfd0a1d75f86d9153c8/mahi-gui-populate-test.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"mahi-gui-populate"
+		],
+		"name" : "mahi-gui-populate"
+	}
+}

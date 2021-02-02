@@ -1,0 +1,217 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "_deps/mahi-com-build/examples/MinSizeRel/comms_server.exe"
+		},
+		{
+			"path" : "_deps/mahi-com-build/examples/MinSizeRel/comms_server.pdb"
+		}
+	],
+	"backtrace" : 2,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"mahi_com_example",
+			"install",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"build/_deps/mahi-com-src/examples/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 3,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 1
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 5,
+				"parent" : 1
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /W3 /MP /MP /MD /O1 /Ob1 /DNDEBUG   /await"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 4,
+					"define" : "FMT_LOCALE"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "MAHI_COM"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "MAHI_COROUTINES"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "MAHI_DEFAULT_LOG"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "MAHI_LOG_CAPTURE_FILE"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "MAHI_UTIL"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "NOMINMAX"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "_CRT_SECURE_NO_WARNINGS"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "_WINSOCK_DEPRECATED_NO_WARNINGS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-com-src/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/json/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/cxxopts/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/fmt/include"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 4,
+			"id" : "com::@1fff01ae5a16f9aadf37"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "util::@9e7e004084100b3727b4"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "fmt::@1dc5051ce61772968524"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "Examples"
+	},
+	"id" : "comms_server::@a6d1882f138054fdde60",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 3,
+				"path" : "bin"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "C:/Program Files (x86)/Project"
+		}
+	},
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /W3 /MP /MP /MD /O1 /Ob1 /DNDEBUG",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "..\\MinSizeRel\\mahi-com.lib ..\\..\\mahi-util-build\\MinSizeRel\\mahi-util.lib ..\\..\\mahi-util-build\\3rdparty\\fmt\\MinSizeRel\\fmt.lib winmm.lib pdh.lib version.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "comms_server",
+	"nameOnDisk" : "comms_server.exe",
+	"paths" : 
+	{
+		"build" : "_deps/mahi-com-build/examples",
+		"source" : "build/_deps/mahi-com-src/examples"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-com-src/examples/ex_comms_server.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

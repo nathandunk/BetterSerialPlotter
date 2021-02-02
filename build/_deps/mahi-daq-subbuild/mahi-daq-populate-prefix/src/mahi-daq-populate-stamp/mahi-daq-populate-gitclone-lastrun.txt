@@ -1,0 +1,3 @@
+repository='https://github.com/mahilab/mahi-daq.git'
+module=''
+tag=''

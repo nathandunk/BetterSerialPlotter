@@ -1,0 +1,945 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3731BF7E-DF87-3EDE-A78D-7F8FF99EFB55}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>mahi-util-populate</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\fa2aa326fff7400f9af76a7a61a13f47\mahi-util-populate-mkdir.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Creating directories for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-mkdir.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Creating directories for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-mkdir.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Creating directories for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-mkdir.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Creating directories for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-mkdir.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\fa2aa326fff7400f9af76a7a61a13f47\mahi-util-populate-download.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing download step (git clone) for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp/mahi-util-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-download.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\mahi-util-populate-gitinfo.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Performing download step (git clone) for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp/mahi-util-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-download.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\mahi-util-populate-gitinfo.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Performing download step (git clone) for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp/mahi-util-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-download.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\mahi-util-populate-gitinfo.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Performing download step (git clone) for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp/mahi-util-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-download.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\mahi-util-populate-gitinfo.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\fa2aa326fff7400f9af76a7a61a13f47\mahi-util-populate-update.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing update step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp/mahi-util-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-update.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Performing update step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp/mahi-util-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-update.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Performing update step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp/mahi-util-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-update.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Performing update step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/tmp/mahi-util-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-update.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\fa2aa326fff7400f9af76a7a61a13f47\mahi-util-populate-patch.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No patch step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-patch.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">No patch step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-patch.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">No patch step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-patch.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">No patch step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-patch.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\fa2aa326fff7400f9af76a7a61a13f47\mahi-util-populate-configure.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No configure step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-configure.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\tmp\mahi-util-populate-cfgcmd.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">No configure step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-configure.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\tmp\mahi-util-populate-cfgcmd.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">No configure step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-configure.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\tmp\mahi-util-populate-cfgcmd.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">No configure step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-configure.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\tmp\mahi-util-populate-cfgcmd.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\fa2aa326fff7400f9af76a7a61a13f47\mahi-util-populate-build.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No build step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-build.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">No build step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-build.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">No build step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-build.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">No build step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-build.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\fa2aa326fff7400f9af76a7a61a13f47\mahi-util-populate-install.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No install step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-install.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">No install step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-install.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">No install step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-install.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">No install step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-install.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\fa2aa326fff7400f9af76a7a61a13f47\mahi-util-populate-test.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No test step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-test.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-test</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">No test step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-test.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-test</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">No test step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-test.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-test</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">No test step for 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/fa2aa326fff7400f9af76a7a61a13f47/mahi-util-populate-test.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-test</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\5f94067c9cd70587c574134d41b5c107\mahi-util-populate-complete.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Completed 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/$(Configuration)/mahi-util-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/5f94067c9cd70587c574134d41b5c107/mahi-util-populate-complete.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\$(Configuration)\mahi-util-populate-complete</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Completed 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/$(Configuration)/mahi-util-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/5f94067c9cd70587c574134d41b5c107/mahi-util-populate-complete.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\$(Configuration)\mahi-util-populate-complete</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Completed 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/$(Configuration)/mahi-util-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/5f94067c9cd70587c574134d41b5c107/mahi-util-populate-complete.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\$(Configuration)\mahi-util-populate-complete</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Completed 'mahi-util-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/$(Configuration)/mahi-util-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/mahi-util-populate-prefix/src/mahi-util-populate-stamp/$(Configuration)/mahi-util-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/5f94067c9cd70587c574134d41b5c107/mahi-util-populate-complete.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-mkdir;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-download;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-patch;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-configure;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-build;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\src\mahi-util-populate-stamp\$(Configuration)\mahi-util-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\$(Configuration)\mahi-util-populate-complete</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\d1e87644538fbc8d67d3f1e80a60be9e\mahi-util-populate.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/d1e87644538fbc8d67d3f1e80a60be9e/mahi-util-populate.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\$(Configuration)\mahi-util-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\mahi-util-populate</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/d1e87644538fbc8d67d3f1e80a60be9e/mahi-util-populate.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\$(Configuration)\mahi-util-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\mahi-util-populate</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/d1e87644538fbc8d67d3f1e80a60be9e/mahi-util-populate.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\$(Configuration)\mahi-util-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\mahi-util-populate</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/d1e87644538fbc8d67d3f1e80a60be9e/mahi-util-populate.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\$(Configuration)\mahi-util-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\mahi-util-populate</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild -BC:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild --check-stamp-file C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\3.14.0-rc2\CMakeSystem.cmake;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\tmp\mahi-util-populate-cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\RepositoryInfo.txt.in;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild -BC:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild --check-stamp-file C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\3.14.0-rc2\CMakeSystem.cmake;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\tmp\mahi-util-populate-cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\RepositoryInfo.txt.in;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild -BC:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild --check-stamp-file C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\3.14.0-rc2\CMakeSystem.cmake;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\tmp\mahi-util-populate-cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\RepositoryInfo.txt.in;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild -BC:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild --check-stamp-file C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-util-subbuild/CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\3.14.0-rc2\CMakeSystem.cmake;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\mahi-util-populate-prefix\tmp\mahi-util-populate-cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\RepositoryInfo.txt.in;C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\CMakeFiles\mahi-util-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-subbuild\ZERO_CHECK.vcxproj">
+      <Project>{3660F116-39B1-3248-B90A-659CA3E19024}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

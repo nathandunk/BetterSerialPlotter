@@ -1,0 +1,726 @@
+{
+	"archive" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:x64",
+				"role" : "flags"
+			}
+		]
+	},
+	"artifacts" : 
+	[
+		{
+			"path" : "_deps/mahi-gui-build/Release/mahi-gui.lib"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"install",
+			"target_link_libraries",
+			"add_subdirectory",
+			"target_include_directories",
+			"target_compile_definitions",
+			"target_sources"
+		],
+		"files" : 
+		[
+			"build/_deps/mahi-gui-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 138,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 142,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 179,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 181,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 176,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 177,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 175,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 178,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 155,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 163,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 149,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 151,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 157,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 158,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 162,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /W3 /MP /MP /MD /O2 /Ob2 /DNDEBUG   /await -std:c++17"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 7,
+					"define" : "FMT_LOCALE"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "IMGUI_IMPL_OPENGL_LOADER_GLAD"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "MAHI_COROUTINES"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "MAHI_DEFAULT_LOG"
+				},
+				{
+					"backtrace" : 11,
+					"define" : "MAHI_GUI"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "MAHI_LOG_CAPTURE_FILE"
+				},
+				{
+					"backtrace" : 12,
+					"define" : "MAHI_NATIVE_DIAGS"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "MAHI_UTIL"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "NANOVG_GLAD"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "NOMINMAX"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "_CRT_SECURE_NO_WARNINGS"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "_WINSOCK_DEPRECATED_NO_WARNINGS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 10,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-src/include"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-src/3rdparty/imgui"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-src/3rdparty/implot"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-src/3rdparty/nanosvg/src"
+				},
+				{
+					"backtrace" : 10,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-src/src"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/json/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/cxxopts/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/fmt/include"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-src/3rdparty/glfw/include"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-src/3rdparty/glad/include"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-src/3rdparty/nanovg/src"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-src/3rdparty/clipper"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-src/3rdparty/nativefiledialog-extended/src/include"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				23,
+				32,
+				33,
+				34
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 3,
+			"id" : "clipper::@ee099ffbe401603287c6"
+		},
+		{
+			"backtrace" : 4,
+			"id" : "nfd::@3b80e14ecf71f20e142b"
+		},
+		{
+			"backtrace" : 5,
+			"id" : "glfw::@292da2318190b66a3baa"
+		},
+		{
+			"backtrace" : 6,
+			"id" : "glad::@8ab0b9cb3b88849ec662"
+		},
+		{
+			"backtrace" : 7,
+			"id" : "util::@9e7e004084100b3727b4"
+		},
+		{
+			"backtrace" : 7,
+			"id" : "fmt::@1dc5051ce61772968524"
+		},
+		{
+			"backtrace" : 8,
+			"id" : "nanovg::@c7daccaf0a7753883acf"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "gui::@b89b3f0f161a861a84d0",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "lib"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "C:/Program Files (x86)/Project"
+		}
+	},
+	"name" : "gui",
+	"nameOnDisk" : "mahi-gui.lib",
+	"paths" : 
+	{
+		"build" : "_deps/mahi-gui-build",
+		"source" : "build/_deps/mahi-gui-src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				23,
+				32,
+				33,
+				34
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				22,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Application.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Color.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Shape.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Transform.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Transformable.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/imgui_custom.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/nanovg_custom.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Native.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Fonts/FontAwesome5.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Fonts/FontAwesome5Brands.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Fonts/RobotoRegular.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Fonts/RobotoBold.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Fonts/RobotoItalic.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Fonts/RobotoMonoRegular.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Fonts/RobotoMonoBold.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 9,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/src/Mahi/Gui/Fonts/RobotoMonoItalic.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 13,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imgui_demo.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 13,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imgui_draw.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 13,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imgui_widgets.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 13,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imgui.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 13,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imgui_stdlib.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 13,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/backends/imgui_impl_glfw.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 13,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/backends/imgui_impl_glfw.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 13,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/backends/imgui_impl_opengl3.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 13,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/backends/imgui_impl_opengl3.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 13,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imconfig.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 13,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imgui_internal.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 13,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imgui.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 13,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imstb_rectpack.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 13,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imstb_textedit.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 13,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imstb_truetype.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 13,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/imgui/imgui_stdlib.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 14,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/implot/implot.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 14,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/implot/implot_items.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 14,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/implot/implot_demo.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 14,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/implot/implot.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 14,
+			"path" : "build/_deps/mahi-gui-src/3rdparty/implot/implot_internal.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Application.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Color.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Coroutine.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Detail/Tween.inl",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Detail/Vec2.inl",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Fonts.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Icons/IconsFontAwesome5.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Icons/IconsFontAwesome5Brands.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Macros.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Native.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Rect.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Sequence.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Shape.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Transform.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Transformable.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Tween.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/Vec2.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/imgui_custom.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 15,
+			"path" : "build/_deps/mahi-gui-src/include/Mahi/Gui/nanovg_custom.hpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

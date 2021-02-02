@@ -1,0 +1,91 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "clipper::@ee099ffbe401603287c6"
+		},
+		{
+			"id" : "BetterSerialPlotter::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "gui::@b89b3f0f161a861a84d0"
+		},
+		{
+			"id" : "nfd::@3b80e14ecf71f20e142b"
+		},
+		{
+			"id" : "glfw::@292da2318190b66a3baa"
+		},
+		{
+			"id" : "glad::@8ab0b9cb3b88849ec662"
+		},
+		{
+			"id" : "melshare::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "serial::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "com::@1fff01ae5a16f9aadf37"
+		},
+		{
+			"id" : "comms_server::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "melnet::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "chat::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "udp::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "melscope::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "shared_memory::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "util::@9e7e004084100b3727b4"
+		},
+		{
+			"id" : "fmt::@1dc5051ce61772968524"
+		},
+		{
+			"id" : "nanovg::@c7daccaf0a7753883acf"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "CMake"
+	},
+	"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+	"isGeneratorProvided" : true,
+	"name" : "ALL_BUILD",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

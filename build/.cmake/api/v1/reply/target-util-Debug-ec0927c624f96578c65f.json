@@ -1,0 +1,736 @@
+{
+	"archive" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/machine:x64",
+				"role" : "flags"
+			}
+		]
+	},
+	"artifacts" : 
+	[
+		{
+			"path" : "_deps/mahi-util-build/Debug/mahi-util-d.lib"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"install",
+			"target_link_libraries",
+			"add_subdirectory",
+			"target_include_directories",
+			"target_compile_definitions",
+			"target_sources"
+		],
+		"files" : 
+		[
+			"build/_deps/mahi-util-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 67,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 71,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 121,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 105,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 110,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 81,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 96,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 101,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 75,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 138,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 109,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /W3 /MP /MP /MP /MDd /Zi /Ob0 /Od /RTC1   /await"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 3,
+					"define" : "FMT_LOCALE"
+				},
+				{
+					"backtrace" : 6,
+					"define" : "MAHI_COROUTINES"
+				},
+				{
+					"backtrace" : 7,
+					"define" : "MAHI_DEFAULT_LOG"
+				},
+				{
+					"backtrace" : 8,
+					"define" : "MAHI_LOG_CAPTURE_FILE"
+				},
+				{
+					"backtrace" : 9,
+					"define" : "MAHI_UTIL"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "NOMINMAX"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "_CRT_SECURE_NO_WARNINGS"
+				},
+				{
+					"backtrace" : 10,
+					"define" : "_WINSOCK_DEPRECATED_NO_WARNINGS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/include"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/json/include"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/cxxopts/include"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/src"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/fmt/include"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 3,
+			"id" : "fmt::@1dc5051ce61772968524"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "util::@9e7e004084100b3727b4",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "lib"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "C:/Program Files (x86)/Project"
+		}
+	},
+	"name" : "util",
+	"nameOnDisk" : "mahi-util-d.lib",
+	"paths" : 
+	{
+		"build" : "_deps/mahi-util-build",
+		"source" : "build/_deps/mahi-util-src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Console.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Device.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Random.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/System.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Types.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Coroutine.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Concurrency/Lock.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Concurrency/Mutex.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Concurrency/NamedMutex.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Concurrency/Spinlock.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Logging/Csv.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Logging/File.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Logging/Log.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Logging/LogUtil.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Math/Butterworth.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Math/Chirp.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Math/Differentiator.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Math/Filter.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Math/Functions.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Math/Integrator.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Math/TimeFunction.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Math/Waveform.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Timing/Clock.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Timing/Time.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Timing/Timer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Timing/Timestamp.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "build/_deps/mahi-util-src/src/Mahi/Util/Timing/Frequency.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Concurrency/Lock.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Concurrency/Mutex.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Concurrency/NamedMutex.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Concurrency/Spinlock.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Console.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Coroutine.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Device.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Event.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Csv.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Detail/Csv.inl",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Detail/LogUtil.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Detail/StreamMeta.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/File.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Formatters/FuncMessageFormatter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Formatters/MessageOnlyFormatter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Formatters/TxtFormatter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Log.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Writers/ColorConsoleWriter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Writers/ConsoleWriter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Writers/RollingFileWriter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Logging/Writers/Writer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Math/Butterworth.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Math/Chirp.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Math/Constants.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Math/Detail/Functions.inl",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Math/Differentiator.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Math/Filter.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Math/Functions.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Math/Integrator.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Math/TimeFunction.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Math/Waveform.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/NonCopyable.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Print.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Random.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Range.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/StlStreams.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/System.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Templates/RingBuffer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Templates/SPSCQueue.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Templates/Singleton.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Templates/TypeErasure.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Timing/Clock.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Timing/Frequency.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Timing/Time.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Timing/Timer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Timing/Timestamp.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 11,
+			"path" : "build/_deps/mahi-util-src/include/Mahi/Util/Types.hpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

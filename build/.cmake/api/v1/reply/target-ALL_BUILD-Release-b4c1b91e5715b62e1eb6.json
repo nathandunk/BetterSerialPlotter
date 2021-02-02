@@ -1,0 +1,40 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"build/_deps/mahi-gui-src/3rdparty/nativefiledialog-extended/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "nfd::@3b80e14ecf71f20e142b"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "CMake"
+	},
+	"id" : "ALL_BUILD::@980d3981e26c5a2a4114",
+	"isGeneratorProvided" : true,
+	"name" : "ALL_BUILD",
+	"paths" : 
+	{
+		"build" : "_deps/mahi-gui-build/3rdparty/nativefiledialog-extended",
+		"source" : "build/_deps/mahi-gui-src/3rdparty/nativefiledialog-extended"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

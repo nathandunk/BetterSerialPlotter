@@ -1,0 +1,64 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"build/_deps/mahi-com-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "melshare::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "serial::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "com::@1fff01ae5a16f9aadf37"
+		},
+		{
+			"id" : "comms_server::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "melnet::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "chat::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "udp::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "melscope::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "shared_memory::@a6d1882f138054fdde60"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		}
+	],
+	"folder" : 
+	{
+		"name" : "CMake"
+	},
+	"id" : "ALL_BUILD::@1fff01ae5a16f9aadf37",
+	"isGeneratorProvided" : true,
+	"name" : "ALL_BUILD",
+	"paths" : 
+	{
+		"build" : "_deps/mahi-com-build",
+		"source" : "build/_deps/mahi-com-src"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

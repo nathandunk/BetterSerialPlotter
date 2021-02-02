@@ -1,0 +1,945 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FA39FA5A-C958-3F79-B2B1-90A93930DD96}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>mahi-robo-populate</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\6b927a737bbaa83e825500a3568e2c81\mahi-robo-populate-mkdir.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Creating directories for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-mkdir.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Creating directories for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-mkdir.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Creating directories for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-mkdir.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Creating directories for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-mkdir.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\6b927a737bbaa83e825500a3568e2c81\mahi-robo-populate-download.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing download step (git clone) for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp/mahi-robo-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-download.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\mahi-robo-populate-gitinfo.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Performing download step (git clone) for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp/mahi-robo-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-download.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\mahi-robo-populate-gitinfo.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Performing download step (git clone) for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp/mahi-robo-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-download.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\mahi-robo-populate-gitinfo.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Performing download step (git clone) for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp/mahi-robo-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-download.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\mahi-robo-populate-gitinfo.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\6b927a737bbaa83e825500a3568e2c81\mahi-robo-populate-update.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing update step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp/mahi-robo-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-update.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Performing update step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp/mahi-robo-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-update.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Performing update step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp/mahi-robo-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-update.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Performing update step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -P C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/tmp/mahi-robo-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-update.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\6b927a737bbaa83e825500a3568e2c81\mahi-robo-populate-patch.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No patch step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-patch.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">No patch step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-patch.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">No patch step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-patch.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">No patch step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-patch.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\6b927a737bbaa83e825500a3568e2c81\mahi-robo-populate-configure.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No configure step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-configure.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\tmp\mahi-robo-populate-cfgcmd.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">No configure step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-configure.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\tmp\mahi-robo-populate-cfgcmd.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">No configure step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-configure.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\tmp\mahi-robo-populate-cfgcmd.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">No configure step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-configure.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\tmp\mahi-robo-populate-cfgcmd.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\6b927a737bbaa83e825500a3568e2c81\mahi-robo-populate-build.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No build step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-build.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">No build step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-build.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">No build step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-build.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">No build step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-build.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\6b927a737bbaa83e825500a3568e2c81\mahi-robo-populate-install.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No install step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-install.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">No install step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-install.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">No install step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-install.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">No install step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-install.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\6b927a737bbaa83e825500a3568e2c81\mahi-robo-populate-test.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No test step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-test.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-test</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">No test step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-test.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-test</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">No test step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-test.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-test</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">No test step for 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+cd C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/6b927a737bbaa83e825500a3568e2c81/mahi-robo-populate-test.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-test</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\1bdc79db219bcdc215e101e24fbb74b1\mahi-robo-populate-complete.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Completed 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/$(Configuration)/mahi-robo-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/1bdc79db219bcdc215e101e24fbb74b1/mahi-robo-populate-complete.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\$(Configuration)\mahi-robo-populate-complete</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Completed 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/$(Configuration)/mahi-robo-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/1bdc79db219bcdc215e101e24fbb74b1/mahi-robo-populate-complete.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\$(Configuration)\mahi-robo-populate-complete</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Completed 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/$(Configuration)/mahi-robo-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/1bdc79db219bcdc215e101e24fbb74b1/mahi-robo-populate-complete.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\$(Configuration)\mahi-robo-populate-complete</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Completed 'mahi-robo-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/$(Configuration)
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/$(Configuration)/mahi-robo-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/mahi-robo-populate-prefix/src/mahi-robo-populate-stamp/$(Configuration)/mahi-robo-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/1bdc79db219bcdc215e101e24fbb74b1/mahi-robo-populate-complete.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-mkdir;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-download;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-update;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-patch;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-configure;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-build;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-install;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\src\mahi-robo-populate-stamp\$(Configuration)\mahi-robo-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\$(Configuration)\mahi-robo-populate-complete</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\32c8386aa3dd174491f9c1ac9491ce9b\mahi-robo-populate.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/32c8386aa3dd174491f9c1ac9491ce9b/mahi-robo-populate.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\$(Configuration)\mahi-robo-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\mahi-robo-populate</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/32c8386aa3dd174491f9c1ac9491ce9b/mahi-robo-populate.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\$(Configuration)\mahi-robo-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\mahi-robo-populate</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/32c8386aa3dd174491f9c1ac9491ce9b/mahi-robo-populate.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\$(Configuration)\mahi-robo-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\mahi-robo-populate</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/32c8386aa3dd174491f9c1ac9491ce9b/mahi-robo-populate.rule;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\$(Configuration)\mahi-robo-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\mahi-robo-populate</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild -BC:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild --check-stamp-file C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\3.14.0-rc2\CMakeSystem.cmake;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\tmp\mahi-robo-populate-cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\RepositoryInfo.txt.in;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild -BC:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild --check-stamp-file C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\3.14.0-rc2\CMakeSystem.cmake;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\tmp\mahi-robo-populate-cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\RepositoryInfo.txt.in;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild -BC:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild --check-stamp-file C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\3.14.0-rc2\CMakeSystem.cmake;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\tmp\mahi-robo-populate-cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\RepositoryInfo.txt.in;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild -BC:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild --check-stamp-file C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Git/BetterSerialPlotter/build/_deps/mahi-robo-subbuild/CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\3.14.0-rc2\CMakeSystem.cmake;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeLists.txt;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\mahi-robo-populate-prefix\tmp\mahi-robo-populate-cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeDetermineSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystem.cmake.in;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindGit.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\FindPackageMessage.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake\share\cmake-3.14\Modules\RepositoryInfo.txt.in;C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\CMakeFiles\mahi-robo-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-robo-subbuild\ZERO_CHECK.vcxproj">
+      <Project>{FBCD220F-042B-3CA4-B7EF-A0F70BA053DA}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
