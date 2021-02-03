@@ -47,4 +47,6 @@ include_directories(include)
 
 add_executable(BetterSerialPlotter src/main.cpp src/BetterSerialPlotter/BSP.cpp src/BetterSerialPlotter/Utility.cpp)
 
+add_subdirectory(test)
+
 target_link_libraries(BetterSerialPlotter mahi::gui mahi::com)

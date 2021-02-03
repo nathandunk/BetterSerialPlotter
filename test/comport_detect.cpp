@@ -1,12 +1,8 @@
-#include <BetterSerialPlotter/Utility.hpp>
-#include <Mahi/Gui.hpp>
+#include <iostream>
+#include <string>
 #include <Windows.h>
 
-void plot_data(ScrollingData &data){
-    ImPlot::PlotLine(data.name.c_str(), &data.Data[0].x, &data.Data[0].y, data.Data.size(), data.Offset, 2 * sizeof(float));  
-}
-
-std::vector<std::string> get_serial_ports() //added function to find the present serial 
+bool SelectComPort() //added function to find the present serial 
 {
     char lpTargetPath[5000]; // buffer to store the path of the COMPORTS
     bool gotPort = false; // in case the port is not found
@@ -28,5 +24,9 @@ std::vector<std::string> get_serial_ports() //added function to find the present
         }
     }
 
-    return port_names;
+    return gotPort;
+}
+
+int main(){
+    SelectComPort();
 }

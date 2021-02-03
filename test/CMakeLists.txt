@@ -1,0 +1,1 @@
+add_executable(comport_detect comport_detect.cpp)

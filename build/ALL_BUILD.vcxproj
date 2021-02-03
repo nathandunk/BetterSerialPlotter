@@ -199,6 +199,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
+    <ProjectReference Include="C:\Git\BetterSerialPlotter\build\test\comport_detect.vcxproj">
+      <Project>{8445A658-5449-39C9-B3C2-E277161292B5}</Project>
+      <Name>comport_detect</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
     <ProjectReference Include="C:\Git\BetterSerialPlotter\build\_deps\mahi-util-build\3rdparty\fmt\fmt.vcxproj">
       <Project>{092CF2C8-E70E-3396-A6CE-F402C71A6212}</Project>
       <Name>fmt</Name>

@@ -46,3 +46,5 @@ C:/Git/BetterSerialPlotter/build/_deps/mahi-com-build/examples/CMakeFiles/melnet
 C:/Git/BetterSerialPlotter/build/_deps/mahi-com-build/examples/CMakeFiles/melscope.dir
 C:/Git/BetterSerialPlotter/build/_deps/mahi-com-build/examples/CMakeFiles/serial.dir
 C:/Git/BetterSerialPlotter/build/_deps/mahi-com-build/examples/CMakeFiles/shared_memory.dir
+C:/Git/BetterSerialPlotter/build/test/CMakeFiles/comport_detect.dir
+C:/Git/BetterSerialPlotter/build/test/CMakeFiles/INSTALL.dir

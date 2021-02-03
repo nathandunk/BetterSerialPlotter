@@ -36,6 +36,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-build/cmake_install.cmake")
   include("C:/Git/BetterSerialPlotter/build/_deps/mahi-com-build/cmake_install.cmake")
+  include("C:/Git/BetterSerialPlotter/build/test/cmake_install.cmake")
 
 endif()
 
