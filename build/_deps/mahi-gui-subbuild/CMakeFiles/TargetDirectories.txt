@@ -1,3 +1,0 @@
-C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/mahi-gui-populate.dir
-C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/ALL_BUILD.dir
-C:/Git/BetterSerialPlotter/build/_deps/mahi-gui-subbuild/CMakeFiles/ZERO_CHECK.dir

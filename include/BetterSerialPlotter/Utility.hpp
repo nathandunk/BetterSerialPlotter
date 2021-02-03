@@ -32,3 +32,4 @@ struct ScrollingData {
 
 void plot_data(ScrollingData &data);
 
+std::vector<int> get_serial_ports();

@@ -1,3 +1,0 @@
-repository='https://github.com/mahilab/mahi-com.git'
-module=''
-tag=''

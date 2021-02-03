@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <CustomBuild Include="C:\Git\BetterSerialPlotter\build\CMakeFiles\c5964e800ab042396dbd82a0bae7f550\INSTALL_force.rule">
       <Filter>CMake Rules</Filter>

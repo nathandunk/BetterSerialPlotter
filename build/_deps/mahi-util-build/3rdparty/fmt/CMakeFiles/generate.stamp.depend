@@ -2,6 +2,7 @@
 C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/fmt/CMakeLists.txt
 C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/3rdparty/fmt/support/cmake/cxx14.cmake
 C:/Program Files/CMake/share/cmake-3.14/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake
+C:/Program Files/CMake/share/cmake-3.14/Modules/CMakeConfigurableFile.in
 C:/Program Files/CMake/share/cmake-3.14/Modules/CheckCXXCompilerFlag.cmake
 C:/Program Files/CMake/share/cmake-3.14/Modules/CheckCXXSourceCompiles.cmake
 C:/Program Files/CMake/share/cmake-3.14/Modules/CheckSymbolExists.cmake

@@ -18,6 +18,7 @@ private:
     std::string curr_number_buff;
     bool read_once = false;
     bool verbose = false;
+    bool serial_started = false;
 
     // all_data[0] contains the full vector for variable 0
     // all_data[1] contains the full vector for variable 1

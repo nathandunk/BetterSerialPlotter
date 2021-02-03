@@ -12,7 +12,6 @@ BSP::BSP(/* args */) :
     mahi::gui::Application(),
     PrintBuffer(10)
 {
-    begin_serial();
     program_clock.restart();
 }
 
@@ -24,6 +23,27 @@ void BSP::update(){
     auto num_data = all_data.size();
     float time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     ImGui::Begin("Better Serial Plotter", &open);
+
+    if (ImGui::TreeNode("Comport Selection:")){
+        std::vector<int> port_names = get_serial_ports();
+        static int selected = -1;
+        for (int n = 0; n < port_names.size(); n++)
+        {
+            if (ImGui::Selectable(("COM"+std::to_string(port_names[n])).c_str(), selected == n)){
+                if(comport_num != port_names[n]) {
+                    if (serial_started){
+                        //close_serial();
+                    }
+                    comport_num = port_names[n];
+                    serial_started = true;
+                    begin_serial();
+                }
+                selected = n;
+            }
+                
+        }
+        ImGui::TreePop();
+    }
     
     // drag and droppable notes
     for (int i = 0; i < num_data; ++i) {
@@ -66,7 +86,7 @@ void BSP::update(){
     ImGui::End();
     
     if(!open) quit();
-    read_serial();
+    if (serial_started) read_serial();
     // std::cout << "after serial";
 }
 
@@ -118,7 +138,7 @@ void BSP::read_serial(){
     bool line_done = false;
     do{
         if(!ReadFile(hSerial, message, packet_size, &dwBytesRead, NULL)){
-            std::cout << "error reading from serial" << std::endl;
+            // std::cout << "error reading from serial" << std::endl;
         }
         else{
             if(dwBytesRead > 0 ){

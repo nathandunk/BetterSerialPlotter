@@ -1,7 +1,7 @@
 # Distributed under the OSI-approved BSD 3-Clause License.  See accompanying
 # file Copyright.txt or https://cmake.org/licensing for details.
 
-cmake_minimum_required(VERSION 3.14.0-rc2)
+cmake_minimum_required(VERSION 3.14.1)
 
 # We name the project and the target for the ExternalProject_Add() call
 # to something that will highlight to the user what we are working on if
