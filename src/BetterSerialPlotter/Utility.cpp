@@ -3,8 +3,10 @@
 #include <Windows.h>
 #include <iostream>
 
-void plot_data(ScrollingData &data){
-    ImPlot::PlotLine(data.name.c_str(), &data.Data[0].x, &data.Data[0].y, data.Data.size(), data.Offset, 2 * sizeof(float));  
+void plot_data(ScrollingData &data, int i){
+    char id[64];
+    sprintf(id,"%s###%i",data.name.c_str(),i);
+    ImPlot::PlotLine(id, &data.Data[0].x, &data.Data[0].y, data.Data.size(), data.Offset, 2 * sizeof(float));  
 }
 
 std::vector<int> get_serial_ports() //added function to find the present serial 

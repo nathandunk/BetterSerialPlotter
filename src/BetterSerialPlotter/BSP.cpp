@@ -53,13 +53,23 @@ void BSP::update(){
             ImGui::TextUnformatted(all_data[i].name.c_str());
             ImGui::EndDragDropSource();
         }
+        static bool editing = false;
         if (ImGui::BeginPopupContextItem())
         {
+            static char name[32];
+            if(!editing){
+                strcpy(name,all_data[i].name.c_str());
+            }
+            editing = true;
             ImGui::Text("Edit name:");
-            ImGui::InputText("##edit", &all_data[i].name);
+            ImGui::InputText(("##edit" + std::to_string(i)).c_str(), name, IM_ARRAYSIZE(name));
+            if (ImGui::Button("Save")){
+                all_data[i].set_name(name);
+                ImGui::CloseCurrentPopup();
+                editing = false;
+            }
             ImGui::EndPopup();
         }
-        ImGui::SameLine(); ImGui::Text("(<-- right-click here)");
     }
 
     ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 3);
@@ -70,7 +80,7 @@ void BSP::update(){
             // all_data[i].show = false;
             if (all_data[i].show){
                 // mahi::util::print_var(all_data[i].name);
-                plot_data(all_data[i]);
+                plot_data(all_data[i],i);
                 // ImPlot::PlotLine(all_data[i].name.c_str(), &all_data[i].Data[0].x, &all_data[i].Data[0].y, all_data[i].Data.size(), all_data[i].Offset, 2 * sizeof(float));    
             }
         }
