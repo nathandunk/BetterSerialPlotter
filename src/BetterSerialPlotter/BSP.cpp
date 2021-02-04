@@ -53,6 +53,13 @@ void BSP::update(){
             ImGui::TextUnformatted(all_data[i].name.c_str());
             ImGui::EndDragDropSource();
         }
+        if (ImGui::BeginPopupContextItem())
+        {
+            ImGui::Text("Edit name:");
+            ImGui::InputText("##edit", &all_data[i].name);
+            ImGui::EndPopup();
+        }
+        ImGui::SameLine(); ImGui::Text("(<-- right-click here)");
     }
 
     ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 3);
