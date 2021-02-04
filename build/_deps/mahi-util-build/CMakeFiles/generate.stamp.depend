@@ -1,7 +1,0 @@
-# CMake generation dependency list for this directory.
-C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/CMakeLists.txt
-C:/Git/BetterSerialPlotter/build/_deps/mahi-util-src/cmake/mahi-util-config.cmake.in
-C:/Program Files/CMake/share/cmake-3.14/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in
-C:/Program Files/CMake/share/cmake-3.14/Modules/CMakePackageConfigHelpers.cmake
-C:/Program Files/CMake/share/cmake-3.14/Modules/GNUInstallDirs.cmake
-C:/Program Files/CMake/share/cmake-3.14/Modules/WriteBasicConfigVersionFile.cmake
