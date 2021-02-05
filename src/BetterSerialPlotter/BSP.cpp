@@ -21,7 +21,7 @@ BSP::~BSP()
 
 void BSP::update(){
     auto num_data = all_data.size();
-    float time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
+    time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     ImGui::Begin("Better Serial Plotter", &open);
 
     if (ImGui::TreeNode("Comport Selection:")){
@@ -70,41 +70,41 @@ void BSP::update(){
             }
             ImGui::EndPopup();
         }
+        ImGui::SameLine();
+        ImGui::InputFloat(("##"+all_data[i].name).c_str(),&all_data[i].Data.back().y);
+    }
+    
+    for (auto i = 0; i < num_plots; i++){
+        add_plot(i);
     }
 
-    ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 3);
-    ImPlot::SetNextPlotLimitsX(time - 10, time, ImGuiCond_Always);
-    // ImPlot::SetNextPlotLimitsY(-90,90);
-    if(ImPlot::BeginPlot("##Better Serial Plot Monitor", "Time (s)", "Value", {-1,600}, 0, 0, 0)){
-        for (auto i = 0; i < all_data.size(); i++) {
-            // all_data[i].show = false;
-            if (all_data[i].show){
-                // mahi::util::print_var(all_data[i].name);
-                plot_data(all_data[i],i);
-                // ImPlot::PlotLine(all_data[i].name.c_str(), &all_data[i].Data[0].x, &all_data[i].Data[0].y, all_data[i].Data.size(), all_data[i].Offset, 2 * sizeof(float));    
-            }
-        }
-        if (ImGui::BeginDragDropTarget()) {
-            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
-                int i = *(int*)payload->Data;
-                all_data[i].show = true;
-                // yAxis[i] = 0;
-                // set specific y-axis if hovered
-                // for (int y = 0; y < 3; y++) {
-                //     if (ImPlot::IsPlotYAxisHovered(y))
-                //         yAxis[i] = y;
-                // }
-            }
-            ImGui::EndDragDropTarget();
-        }
-        ImPlot::EndPlot();
-    }
+    if(ImGui::Button("Add Plot")) num_plots++;
     
     ImGui::End();
     
     if(!open) quit();
     if (serial_started) read_serial();
     // std::cout << "after serial";
+}
+
+void BSP::add_plot(int plot_num){
+    ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 3);
+    ImPlot::SetNextPlotLimitsX(time - 10, time, ImGuiCond_Always);
+    if(ImPlot::BeginPlot(("##Better Serial Plot Monitor" + std::to_string(plot_num)).c_str(), "Time (s)", "Value", {-1,200}, 0, 0, 0)){
+        for (auto i = 0; i < all_data.size(); i++) {
+            if (all_data[i].show){
+                plot_data(all_data[i],i);
+            }
+        }
+        if (ImGui::BeginDragDropTarget()) {
+            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
+                int i = *(int*)payload->Data;
+                all_data[i].show = true;
+            }
+            ImGui::EndDragDropTarget();
+        }
+        ImPlot::EndPlot();
+    }
 }
 
 void BSP::begin_serial(){

@@ -30,6 +30,8 @@ struct ScrollingData {
      void set_name(std::string name_){name = name_;}
 };
 
+
+
 void plot_data(ScrollingData &data, int i);
 
 std::vector<int> get_serial_ports();
