@@ -41,7 +41,10 @@ FetchContent_Declare(mahi-com GIT_REPOSITORY https://github.com/mahilab/mahi-com
 FetchContent_MakeAvailable(mahi-com)
 
 set(SRC_BSP 
-    src/BetterSerialPlotter/Utility.cpp)
+    src/BetterSerialPlotter/Utility.cpp
+    src/BetterSerialPlotter/BSP.cpp
+    src/BetterSerialPlotter/Plot.cpp
+)
 
 include_directories(include)
 

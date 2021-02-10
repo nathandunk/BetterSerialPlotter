@@ -3,11 +3,7 @@
 #include <Windows.h>
 #include <iostream>
 
-void plot_data(ScrollingData &data, int i){
-    char id[64];
-    sprintf(id,"%s###%i",data.name.c_str(),i);
-    ImPlot::PlotLine(id, &data.Data[0].x, &data.Data[0].y, data.Data.size(), data.Offset, 2 * sizeof(float));  
-}
+namespace bsp{
 
 std::vector<int> get_serial_ports() //added function to find the present serial 
 {
@@ -35,3 +31,5 @@ std::vector<int> get_serial_ports() //added function to find the present serial
 
     return port_nums;
 }
+
+} // namespace bsp

@@ -8,6 +8,8 @@
 #include <Mahi/Gui.hpp>
 #include <imgui.h>
 
+namespace bsp{
+
 struct ScrollingData {
      int MaxSize = 1000;
      int Offset  = 0;
@@ -30,8 +32,8 @@ struct ScrollingData {
      void set_name(std::string name_){name = name_;}
 };
 
-
-
-void plot_data(ScrollingData &data, int i);
+// void plot_data(const ScrollingData &data, int i);
 
 std::vector<int> get_serial_ports();
+
+} // namespace bsp

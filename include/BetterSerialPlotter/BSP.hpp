@@ -6,6 +6,8 @@
 #include <Mahi/Util/Templates/RingBuffer.hpp>
 #include <Mahi/Util/Timing/Clock.hpp>
 
+namespace bsp{
+
 class BSP : public mahi::gui::Application
 {
 private:
@@ -40,4 +42,4 @@ public:
     void append_all_data(std::vector<float> curr_data);
 };
 
-
+} // namespace bsp

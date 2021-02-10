@@ -7,3 +7,6 @@ To do:
 - add numeric next to data names
 - enable change of data names
 - close comport when switching
+- pause button
+- record data
+- add documentation

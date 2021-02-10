@@ -7,6 +7,7 @@
 #include <Mahi/Gui.hpp>
 #include <Mahi/Util.hpp>
 
+namespace bsp{
 
 BSP::BSP(/* args */) : 
     mahi::gui::Application(),
@@ -40,7 +41,6 @@ void BSP::update(){
                 }
                 selected = n;
             }
-                
         }
         ImGui::TreePop();
     }
@@ -219,3 +219,5 @@ void BSP::append_all_data(std::vector<float> curr_data){
         all_data[i].AddPoint(curr_time, curr_data[i]);
     }
 }
+
+} // namespace bsp
