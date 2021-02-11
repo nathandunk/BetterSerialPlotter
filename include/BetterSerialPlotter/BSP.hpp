@@ -2,6 +2,7 @@
 
 #include <Mahi/Gui.hpp>
 #include <Windows.h>
+#include <BetterSerialPlotter/Plot.hpp>
 #include <BetterSerialPlotter/Utility.hpp>
 #include <Mahi/Util/Templates/RingBuffer.hpp>
 #include <Mahi/Util/Timing/Clock.hpp>
@@ -29,10 +30,11 @@ private:
     // ...etc
     std::vector<ScrollingData> all_data;
 
+    std::vector<Plot> all_plots;
+
     std::vector<float> curr_data;
     HANDLE hSerial;
 
-    void add_plot(int plot_num);
 public:
     BSP(/* args */);
     ~BSP();

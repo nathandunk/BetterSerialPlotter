@@ -13,6 +13,7 @@ BSP::BSP(/* args */) :
     mahi::gui::Application(),
     PrintBuffer(10)
 {
+    all_plots.emplace_back();
     program_clock.restart();
 }
 
@@ -48,7 +49,7 @@ void BSP::update(){
     // drag and droppable notes
     for (int i = 0; i < num_data; ++i) {
         ImGui::Selectable(all_data[i].name.c_str(), false, 0, ImVec2(100, 0));
-        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None)) {// try ImGuiDragDropFlags_AcceptBeforeDelivery
+        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_AcceptBeforeDelivery)) {// try ImGuiDragDropFlags_AcceptBeforeDelivery
             ImGui::SetDragDropPayload("DND_PLOT", &i, sizeof(int));
             ImGui::TextUnformatted(all_data[i].name.c_str());
             ImGui::EndDragDropSource();
@@ -71,40 +72,24 @@ void BSP::update(){
             ImGui::EndPopup();
         }
         ImGui::SameLine();
-        ImGui::InputFloat(("##"+all_data[i].name).c_str(),&all_data[i].Data.back().y);
+        ImGui::InputFloat(("##"+all_data[i].name).c_str(),&all_data[i].get_back().y);
+        // std::cout << all_data[i].Data.back().y << std::endl;
     }
+    // std::cout << std::endl;
     
-    for (auto i = 0; i < num_plots; i++){
-        add_plot(i);
+    for (auto i = 0; i < all_plots.size(); i++){
+        all_plots[i].make_plot(time, i, all_data);
     }
 
-    if(ImGui::Button("Add Plot")) num_plots++;
+    if(ImGui::Button("Add Plot")) {
+        all_plots.emplace_back();
+    }
     
     ImGui::End();
     
     if(!open) quit();
     if (serial_started) read_serial();
     // std::cout << "after serial";
-}
-
-void BSP::add_plot(int plot_num){
-    ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 3);
-    ImPlot::SetNextPlotLimitsX(time - 10, time, ImGuiCond_Always);
-    if(ImPlot::BeginPlot(("##Better Serial Plot Monitor" + std::to_string(plot_num)).c_str(), "Time (s)", "Value", {-1,200}, 0, 0, 0)){
-        for (auto i = 0; i < all_data.size(); i++) {
-            if (all_data[i].show){
-                plot_data(all_data[i],i);
-            }
-        }
-        if (ImGui::BeginDragDropTarget()) {
-            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
-                int i = *(int*)payload->Data;
-                all_data[i].show = true;
-            }
-            ImGui::EndDragDropTarget();
-        }
-        ImPlot::EndPlot();
-    }
 }
 
 void BSP::begin_serial(){
@@ -211,6 +196,7 @@ void BSP::append_all_data(std::vector<float> curr_data){
         all_data.resize(curr_data.size(),"data " + std::to_string(all_data.size()+1));
         for (auto i = old_size; i < all_data.size(); i++){
             all_data[i].set_name("data " + std::to_string(i));
+            all_data[i].set_identifier(i);
         }
         
     }

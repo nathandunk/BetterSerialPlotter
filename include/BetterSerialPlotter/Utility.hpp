@@ -11,6 +11,7 @@
 namespace bsp{
 
 struct ScrollingData {
+     char m_identifier = 0;
      int MaxSize = 1000;
      int Offset  = 0;
      std::string name;
@@ -29,7 +30,16 @@ struct ScrollingData {
                Offset =  (Offset + 1) % MaxSize;
           }
      }
+     ImVec2& get_back(){
+          if (Data.size() < MaxSize){
+               return Data.back();
+          }
+          else{
+               return Data[Offset != 0 ? (Offset-1) : MaxSize];
+          }
+     }
      void set_name(std::string name_){name = name_;}
+     void set_identifier(char identifier){m_identifier = identifier;}
 };
 
 // void plot_data(const ScrollingData &data, int i);
