@@ -19,6 +19,7 @@ private:
     mahi::util::RingBuffer<std::string> PrintBuffer;
     mahi::util::Clock program_clock;
     std::string curr_number_buff;
+    std::string curr_line_buff;
     bool read_once = false;
     bool verbose = false;
     bool serial_started = false;
@@ -34,6 +35,8 @@ private:
 
     std::vector<float> curr_data;
     HANDLE hSerial;
+
+    bool auto_scroll = true;
 
 public:
     BSP(/* args */);

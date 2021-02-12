@@ -11,7 +11,7 @@ namespace bsp{
 
 BSP::BSP(/* args */) : 
     mahi::gui::Application(),
-    PrintBuffer(10)
+    PrintBuffer(1000)
 {
     all_plots.emplace_back();
     program_clock.restart();
@@ -87,6 +87,25 @@ void BSP::update(){
         all_plots.emplace_back();
     }
     
+    
+
+    if (ImGui::TreeNode("Serial Monitor:")){
+        ImGui::Checkbox("Auto-Scroll",&auto_scroll);
+        ImGui::BeginChild("Serial Monitor", ImVec2(-1, 250), true);//, window_flags);
+        for (size_t i = 0; i < PrintBuffer.size(); i++){
+            ImGui::Text(PrintBuffer.get_vector()[i].c_str());
+        }
+        ImGui::SetScrollY((float)PrintBuffer.size());
+        std::cout << (float)PrintBuffer.size() << "\n";
+        ImGui::EndChild();
+        ImGui::TreePop();
+    }
+
+    {
+        // ImGuiWindowFlags window_flags = ImGuiWindowFlags_HorizontalScrollbar;
+        
+    }
+    
     ImGui::End();
     
     if(!open) quit();
@@ -159,8 +178,8 @@ void BSP::read_serial(){
                     // std::cout << "bytesread: " << dwBytesRead << "\n";
                     // GETTING TO NEWLINE BEFORE DOING ANYTHING
                     for (size_t i = 0; i < dwBytesRead; i++){
-                        // std::cout << "int: " << (int)message[i] << "\n";
-                        // std::cout << "char: " << message[i] << "\n";
+                        curr_line_buff += message[i];
+
                         // if tab (0x09) or space (0x20)
                         if ((message[i] == 0x09 || message[i] == 0x20) && read_once){
                             curr_data.push_back(std::stof(curr_number_buff));
@@ -170,13 +189,10 @@ void BSP::read_serial(){
                         // if new line
                         else if (message[i] == 0x0a && read_once){
                             curr_data.push_back(std::stof(curr_number_buff));
-                            curr_number_buff = "";
+                            PrintBuffer.push_back(curr_line_buff);
+                            curr_number_buff.clear();
+                            curr_line_buff.clear();
                             append_all_data(curr_data);
-                            // std::cout << std::endl << "size: " << curr_data.size();
-                            // for (auto &&i : curr_data)
-                            // {
-                            //     std::cout << i;
-                            // }
                             if (verbose) std::cout << std::endl;
                             
                             curr_data.clear();
@@ -186,6 +202,7 @@ void BSP::read_serial(){
                         else if ((message[i] >= '0' && message[i] <= '9' || message[i] == '.' || message[i] == '-') && read_once){
                             curr_number_buff += message[i];
                             if (verbose) std::cout << message[i];
+                            
                         }
                         else if (message[i] != 0x0d && read_once) {
                             std::cout << "invalid character: " << message[i] << std::endl;
