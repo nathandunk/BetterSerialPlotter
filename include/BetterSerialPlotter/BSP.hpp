@@ -14,7 +14,7 @@ class BSP : public mahi::gui::Application
 private:
     static constexpr int packet_size = 32;
     bool open = true;
-    int comport_num = 12;
+    int comport_num = -1;
     char message[packet_size];
     mahi::util::RingBuffer<std::string> PrintBuffer;
     mahi::util::Clock program_clock;
@@ -39,7 +39,8 @@ public:
     BSP(/* args */);
     ~BSP();
     void update();
-    void begin_serial();
+    bool begin_serial();
+    void close_serial();
     void read_serial();
     void append_all_data(std::vector<float> curr_data);
 };

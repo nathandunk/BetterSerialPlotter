@@ -34,7 +34,7 @@ void BSP::update(){
             if (ImGui::Selectable(("COM"+std::to_string(port_names[n])).c_str(), selected == n)){
                 if(comport_num != port_names[n]) {
                     if (serial_started){
-                        //close_serial();
+                        close_serial();
                     }
                     comport_num = port_names[n];
                     serial_started = true;
@@ -48,7 +48,7 @@ void BSP::update(){
     
     // drag and droppable notes
     for (int i = 0; i < num_data; ++i) {
-        ImGui::Selectable(all_data[i].name.c_str(), false, 0, ImVec2(100, 0));
+        ImGui::Selectable(all_data[i].name.c_str(), false, 0, ImVec2(110, 0));
         if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_AcceptBeforeDelivery)) {// try ImGuiDragDropFlags_AcceptBeforeDelivery
             ImGui::SetDragDropPayload("DND_PLOT", &i, sizeof(int));
             ImGui::TextUnformatted(all_data[i].name.c_str());
@@ -57,14 +57,14 @@ void BSP::update(){
         static bool editing = false;
         if (ImGui::BeginPopupContextItem())
         {
-            static char name[32];
+            static char name[16];
             if(!editing){
                 strcpy(name,all_data[i].name.c_str());
             }
             editing = true;
             ImGui::Text("Edit name:");
             ImGui::InputText(("##edit" + std::to_string(i)).c_str(), name, IM_ARRAYSIZE(name));
-            if (ImGui::Button("Save")){
+            if (ImGui::Button("Save") || (ImGui::IsKeyPressed(257)) || (ImGui::IsKeyPressed(335))){ // would change for mac/linux
                 all_data[i].set_name(name);
                 ImGui::CloseCurrentPopup();
                 editing = false;
@@ -72,7 +72,9 @@ void BSP::update(){
             ImGui::EndPopup();
         }
         ImGui::SameLine();
-        ImGui::InputFloat(("##"+all_data[i].name).c_str(),&all_data[i].get_back().y);
+        char buff[16];
+        sprintf(buff, "%4.3f", all_data[i].get_back().y);
+        ImGui::Text(buff);
         // std::cout << all_data[i].Data.back().y << std::endl;
     }
     // std::cout << std::endl;
@@ -92,7 +94,7 @@ void BSP::update(){
     // std::cout << "after serial";
 }
 
-void BSP::begin_serial(){
+bool BSP::begin_serial(){
     std::wstring com_prefix = L"\\\\.\\COM";
     std::wstring com_suffix = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(std::to_string(comport_num));
     std::wstring comID = com_prefix + com_suffix;
@@ -110,6 +112,7 @@ void BSP::begin_serial(){
 
     if (!GetCommState(hSerial, &dcbSerialParams)) {
         std::cout << "Could not get com state" << std::endl;
+        return false;
     }
 
     dcbSerialParams.BaudRate=CBR_9600;
@@ -118,6 +121,7 @@ void BSP::begin_serial(){
     dcbSerialParams.Parity=NOPARITY;
     if(!SetCommState(hSerial, &dcbSerialParams)){
         std::cout << "could not set com state" << std::endl;
+        return false;
     }
 
     COMMTIMEOUTS timeouts={0};
@@ -127,12 +131,20 @@ void BSP::begin_serial(){
     
     if(!SetCommTimeouts(hSerial, &timeouts)){
         std::cout << "could not set timeouts" << std::endl;
+        return false;
     }
 
     PurgeComm(hSerial,PURGE_TXABORT);
     PurgeComm(hSerial,PURGE_RXABORT);
     PurgeComm(hSerial,PURGE_RXCLEAR);
 	PurgeComm(hSerial,PURGE_TXCLEAR);
+
+    std::cout << "connected to comport " << comport_num << "!\n";
+    return true;
+}
+
+void BSP::close_serial(){
+    CloseHandle(hSerial);
 }
 
 void BSP::read_serial(){
