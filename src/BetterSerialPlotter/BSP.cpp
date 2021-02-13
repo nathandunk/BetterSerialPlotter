@@ -90,13 +90,14 @@ void BSP::update(){
     
 
     if (ImGui::TreeNode("Serial Monitor:")){
+        constexpr ImGuiWindowFlags child_flags = ImGuiWindowFlags_HorizontalScrollbar;
         ImGui::Checkbox("Auto-Scroll",&auto_scroll);
-        ImGui::BeginChild("Serial Monitor", ImVec2(-1, 250), true);//, window_flags);
+        ImGui::BeginChild("Serial Monitor", ImVec2(-1, 250), true, child_flags);
         for (size_t i = 0; i < PrintBuffer.size(); i++){
             ImGui::Text(PrintBuffer.get_vector()[i].c_str());
         }
-        ImGui::SetScrollY((float)PrintBuffer.size());
-        std::cout << (float)PrintBuffer.size() << "\n";
+        // ImGui::SetScrollY((float)PrintBuffer.size());
+        if (auto_scroll) ImGui::SetScrollY(ImGui::GetScrollMaxY());
         ImGui::EndChild();
         ImGui::TreePop();
     }
