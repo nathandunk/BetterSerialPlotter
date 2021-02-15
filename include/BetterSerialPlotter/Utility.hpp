@@ -17,6 +17,7 @@ struct ScrollingData {
      std::string name;
      bool show = false;
      ImVector<ImVec2> Data;
+     ImVector<ImVec4> Color;
      ScrollingData(std::string name_):
      name(name_)
      { 
