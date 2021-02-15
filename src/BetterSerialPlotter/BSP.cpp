@@ -55,7 +55,13 @@ void BSP::update(){
                     }
                     editing = true;
                     ImGui::Text("Edit name:");
+                    ImGui::SameLine();
+                    ImGui::PushItemWidth(120);
                     ImGui::InputText(("##edit" + std::to_string(i)).c_str(), name, IM_ARRAYSIZE(name));
+                    ImGui::PopItemWidth();
+                    ImGui::Text("Edit color:");
+                    ImGui::SameLine();
+                    ImGui::ColorEdit4("##Color", (float*)&all_data[i].color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
                     if (ImGui::Button("Save") || (ImGui::IsKeyPressed(257)) || (ImGui::IsKeyPressed(335))){ // would change for mac/linux
                         all_data[i].set_name(name);
                         ImGui::CloseCurrentPopup();
@@ -327,6 +333,8 @@ void BSP::append_all_data(std::vector<float> curr_data){
         for (auto i = old_size; i < all_data.size(); i++){
             all_data[i].set_name("data " + std::to_string(i));
             all_data[i].set_identifier(i);
+            all_data[i].color = plot_colors[i%plot_colors.size()];
+            std::cout << i%plot_colors.size() << std::endl;
         }
     }
     float curr_time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
