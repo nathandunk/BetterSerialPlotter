@@ -59,14 +59,14 @@ private:
     //                                    ImGui::ColorConvertU32ToFloat4(0xF9C74FFF),
     //                                    ImGui::ColorConvertU32ToFloat4(0x43AA8BFF)};
 
-    std::vector<ImVec4> plot_colors = {ImVec4(0.66f,0.36f,0.42f,1.00f),
+    std::vector<ImVec4> plot_colors = {ImVec4(0.26f,0.67f,0.55f,1.00f),
+                                       ImVec4(0.74f,0.74f,0.92f,1.00f),
                                        ImVec4(0.34f,0.46f,0.56f,1.00f),
-                                       ImVec4(0.56f,0.75f,0.43f,1.00f),
-                                       ImVec4(0.98f,0.25f,0.27f,1.00f),
-                                       ImVec4(0.95f,0.45f,0.17f,1.00f),
-                                       ImVec4(0.30f,0.56f,0.56f,1.00f),
+                                       ImVec4(0.73f,0.95f,0.88f,1.00f),
+                                       ImVec4(0.98f,0.38f,0.38f,1.00f),
+                                       ImVec4(0.78f,0.55f,0.42f,1.00f),
                                        ImVec4(0.98f,0.78f,0.31f,1.00f),
-                                       ImVec4(0.26f,0.67f,0.55f,1.00f)};
+                                       ImVec4(0.66f,0.36f,0.42f,1.00f)};
 
 
     std::vector<int> baud_rates = {CBR_110, CBR_300, CBR_600, CBR_1200, CBR_2400, CBR_4800, CBR_9600, CBR_14400, CBR_19200, CBR_38400, CBR_56000, CBR_57600, CBR_115200, CBR_128000, CBR_256000};

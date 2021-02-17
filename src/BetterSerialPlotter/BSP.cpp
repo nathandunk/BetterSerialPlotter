@@ -12,7 +12,7 @@ namespace bsp{
 
 BSP::BSP(/* args */) : 
     mahi::gui::Application(),
-    PrintBuffer(1000)
+    PrintBuffer(200)
 {
     all_plots.emplace_back();
     program_clock.restart();
