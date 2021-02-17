@@ -46,6 +46,9 @@ set(SRC_BSP
     src/BetterSerialPlotter/Plot.cpp
     src/BetterSerialPlotter/Widget.cpp
     src/BetterSerialPlotter/DataPanel.cpp
+    src/BetterSerialPlotter/SerialManager.cpp
+    src/BetterSerialPlotter/PlotMonitor.cpp
+    src/BetterSerialPlotter/SerialMonitor.cpp
 )
 
 include_directories(include)

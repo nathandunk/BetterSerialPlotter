@@ -13,6 +13,9 @@ namespace bsp{
 BSP::BSP(/* args */) : 
     mahi::gui::Application(),
     data_panel(this),
+    serial_manager(this),
+    plot_monitor(this),
+    serial_monitor(this),
     PrintBuffer(200)
 {
     all_plots.emplace_back();
@@ -30,7 +33,6 @@ void BSP::update(){
 
     constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding;
 
-    auto num_data = all_data.size();
     time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     ImGui::Begin("Better Serial Plotter", &open, padding_flag);
 
@@ -39,90 +41,16 @@ void BSP::update(){
     ImGui::SameLine();
     
     ImGui::BeginGroup();
-    {
-        ImGui::PushStyleColor(ImGuiCol_FrameBg, (comport_num > 0) ? (serial_status ? PalleteGreen : PalleteRed) : PalleteGray);
-        ImGui::PushStyleColor(ImGuiCol_Header, (comport_num > 0) ? (serial_status ? PalleteGreen : PalleteRed) : PalleteGray);
-        ImGui::BeginChild("SerialSetup", ImVec2(-1, 36), false, padding_flag);
-        // comport selection
-        ImGui::PushItemWidth(200);
-        if (ImGui::BeginCombo("##comport_select", ("COM: " + ((comport_num >= 0) ? std::to_string(comport_num) : "")).c_str())){
-            std::vector<int> port_names = get_serial_ports();
-            for (int i = 0; i < port_names.size(); i++){
-                const bool com_is_selected = (comport_num == port_names[i]);
-                if (ImGui::Selectable(("COM"+std::to_string(port_names[i])).c_str(), com_is_selected)){
-                    // make sure this isn't what we are already connected to
-                    if(comport_num != port_names[i]) {
-                        if (serial_started){
-                            close_serial();
-                        }
-                        comport_num = port_names[i];
-                        serial_started = true;
-                        begin_serial();
-                        reset_read();
-                    }
-                }
-            }
-            ImGui::EndCombo();
-        }
-        ImGui::PopItemWidth();
-        ImGui::PopStyleColor();
-        ImGui::PopStyleColor();
-        ImGui::SameLine();
-        // baud rate select
-        ImGui::PushItemWidth(200);
-        ImGui::PushStyleColor(ImGuiCol_FrameBg, (baud_rate > 0) ? (baud_status ? PalleteGreen : PalleteRed) : PalleteGray);
-        ImGui::PushStyleColor(ImGuiCol_Header, (baud_rate > 0) ? (baud_status ? PalleteGreen : PalleteRed) : PalleteGray);
-        if (ImGui::BeginCombo("##baud_rate", ("Baud Rate: " + ((baud_rate >= 0) ? std::to_string(baud_rate) : "")).c_str())){
-            for (int i = 0; i < baud_rates.size(); i++){
-                const bool baud_is_selected = (baud_rate == baud_rates[i]);
-                if (ImGui::Selectable(("COM"+std::to_string(baud_rates[i])).c_str(), baud_is_selected)){
-                    // make sure this isn't what we are already connected to
-                    if(baud_rate != baud_rates[i]) {
-                        baud_rate = baud_rates[i];
-                        DCB dcbSerialParams = {0};
-                        dcbSerialParams.DCBlength=sizeof(dcbSerialParams);
 
-                        dcbSerialParams.BaudRate=baud_rate;
-                        dcbSerialParams.ByteSize=8;
-                        dcbSerialParams.StopBits=ONESTOPBIT;
-                        dcbSerialParams.Parity=NOPARITY;
-                        if(!SetCommState(hSerial, &dcbSerialParams)){
-                            std::cout << "could not set com state" << std::endl;
-                        }
-                        reset_read();
-                    }
-                }
-            }
-            ImGui::EndCombo();
-        }
-        ImGui::PopItemWidth();
-        ImGui::EndChild();
-        ImGui::PopStyleColor();
-        ImGui::PopStyleColor();
-    }
+    serial_manager.render();
+    
 
     if (ImGui::BeginTabBar("MainAreaTabs")){
         if (ImGui::BeginTabItem("Plots")){
-            for (auto i = 0; i < all_plots.size(); i++){
-                all_plots[i].make_plot(time, i, all_data);
-            }
-            ImGui::PushStyleColor(ImGuiCol_Button,PalleteBlue);
-            if(ImGui::Button("Add Plot")) {
-                all_plots.emplace_back();
-            }
-            ImGui::PopStyleColor();
-            ImGui::EndTabItem();
+            plot_monitor.render();
         }
         if (ImGui::BeginTabItem("SerialMonitor")){
-            constexpr ImGuiWindowFlags serial_monitor_flags = ImGuiWindowFlags_HorizontalScrollbar;
-            ImGui::Checkbox("Auto-Scroll",&auto_scroll);
-            ImGui::BeginChild("Serial Monitor", ImVec2(-1, 586), true, serial_monitor_flags);
-            for (size_t i = 0; i < PrintBuffer.size(); i++){
-                ImGui::Text(PrintBuffer.get_vector()[i].c_str());
-            }
-            if (auto_scroll) ImGui::SetScrollY(ImGui::GetScrollMaxY());
-            ImGui::EndChild();
-            ImGui::EndTabItem();
+            serial_monitor.render();
         }
         ImGui::EndTabBar();
     }

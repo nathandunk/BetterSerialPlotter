@@ -1,5 +1,7 @@
 #pragma once
 
+#include <imgui.h>
+
 namespace bsp{
 
 class BSP;

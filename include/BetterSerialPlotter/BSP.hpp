@@ -4,6 +4,9 @@
 #include <Windows.h>
 #include <BetterSerialPlotter/Plot.hpp>
 #include <BetterSerialPlotter/DataPanel.hpp>
+#include <BetterSerialPlotter/SerialManager.hpp>
+#include <BetterSerialPlotter/PlotMonitor.hpp>
+#include <BetterSerialPlotter/SerialMonitor.hpp>
 #include <BetterSerialPlotter/Utility.hpp>
 #include <Mahi/Util/Templates/RingBuffer.hpp>
 #include <Mahi/Util/Timing/Clock.hpp>
@@ -74,9 +77,15 @@ private:
 
     bool auto_scroll = true;
 
-    DataPanel data_panel;
+    DataPanel     data_panel;
+    SerialManager serial_manager;
+    PlotMonitor   plot_monitor;
+    SerialMonitor serial_monitor;
 
     friend class DataPanel;
+    friend class SerialManager;
+    friend class PlotMonitor;
+    friend class SerialMonitor;
 
 public:
     BSP(/* args */);

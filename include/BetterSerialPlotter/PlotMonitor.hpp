@@ -4,11 +4,11 @@
 
 namespace bsp{
 
-class SerialMonitor : public Widget
+class PlotMonitor : public Widget
 {
 public:
     void render();
-    SerialMonitor(BSP* gui_);
+    PlotMonitor(BSP* gui_);
 };
 
 } // namespace bsp

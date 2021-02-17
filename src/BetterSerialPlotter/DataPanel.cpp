@@ -1,6 +1,5 @@
 #include <BetterSerialPlotter/DataPanel.hpp>
 #include <BetterSerialPlotter/BSP.hpp>
-#include <imgui.h>
 
 namespace bsp{
 
