@@ -11,7 +11,7 @@ void DataPanel::render(){
     ImGui::BeginChild("IncomingData", ImVec2(200, -1), false, padding_flag);
     ImGui::Text("Incoming Data");
     ImGui::Separator();
-    if (ImGui::BeginTable("data_table", 2, ImGuiTableFlags_Resizable) && gui->baud_status){
+    if (ImGui::BeginTable("data_table", 2, ImGuiTableFlags_Resizable) && gui->serial_manager.baud_status){
         for (int i = 0; i < gui->all_data.size(); ++i) {
             ImGui::TableNextRow();
             ImGui::TableNextColumn();
