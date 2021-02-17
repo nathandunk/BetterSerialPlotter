@@ -12,6 +12,7 @@ namespace bsp{
 
 BSP::BSP(/* args */) : 
     mahi::gui::Application(),
+    data_panel(this),
     PrintBuffer(200)
 {
     all_plots.emplace_back();
@@ -32,54 +33,8 @@ void BSP::update(){
     auto num_data = all_data.size();
     time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     ImGui::Begin("Better Serial Plotter", &open, padding_flag);
-    
-    {
-        ImGui::BeginChild("IncomingData", ImVec2(200, -1), false, padding_flag);
-        ImGui::Text("Incoming Data");
-        ImGui::Separator();
-        if (ImGui::BeginTable("data_table", 2, ImGuiTableFlags_Resizable) && baud_status){
-            for (int i = 0; i < num_data; ++i) {
-                ImGui::TableNextRow();
-                ImGui::TableNextColumn();
-                ImGui::Selectable(all_data[i].name.c_str(), false, ImGuiSelectableFlags_SpanAllColumns);
-                if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_AcceptBeforeDelivery)) {
-                    ImGui::SetDragDropPayload("DND_PLOT", &i, sizeof(int));
-                    ImGui::TextUnformatted(all_data[i].name.c_str());
-                    ImGui::EndDragDropSource();
-                }
-                static bool editing = false;
-                if (ImGui::BeginPopupContextItem()){
-                    static char name[16];
-                    if(!editing){
-                        strcpy(name,all_data[i].name.c_str());
-                    }
-                    editing = true;
-                    ImGui::Text("Edit name:");
-                    ImGui::SameLine();
-                    ImGui::PushItemWidth(120);
-                    ImGui::InputText(("##edit" + std::to_string(i)).c_str(), name, IM_ARRAYSIZE(name));
-                    ImGui::PopItemWidth();
-                    ImGui::Text("Edit color:");
-                    ImGui::SameLine();
-                    ImGui::ColorEdit4("##Color", (float*)&all_data[i].color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
-                    if (ImGui::Button("Save") || (ImGui::IsKeyPressed(257)) || (ImGui::IsKeyPressed(335))){ // would change for mac/linux
-                        all_data[i].set_name(name);
-                        ImGui::CloseCurrentPopup();
-                        editing = false;
-                    }
-                    ImGui::EndPopup();
-                }
-                ImGui::TableNextColumn();
-                // ImGui::SameLine();
-                char buff[16];
-                sprintf(buff, "%4.3f", all_data[i].get_back().y);
-                ImGui::Text(buff);
-            }
-            ImGui::EndTable();
-        }
-        
-        ImGui::EndChild();
-    }
+
+    data_panel.render();
     
     ImGui::SameLine();
     

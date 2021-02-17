@@ -3,6 +3,7 @@
 #include <Mahi/Gui.hpp>
 #include <Windows.h>
 #include <BetterSerialPlotter/Plot.hpp>
+#include <BetterSerialPlotter/DataPanel.hpp>
 #include <BetterSerialPlotter/Utility.hpp>
 #include <Mahi/Util/Templates/RingBuffer.hpp>
 #include <Mahi/Util/Timing/Clock.hpp>
@@ -72,6 +73,10 @@ private:
     std::vector<int> baud_rates = {CBR_110, CBR_300, CBR_600, CBR_1200, CBR_2400, CBR_4800, CBR_9600, CBR_14400, CBR_19200, CBR_38400, CBR_56000, CBR_57600, CBR_115200, CBR_128000, CBR_256000};
 
     bool auto_scroll = true;
+
+    DataPanel data_panel;
+
+    friend class DataPanel;
 
 public:
     BSP(/* args */);
