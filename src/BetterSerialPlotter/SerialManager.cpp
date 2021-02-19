@@ -156,7 +156,7 @@ void SerialManager::read_serial(){
                     // if tab (0x09) or space (0x20)
                     if ((message[i] == 0x09 || message[i] == 0x20) && read_once){
                         if(std::regex_match(curr_number_buff,std::regex("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"))
-                        && curr_number_buff.length() < 30){
+                        ){
                             curr_data.push_back(std::stof(curr_number_buff));
                             curr_number_buff = "";
                             if (gui->verbose) std::cout << "\t";
@@ -172,7 +172,7 @@ void SerialManager::read_serial(){
                     // if new line
                     else if (message[i] == 0x0a && read_once){
                         if(std::regex_match(curr_number_buff,std::regex("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"))
-                           && curr_number_buff.length() < 30){
+                           ){
                             curr_data.push_back(std::stof(curr_number_buff));
                             gui->PrintBuffer.push_back(curr_line_buff);
                             curr_number_buff.clear();

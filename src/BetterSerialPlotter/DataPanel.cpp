@@ -15,19 +15,18 @@ void DataPanel::render(){
         for (int i = 0; i < gui->all_data.size(); ++i) {
             ImGui::TableNextRow();
             ImGui::TableNextColumn();
-            ImGui::Selectable(gui->all_data[i].name.c_str(), false, ImGuiSelectableFlags_SpanAllColumns);
+            ImGui::Selectable(gui->all_data[i]->name.c_str(), false, ImGuiSelectableFlags_SpanAllColumns);
             if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_AcceptBeforeDelivery)) {
                 ImGui::SetDragDropPayload("DND_PLOT", &i, sizeof(int));
-                ImGui::TextUnformatted(gui->all_data[i].name.c_str());
+                ImGui::TextUnformatted(gui->all_data[i]->name.c_str());
                 ImGui::EndDragDropSource();
             }
-            static bool editing = false;
             if (ImGui::BeginPopupContextItem()){
                 static char name[16];
-                if(!editing){
-                    strcpy(name,gui->all_data[i].name.c_str());
+                if(i != editing_num){
+                    editing_num = i;
+                    strcpy(name,gui->all_data[i]->name.c_str());
                 }
-                editing = true;
                 ImGui::Text("Edit name:");
                 ImGui::SameLine();
                 ImGui::PushItemWidth(120);
@@ -35,18 +34,16 @@ void DataPanel::render(){
                 ImGui::PopItemWidth();
                 ImGui::Text("Edit color:");
                 ImGui::SameLine();
-                ImGui::ColorEdit4("##Color", (float*)&gui->all_data[i].color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+                ImGui::ColorEdit4("##Color", (float*)&gui->all_data[i]->color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
                 if (ImGui::Button("Save") || (ImGui::IsKeyPressed(257)) || (ImGui::IsKeyPressed(335))){ // would change for mac/linux
-                    gui->all_data[i].set_name(name);
+                    gui->all_data[i]->set_name(name);
                     ImGui::CloseCurrentPopup();
-                    editing = false;
                 }
                 ImGui::EndPopup();
             }
             ImGui::TableNextColumn();
-            // ImGui::SameLine();
             char buff[16];
-            sprintf(buff, "%4.3f", gui->all_data[i].get_back().y);
+            sprintf(buff, "%4.3f", gui->all_data[i]->get_back().y);
             ImGui::Text(buff);
         }
         ImGui::EndTable();

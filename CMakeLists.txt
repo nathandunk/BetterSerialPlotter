@@ -41,14 +41,14 @@ FetchContent_Declare(mahi-com GIT_REPOSITORY https://github.com/mahilab/mahi-com
 FetchContent_MakeAvailable(mahi-com)
 
 set(SRC_BSP 
-    src/BetterSerialPlotter/Utility.cpp
-    src/BetterSerialPlotter/BSP.cpp
-    src/BetterSerialPlotter/Plot.cpp
-    src/BetterSerialPlotter/Widget.cpp
-    src/BetterSerialPlotter/DataPanel.cpp
-    src/BetterSerialPlotter/SerialManager.cpp
-    src/BetterSerialPlotter/PlotMonitor.cpp
-    src/BetterSerialPlotter/SerialMonitor.cpp
+    ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/Utility.cpp
+    ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/BSP.cpp
+    ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/Plot.cpp
+    ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/Widget.cpp
+    ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/DataPanel.cpp
+    ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/SerialManager.cpp
+    ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/PlotMonitor.cpp
+    ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/SerialMonitor.cpp
 )
 
 include_directories(include)

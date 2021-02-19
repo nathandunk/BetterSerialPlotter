@@ -26,7 +26,7 @@ public:
     bool baud_status = false;
     bool serial_status = false;
     int cycles_waited = 0;
-    int cycle_timeout = 20;
+    int cycle_timeout = 50;
     bool serial_started = false;
 private:
     std::vector<int> baud_rates = {CBR_110,

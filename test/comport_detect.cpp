@@ -1,32 +1,20 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
+#include <BetterSerialPlotter/Utility.hpp>
 
-bool SelectComPort() //added function to find the present serial 
-{
-    char lpTargetPath[5000]; // buffer to store the path of the COMPORTS
-    bool gotPort = false; // in case the port is not found
-
-    for (int i = 0; i < 255; i++) // checking ports from COM0 to COM255
-    {
-        std::string str = "COM" + std::to_string(i); // converting to COM0, COM1, COM2
-        DWORD test = QueryDosDevice(str.c_str(), lpTargetPath, 5000);
-
-        // Test the return value and error if any
-        if (test != 0) //QueryDosDevice returns zero if it didn't find an object
-        {
-            std::cout << str << ": " << lpTargetPath << std::endl;
-            gotPort = true;
-        }
-
-        if (::GetLastError() == ERROR_INSUFFICIENT_BUFFER)
-        {
-        }
-    }
-
-    return gotPort;
-}
+using namespace bsp;
 
 int main(){
-    SelectComPort();
+    std::vector<std::shared_ptr<ScrollingData>> my_data;
+
+    for (size_t i = 0; i < 5; i++){
+        my_data.emplace_back(std::make_shared<ScrollingData>());
+        my_data[i]->set_name("test" + std::to_string(i));
+    }
+
+    for (size_t i = 0; i < 5; i++){
+        std::cout << my_data[i]->name << "\n";
+    }
+
 }

@@ -28,9 +28,7 @@ private:
     // all_data[0] contains the full vector for variable 0
     // all_data[1] contains the full vector for variable 1
     // ...etc
-    std::vector<ScrollingData> all_data;
-
-    std::vector<Plot> all_plots;
+    std::vector<std::shared_ptr<ScrollingData>> all_data;
 
     
     // HANDLE hSerial;
@@ -60,6 +58,7 @@ private:
     friend class DataPanel;
     friend class SerialManager;
     friend class PlotMonitor;
+    friend class Plot;
     friend class SerialMonitor;
 
 public:

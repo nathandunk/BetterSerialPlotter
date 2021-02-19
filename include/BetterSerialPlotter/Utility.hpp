@@ -12,16 +12,15 @@ namespace bsp{
 
 struct ScrollingData {
      char m_identifier = 0;
-     int MaxSize = 1000;
+     int MaxSize = 5000;
      int Offset  = 0;
      std::string name;
      bool show = false;
      ImVector<ImVec2> Data;
      ImVec4 color;
-     ScrollingData(std::string name_):
-     name(name_)
-     { 
-          Data.reserve(MaxSize); 
+     ScrollingData()
+     {
+          Data.reserve(MaxSize);
      }
      void AddPoint(float x, float y) {
           if (Data.size() < MaxSize)
