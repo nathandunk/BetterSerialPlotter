@@ -29,14 +29,26 @@ void Plot::make_plot(float time, int plot_num){
 }
 
 void Plot::plot_data(){
-    for (auto i = 0; i < all_plot_data.size(); i++){
-        ImPlot::PushStyleColor(ImPlotCol_Line,all_plot_data[i]->color);
-        char id[64];
-        sprintf(id,"%s###%i",all_plot_data[i]->name.c_str(),i);
-        // ScrollingData &plot_data = plot_monitor->paused ? plot_monitor->paused_data[i] : 
-        ImPlot::PlotLine(id, &all_plot_data[i]->Data[0].x, &all_plot_data[i]->Data[0].y, all_plot_data[i]->Data.size(), all_plot_data[i]->Offset, 2 * sizeof(float));  
-        ImPlot::PopStyleColor();
-    }    
+    // this is a dumb duplication of code, but I can't think of a good way to make this work without it at the moment.
+    if (plot_monitor->paused){
+        for (auto i = 0; i < all_plot_paused_data.size(); i++){
+            ImPlot::PushStyleColor(ImPlotCol_Line,all_plot_paused_data[i].color);
+            char id[64];
+            sprintf(id,"%s###%i",all_plot_paused_data[i].name.c_str(),i);
+            ImPlot::PlotLine(id, &all_plot_paused_data[i].Data[0].x, &all_plot_paused_data[i].Data[0].y, all_plot_paused_data[i].Data.size(), all_plot_paused_data[i].Offset, 2 * sizeof(float));  
+            ImPlot::PopStyleColor();
+        }    
+    }
+    else{
+        for (auto i = 0; i < all_plot_data.size(); i++){
+            ImPlot::PushStyleColor(ImPlotCol_Line,all_plot_data[i]->color);
+            char id[64];
+            sprintf(id,"%s###%i",all_plot_data[i]->name.c_str(),i);
+            ImPlot::PlotLine(id, &all_plot_data[i]->Data[0].x, &all_plot_data[i]->Data[0].y, all_plot_data[i]->Data.size(), all_plot_data[i]->Offset, 2 * sizeof(float));  
+            ImPlot::PopStyleColor();
+        }    
+    }
+    
 }
 
 bool Plot::has_identifier(char identifier){
@@ -44,6 +56,16 @@ bool Plot::has_identifier(char identifier){
         if (data->m_identifier == identifier) return true;
     }
     return false;
+}
+
+void Plot::update_paused_data(){
+    all_plot_paused_data.clear();
+    all_plot_paused_data.reserve(all_plot_data.size());
+    for (const auto& shared_ptr_data : all_plot_data){
+        all_plot_paused_data.push_back(*shared_ptr_data);
+    }
+    
+    // all_plot_paused_data = all_plot_data;
 }
 
 }

@@ -69,19 +69,19 @@ void BSP::append_all_data(std::vector<float> curr_data){
         // ScrollingData NewScrollingData;
         // all_data.resize(curr_data.size());
         if (old_size < curr_data.size()){
-            std::cout << "adding\n";
+            // std::cout << "adding\n";
             for (auto i = old_size; i < curr_data.size(); i++){
-                std::cout << i << "\n";
+                // std::cout << i << "\n";
                 all_data.emplace_back(std::make_shared<ScrollingData>());
-                std::cout << "after_emplace\n";
+                // std::cout << "after_emplace\n";
                 all_data[i]->set_name("data " + std::to_string(i));
-                std::cout << "after_set_name\n";
+                // std::cout << "after_set_name\n";
                 all_data[i]->set_identifier(i);
                 all_data[i]->color = plot_colors[i%plot_colors.size()];
             }
         }
         else{
-            std::cout << "removing " << curr_data.size() << "\n";
+            // std::cout << "removing " << curr_data.size() << "\n";
             for (auto i = old_size-1; i > old_size - curr_data.size(); i--){
                 std::cout << i << "\n";
                 all_data.erase(all_data.begin()+i);

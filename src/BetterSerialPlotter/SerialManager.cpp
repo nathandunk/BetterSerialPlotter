@@ -49,7 +49,7 @@ void SerialManager::render(){
     if (ImGui::BeginCombo("##baud_rate", ("Baud Rate: " + ((baud_rate >= 0) ? std::to_string(baud_rate) : "")).c_str())){
         for (int i = 0; i < baud_rates.size(); i++){
             const bool baud_is_selected = (baud_rate == baud_rates[i]);
-            if (ImGui::Selectable(("COM"+std::to_string(baud_rates[i])).c_str(), baud_is_selected)){
+            if (ImGui::Selectable((std::to_string(baud_rates[i])).c_str(), baud_is_selected)){
                 // make sure this isn't what we are already connected to
                 if(baud_rate != baud_rates[i]) {
                     baud_rate = baud_rates[i];
