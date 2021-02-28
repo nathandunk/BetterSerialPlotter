@@ -13,13 +13,13 @@ There are several improvements that are currently being worked on, including:
 - [x] add numeric next to data names
 - [x] enable change of data names
 - [x] close comport when switching
-- [ ] pause button
+- [x] pause button
 - [ ] record data
 - [ ] add documentation
 - [ ] resize plots
 - [ ] selectable plot buttons on name window
-- [ ] drag to x-axis
-- [ ] multiple y-axes
+- [x] drag to x-axis
+- [x] multiple y-axes
 - [x] fix right-click edit name persistance
 - [ ] multi-thread to increase efficiency
-- [ ] change duration of plots
+- [x] change duration of plots

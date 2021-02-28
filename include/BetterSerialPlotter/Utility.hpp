@@ -18,6 +18,7 @@ struct ScrollingData {
      bool show = false;
      ImVector<ImVec2> Data;
      ImVec4 color;
+     int y_axis = 0;
      ScrollingData()
      {
           Data.reserve(MaxSize);
@@ -37,6 +38,16 @@ struct ScrollingData {
           else{
                return Data[Offset != 0 ? (Offset-1) : MaxSize];
           }
+     }
+     ImVector<float> get_x(){
+          ImVector<float> x_data;
+          for (const auto &i : Data) x_data.push_back(i.x);
+          return x_data;
+     }
+     ImVector<float> get_y(){
+          ImVector<float> y_data;
+          for (const auto &i : Data) y_data.push_back(i.y);
+          return y_data;
      }
      void set_name(std::string name_){name = name_;}
      void set_identifier(char identifier){m_identifier = identifier;}

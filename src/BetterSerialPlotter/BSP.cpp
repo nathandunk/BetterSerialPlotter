@@ -36,6 +36,8 @@ void BSP::update(){
     time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     ImGui::Begin("Better Serial Plotter", &open, padding_flag);
 
+    io = ImGui::GetIO();
+
     data_panel.render();
     
     ImGui::SameLine();

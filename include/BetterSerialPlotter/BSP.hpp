@@ -25,6 +25,8 @@ private:
     int num_plots = 1;
     float time = 0;
 
+    ImGuiIO io;
+
     // all_data[0] contains the full vector for variable 0
     // all_data[1] contains the full vector for variable 1
     // ...etc
