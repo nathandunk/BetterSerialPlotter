@@ -53,7 +53,7 @@ set(SRC_BSP
 
 include_directories(include)
 
-add_executable(BetterSerialPlotter src/main.cpp ${SRC_BSP})
+add_executable(BetterSerialPlotter src/main.cpp ${SRC_BSP} icon/BSP_icon.rc)
 
 add_subdirectory(test)
 
