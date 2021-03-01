@@ -15,8 +15,8 @@ void Plot::make_plot(float time, int plot_num){
     if(other_x_axis){
         auto x_min = mahi::util::min_element(x_axis->get_y());
         auto x_max = mahi::util::max_element(x_axis->get_y());
-        x_min -= abs(paused_x_axis_modifier*x_min);
-        x_max += abs(paused_x_axis_modifier*x_max);
+        x_min -= paused_x_axis_modifier*abs(x_min);
+        x_max += paused_x_axis_modifier*abs(x_max);
         ImPlot::SetNextPlotLimitsX(x_min, x_max, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);   
     }
     else{
@@ -29,17 +29,35 @@ void Plot::make_plot(float time, int plot_num){
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                 int i = *(int*)payload->Data;
                 if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
-                for (int y = 0; y < 2; y++) {
-                    if (ImPlot::IsPlotYAxisHovered(y)){
-                        y_axis[plot_monitor->gui->all_data[i]->m_identifier] = y;
-                    }
-                }
-                if (ImPlot::IsPlotXAxisHovered()){
-                    other_x_axis = true;
-                    x_axis = plot_monitor->gui->all_data[i];
-                }
+                // for (int y = 0; y < 2; y++) {
+                //     if (ImPlot::IsPlotYAxisHovered(y)){
+                //         y_axis[plot_monitor->gui->all_data[i]->m_identifier] = y;
+                //     }
+                // }
+                // if (ImPlot::IsPlotXAxisHovered()){
+                //     other_x_axis = true;
+                //     x_axis = plot_monitor->gui->all_data[i];
+                // }
             }
             ImGui::EndDragDropTarget();
+        }
+        for (int y = 0; y < 2; ++y) {
+            if (ImPlot::BeginDragDropTargetY(y)) {
+                if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
+                    int i = *(int*)payload->Data;
+                    if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
+                    y_axis[plot_monitor->gui->all_data[i]->m_identifier] = y;
+                }
+                ImPlot::EndDragDropTarget();
+            }
+        }
+        if (ImPlot::BeginDragDropTargetX()) {
+            if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
+                int i = *(int*)payload->Data;
+                other_x_axis = true;
+                x_axis = plot_monitor->gui->all_data[i];
+            }
+            ImPlot::EndDragDropTarget();
         }
         if(ImPlot::IsPlotXAxisHovered()){
             if (other_x_axis) paused_x_axis_modifier += plot_monitor->gui->io.MouseWheel/20.0f;
