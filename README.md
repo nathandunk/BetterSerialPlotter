@@ -23,3 +23,4 @@ There are several improvements that are currently being worked on, including:
 - [x] fix right-click edit name persistance
 - [ ] multi-thread to increase efficiency
 - [x] change duration of plots
+- [ ] add marker for x-y plots

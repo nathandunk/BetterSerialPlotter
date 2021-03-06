@@ -15,6 +15,7 @@ void DataPanel::render(){
         for (int i = 0; i < gui->all_data.size(); ++i) {
             ImGui::TableNextRow();
             ImGui::TableNextColumn();
+            ImPlot::ItemIcon(gui->all_data[i]->color); ImGui::SameLine();
             ImGui::Selectable(gui->all_data[i]->name.c_str(), false, ImGuiSelectableFlags_SpanAllColumns);
             if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_AcceptBeforeDelivery)) {
                 ImGui::SetDragDropPayload("DND_PLOT", &i, sizeof(int));

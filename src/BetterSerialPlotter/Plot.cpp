@@ -22,22 +22,13 @@ void Plot::make_plot(float time, int plot_num){
     else{
         ImPlot::SetNextPlotLimitsX(time - time_frame, time, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);    
     }
-    
-    if(ImPlot::BeginPlot(("##Better Serial Plot Monitor" + std::to_string(plot_num)).c_str(), "Time (s)", "Value", {-1,200}, ImPlotFlags_YAxis2, 0, 0)){
+    std::string text = "";
+    if(ImPlot::BeginPlot(("##Better Serial Plot Monitor" + std::to_string(plot_num)).c_str(), "Time (s)", "Value", {-1,200}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
         plot_data();
         if (ImGui::BeginDragDropTarget()) {
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                 int i = *(int*)payload->Data;
                 if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
-                // for (int y = 0; y < 2; y++) {
-                //     if (ImPlot::IsPlotYAxisHovered(y)){
-                //         y_axis[plot_monitor->gui->all_data[i]->m_identifier] = y;
-                //     }
-                // }
-                // if (ImPlot::IsPlotXAxisHovered()){
-                //     other_x_axis = true;
-                //     x_axis = plot_monitor->gui->all_data[i];
-                // }
             }
             ImGui::EndDragDropTarget();
         }
@@ -63,8 +54,39 @@ void Plot::make_plot(float time, int plot_num){
             if (other_x_axis) paused_x_axis_modifier += plot_monitor->gui->io.MouseWheel/20.0f;
             else time_frame *= 1.0f+plot_monitor->gui->io.MouseWheel/100.0f;
         }
+        // handle context menus
+        if (ImGui::IsMouseReleased(1)){
+            if (ImPlot::IsPlotHovered()){
+                ImGui::OpenPopup("##BSPPlotContext");
+            }
+
+            else if (ImPlot::IsPlotXAxisHovered()){
+                ImGui::OpenPopup("##BSPPlotContext");
+            }
+
+            else if (ImPlot::IsPlotYAxisHovered(0)){
+                ImGui::OpenPopup("##YAxis0Context");
+            }
+
+            else if (ImPlot::IsPlotYAxisHovered(1)){
+                ImGui::OpenPopup("##YAxis1Context");
+            }
+        }
+
+        if(ImGui::BeginPopup("##BSPPlotContext")){
+            if ((ImGui::BeginMenu("Remove Data"))){
+                
+                if (ImGui::MenuItem("set_text")){
+                    text = "plot hovered menu";
+                }
+                ImGui::EndMenu();
+            } 
+            ImGui::EndPopup();
+        }
+
         ImPlot::EndPlot();
     }
+    ImGui::Text(text.c_str());
     ImPlot::PopStyleColor();
     ImPlot::PopStyleVar();
 }
@@ -121,8 +143,7 @@ void Plot::update_paused_data(){
     for (const auto& shared_ptr_data : all_plot_data){
         all_plot_paused_data.push_back(*shared_ptr_data);
     }
-    paused_x_axis = *x_axis;
-    
+    if (other_x_axis) paused_x_axis = *x_axis;
     // all_plot_paused_data = all_plot_data;
 }
 

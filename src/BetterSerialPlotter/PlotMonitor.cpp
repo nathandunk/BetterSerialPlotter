@@ -1,5 +1,6 @@
 #include <BetterSerialPlotter/PlotMonitor.hpp>
 #include <BetterSerialPlotter/BSP.hpp>
+#include <iostream>
 
 namespace bsp{
 
@@ -13,11 +14,9 @@ void PlotMonitor::render(){
     bool was_paused = paused;
     ImGui::Checkbox("Pause", &paused);
     if (paused && !was_paused){
-        ImGui::SameLine(); ImGui::Text("Getting paused data");
         for (auto &plot : all_plots){
             plot.update_paused_data();
         }
-        // paused_data = gui->all_data;
         paused_time = gui->time;
     }
     for (auto i = 0; i < all_plots.size(); i++){
