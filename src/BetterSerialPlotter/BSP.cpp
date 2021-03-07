@@ -89,28 +89,38 @@ void BSP::append_all_data(std::vector<float> curr_data){
         // all_data.resize(curr_data.size());
         if (old_size < curr_data.size()){
             // std::cout << "adding\n";
-            for (auto i = old_size; i < curr_data.size(); i++){
-                // std::cout << i << "\n";
-                all_data.emplace_back(std::make_shared<ScrollingData>());
+            for (int i = old_size; i < curr_data.size(); i++){
+                all_data.emplace_back();
                 // std::cout << "after_emplace\n";
-                all_data[i]->set_name("data " + std::to_string(i));
+                all_data[i].set_name("data " + std::to_string(i));
                 // std::cout << "after_set_name\n";
-                all_data[i]->set_identifier(i);
-                all_data[i]->color = plot_colors[i%plot_colors.size()];
+                all_data[i].identifier = old_size+i;
+                all_data[i].color = plot_colors[i%plot_colors.size()];
+                // std::cout << static_cast<int>(all_data[i].identifier) << std::endl;
             }
         }
         else{
-            // std::cout << "removing " << curr_data.size() << "\n";
             for (auto i = old_size-1; i > old_size - curr_data.size(); i--){
                 std::cout << i << "\n";
                 all_data.erase(all_data.begin()+i);
             }
         }
+        
     }
     float curr_time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     for (auto i = 0; i < curr_data.size(); i++){
-        all_data[i]->AddPoint(curr_time, curr_data[i]);
+        all_data[i].AddPoint(curr_time, curr_data[i]);
     }
+}
+
+ScrollingData& BSP::get_data(char identifier){
+    for (auto &data : all_data){
+        if (data.identifier == identifier){
+            return data;
+        }
+    }
+
+    return ScrollingData();
 }
 
 } // namespace bsp

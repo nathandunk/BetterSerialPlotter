@@ -30,7 +30,7 @@ private:
     // all_data[0] contains the full vector for variable 0
     // all_data[1] contains the full vector for variable 1
     // ...etc
-    std::vector<std::shared_ptr<ScrollingData>> all_data;
+    std::vector<ScrollingData> all_data;
 
     
     // HANDLE hSerial;
@@ -70,6 +70,7 @@ public:
     // void close_serial();
     // void read_serial();
     // void reset_read();
+    ScrollingData& get_data(char identifier);
     void append_all_data(std::vector<float> curr_data);
 };
 
