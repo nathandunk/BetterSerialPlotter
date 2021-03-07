@@ -36,6 +36,16 @@ void DataPanel::render(){
                 ImGui::Text("Edit color:");
                 ImGui::SameLine();
                 ImGui::ColorEdit4("##Color", (float*)&gui->all_data[i]->color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+                ImGui::Text("Plots Active:");
+                ImGui::Separator();
+                for (auto &plot : gui->plot_monitor.all_plots){
+                    bool is_in_plot = plot.has_identifier(gui->all_data[i]->m_identifier);
+                    if(ImGui::Checkbox(plot.name.c_str(), &is_in_plot)){
+                        if(is_in_plot) plot.add_identifier(gui->all_data[i]->m_identifier);
+                        else plot.remove_identifier(gui->all_data[i]->m_identifier);
+                    }
+                }
+                
                 if (ImGui::Button("Save") || (ImGui::IsKeyPressed(257)) || (ImGui::IsKeyPressed(335))){ // would change for mac/linux
                     gui->all_data[i]->set_name(name);
                     ImGui::CloseCurrentPopup();

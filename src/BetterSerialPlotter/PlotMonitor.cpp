@@ -12,7 +12,9 @@ PlotMonitor::PlotMonitor(BSP* gui_):
 
 void PlotMonitor::render(){
     bool was_paused = paused;
-    ImGui::Checkbox("Pause", &paused);
+    if (ImGui::Button(paused ? "Resume" : "Pause")) paused = !paused; ImGui::SameLine();
+    ImGui::Button("Export CSV"); ImGui::SameLine();
+    ImGui::Button("Save Config");
     if (paused && !was_paused){
         for (auto &plot : all_plots){
             plot.update_paused_data();
@@ -25,9 +27,14 @@ void PlotMonitor::render(){
     ImGui::PushStyleColor(ImGuiCol_Button,gui->PalleteBlue);
     if(ImGui::Button("Add Plot")) {
         all_plots.emplace_back(this);
+        all_plots[all_plots.size()-1].name = "Plot " + std::to_string(all_plots.size());
     }
     ImGui::PopStyleColor();
     ImGui::EndTabItem();
+}
+
+void export_data(){
+
 }
 
 } // namespace bsp

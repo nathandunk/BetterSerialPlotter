@@ -17,18 +17,19 @@ void Plot::make_plot(float time, int plot_num){
         auto x_max = mahi::util::max_element(x_axis->get_y());
         x_min -= paused_x_axis_modifier*abs(x_min);
         x_max += paused_x_axis_modifier*abs(x_max);
-        ImPlot::SetNextPlotLimitsX(x_min, x_max, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);   
+        ImPlot::SetNextPlotLimitsX(x_min, x_max, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always); 
     }
     else{
         ImPlot::SetNextPlotLimitsX(time - time_frame, time, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);    
     }
     std::string text = "";
-    if(ImPlot::BeginPlot(("##Better Serial Plot Monitor" + std::to_string(plot_num)).c_str(), "Time (s)", "Value", {-1,200}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
+    if(ImPlot::BeginPlot(name.c_str(), "Time (s)", "Value", {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
         plot_data();
         if (ImGui::BeginDragDropTarget()) {
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                 int i = *(int*)payload->Data;
-                if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
+                // if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
+                add_identifier(plot_monitor->gui->all_data[i]->m_identifier);
             }
             ImGui::EndDragDropTarget();
         }
@@ -36,8 +37,9 @@ void Plot::make_plot(float time, int plot_num){
             if (ImPlot::BeginDragDropTargetY(y)) {
                 if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                     int i = *(int*)payload->Data;
-                    if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
-                    y_axis[plot_monitor->gui->all_data[i]->m_identifier] = y;
+                    // if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
+                    // y_axis[plot_monitor->gui->all_data[i]->m_identifier] = y;
+                    add_identifier(plot_monitor->gui->all_data[i]->m_identifier, y);
                 }
                 ImPlot::EndDragDropTarget();
             }
@@ -50,6 +52,8 @@ void Plot::make_plot(float time, int plot_num){
             }
             ImPlot::EndDragDropTarget();
         }
+        
+        // handle x-axis resizing
         if(ImPlot::IsPlotXAxisHovered()){
             if (other_x_axis) paused_x_axis_modifier += plot_monitor->gui->io.MouseWheel/20.0f;
             else time_frame *= 1.0f+plot_monitor->gui->io.MouseWheel/100.0f;
@@ -84,9 +88,27 @@ void Plot::make_plot(float time, int plot_num){
             ImGui::EndPopup();
         }
 
+        // update and region of the plot for dragging to resize        
+        plot_y_end = ImGui::GetWindowPos().y + ImGui::GetWindowContentRegionMax().y;
         ImPlot::EndPlot();
     }
-    ImGui::Text(text.c_str());
+
+    if (ImGui::GetMousePos().y <= plot_y_end + resize_area && ImGui::GetMousePos().y >= plot_y_end - resize_area){
+        ImGui::SetMouseCursor(3);
+        if (ImGui::IsMouseClicked(0)){
+            is_resizing = true;
+        }
+    }
+
+    if (ImGui::IsMouseReleased(0) && is_resizing){
+        is_resizing = false;
+        ImGui::SetMouseCursor(0);
+    }
+
+    if (is_resizing){
+        plot_height += plot_monitor->gui->io.MouseDelta.y;
+        ImGui::SetMouseCursor(3);
+    }
     ImPlot::PopStyleColor();
     ImPlot::PopStyleVar();
 }
@@ -122,7 +144,37 @@ void Plot::plot_data(){
     
 }
 
-bool Plot::has_identifier(char identifier){
+void Plot::add_identifier(char identifier, int y_axis_num){
+    // check if it is already there
+    for (const auto &i : idenfifiers){
+        if (identifier == i)
+            return;
+    }
+    
+    // if it isnt already there, add it and set y axis to 0 (default)
+    idenfifiers.push_back(identifier);
+    y_axis[identifier] = y_axis_num;
+}
+
+void Plot::remove_identifier(char identifier){
+    // look for the identifier in the identifiers vector
+    for (auto i = idenfifiers.begin(); i != idenfifiers.end(); i++){
+        if (*i == identifier) {
+            idenfifiers.erase(i);
+            break;
+        }
+    }
+    
+    // look for the identifier in the y_axis unordered map
+    for (auto i = y_axis.begin(); i != y_axis.end(); i++){
+        if (i->first == identifier) {
+            y_axis.erase(i);
+            break;
+        }
+    }
+}
+
+bool Plot::has_identifier(char identifier) const{
     for (const auto &data : all_plot_data){
         if (data->m_identifier == identifier) return true;
     }

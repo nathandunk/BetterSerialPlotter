@@ -8,9 +8,8 @@ namespace bsp{
 
 class PlotMonitor : public Widget
 {
-private:
-    std::vector<Plot> all_plots;
 public:
+    std::vector<Plot> all_plots;
     std::vector<std::shared_ptr<ScrollingData>> paused_data;
     float paused_time = 0;
     bool paused = false;

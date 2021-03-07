@@ -30,13 +30,30 @@ BSP::~BSP()
 }
 
 void BSP::update(){
+    // ImGuiConfigFlags config_flags = ImGuiConfigFlags_
 
-    constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding;
+    constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding | ImGuiWindowFlags_MenuBar;
 
     time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     ImGui::Begin("Better Serial Plotter", &open, padding_flag);
 
+    // if (ImGui::BeginMenuBar()){
+    //     if (ImGui::BeginMenu("Export Data")){
+    //         if (ImGui::MenuItem("Export Live Data")){
+
+    //         }
+    //         if (ImGui::MenuItem("Export Paused Data")){
+
+    //         }
+    //         ImGui::EndMenu();
+    //     }
+    //     ImGui::EndMenuBar();
+    // }
+    
+
     io = ImGui::GetIO();
+    ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
+    // io_ref.ConfigWindowsMoveFromTitleBarOnly = true;
 
     data_panel.render();
     

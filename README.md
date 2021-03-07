@@ -16,7 +16,7 @@ There are several improvements that are currently being worked on, including:
 - [x] pause button
 - [ ] record data
 - [ ] add documentation
-- [ ] resize plots
+- [x] resize plots
 - [ ] selectable plot buttons on name window
 - [x] drag to x-axis
 - [x] multiple y-axes
@@ -24,3 +24,4 @@ There are several improvements that are currently being worked on, including:
 - [ ] multi-thread to increase efficiency
 - [x] change duration of plots
 - [ ] add marker for x-y plots
+- [ ] Plot names
