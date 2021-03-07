@@ -11,7 +11,7 @@
 namespace bsp{
 
 struct ScrollingData {
-     char m_identifier = 0;
+     char identifier = 0;
      int MaxSize = 5000;
      int Offset  = 0;
      std::string name;
@@ -50,7 +50,7 @@ struct ScrollingData {
           return y_data;
      }
      void set_name(std::string name_){name = name_;}
-     void set_identifier(char identifier){m_identifier = identifier;}
+     void set_identifier(char identifier){identifier = identifier;}
 };
 
 // void plot_data(const ScrollingData &data, int i);

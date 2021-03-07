@@ -13,8 +13,8 @@ void Plot::make_plot(float time, int plot_num){
     ImPlot::PushStyleColor(ImPlotCol_FrameBg,ImVec4(0.33f,0.35f,0.39f,1.0f));
     // ImPlot::PushStyleColor(ImPlotCol_FrameBg,ImVec4(1.0f,1.0f,1.0f,1.0f));
     if(other_x_axis){
-        auto x_min = mahi::util::min_element(x_axis->get_y());
-        auto x_max = mahi::util::max_element(x_axis->get_y());
+        auto x_min = mahi::util::min_element(get_data(x_axis).get_y());
+        auto x_max = mahi::util::max_element(get_data(x_axis).get_y());
         x_min -= paused_x_axis_modifier*abs(x_min);
         x_max += paused_x_axis_modifier*abs(x_max);
         ImPlot::SetNextPlotLimitsX(x_min, x_max, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);   
@@ -28,7 +28,9 @@ void Plot::make_plot(float time, int plot_num){
         if (ImGui::BeginDragDropTarget()) {
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                 int i = *(int*)payload->Data;
-                if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
+                if (!has_identifier(plot_monitor->gui->all_data[i].identifier)) {
+                    all_plot_data.push_back(plot_monitor->gui->all_data[i].identifier);
+                }
             }
             ImGui::EndDragDropTarget();
         }
@@ -36,8 +38,10 @@ void Plot::make_plot(float time, int plot_num){
             if (ImPlot::BeginDragDropTargetY(y)) {
                 if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                     int i = *(int*)payload->Data;
-                    if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
-                    y_axis[plot_monitor->gui->all_data[i]->m_identifier] = y;
+                    if (!has_identifier(plot_monitor->gui->all_data[i].identifier)) {
+                        all_plot_data.push_back(plot_monitor->gui->all_data[i].identifier);
+                    }
+                    y_axis[plot_monitor->gui->all_data[i].identifier] = y;
                 }
                 ImPlot::EndDragDropTarget();
             }
@@ -46,7 +50,7 @@ void Plot::make_plot(float time, int plot_num){
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                 int i = *(int*)payload->Data;
                 other_x_axis = true;
-                x_axis = plot_monitor->gui->all_data[i];
+                x_axis = plot_monitor->gui->all_data[i].identifier;
             }
             ImPlot::EndDragDropTarget();
         }
@@ -61,7 +65,7 @@ void Plot::make_plot(float time, int plot_num){
             }
 
             else if (ImPlot::IsPlotXAxisHovered()){
-                ImGui::OpenPopup("##BSPPlotContext");
+                ImGui::OpenPopup("##XAxisContext");
             }
 
             else if (ImPlot::IsPlotYAxisHovered(0)){
@@ -75,9 +79,11 @@ void Plot::make_plot(float time, int plot_num){
 
         if(ImGui::BeginPopup("##BSPPlotContext")){
             if ((ImGui::BeginMenu("Remove Data"))){
-                
-                if (ImGui::MenuItem("set_text")){
-                    text = "plot hovered menu";
+                for (auto i = 0; i < idenfifiers.size(); i++){
+                    ImGui::MenuItem(get_data(idenfifiers[i]).name.c_str());
+                    //     idenfifiers.erase(idenfifiers.begin() + i);
+                    //     break;
+                    // }
                 }
                 ImGui::EndMenu();
             } 
@@ -86,7 +92,6 @@ void Plot::make_plot(float time, int plot_num){
 
         ImPlot::EndPlot();
     }
-    ImGui::Text(text.c_str());
     ImPlot::PopStyleColor();
     ImPlot::PopStyleVar();
 }
@@ -101,7 +106,7 @@ void Plot::plot_data(){
             ImPlot::PushStyleColor(ImPlotCol_Line,all_plot_paused_data[i].color);
             char id[64];
             sprintf(id,"%s###%i",all_plot_paused_data[i].name.c_str(),i);
-            ImPlot::SetPlotYAxis(y_axis[plot_monitor->gui->all_data[i]->m_identifier]);
+            ImPlot::SetPlotYAxis(y_axis[plot_monitor->gui->all_data[i].identifier]);
             ImPlot::PlotLine(id, x_data, &all_plot_paused_data[i].Data[0].y, all_plot_paused_data[i].Data.size(), all_plot_paused_data[i].Offset, 2 * sizeof(float));  
             ImPlot::PopStyleColor();
         }    
@@ -109,13 +114,13 @@ void Plot::plot_data(){
     else{
         for (auto i = 0; i < all_plot_data.size(); i++){
             // if x_axis_id is specified, use that as the x-axis rather than from ScrollingData
-            auto x_data = (other_x_axis) ? &x_axis->Data[0].y : &all_plot_data[i]->Data[0].x;
+            auto x_data = (other_x_axis) ? &get_data(x_axis).Data[0].y : &get_data(all_plot_data[i]).Data[0].x;
 
-            ImPlot::PushStyleColor(ImPlotCol_Line,all_plot_data[i]->color); 
+            ImPlot::PushStyleColor(ImPlotCol_Line,get_data(all_plot_data[i]).color); 
             char id[64];
-            sprintf(id,"%s###%i",all_plot_data[i]->name.c_str(),i);
-            ImPlot::SetPlotYAxis(y_axis[plot_monitor->gui->all_data[i]->m_identifier]);
-            ImPlot::PlotLine(id, x_data, &all_plot_data[i]->Data[0].y, all_plot_data[i]->Data.size(), all_plot_data[i]->Offset, 2 * sizeof(float));  
+            sprintf(id,"%s###%i",get_data(all_plot_data[i]).name.c_str(),i);
+            ImPlot::SetPlotYAxis(y_axis[plot_monitor->gui->all_data[i].identifier]);
+            ImPlot::PlotLine(id, x_data, &get_data(all_plot_data[i]).Data[0].y, get_data(all_plot_data[i]).Data.size(), get_data(all_plot_data[i]).Offset, 2 * sizeof(float));  
             ImPlot::PopStyleColor();
         }    
     }
@@ -123,27 +128,24 @@ void Plot::plot_data(){
 }
 
 bool Plot::has_identifier(char identifier){
+    std::cout << static_cast<int>(identifier);
     for (const auto &data : all_plot_data){
-        if (data->m_identifier == identifier) return true;
+        if (data == identifier) return true;
     }
     return false;
 }
 
-std::shared_ptr<ScrollingData> Plot::get_data(char identifier){
-    for (auto &data : all_plot_data){
-        if (data->m_identifier == identifier) return data;
-    }
-    // if we didn't find a valid data point, return a default shared_ptr scrolling data
-    return std::make_shared<ScrollingData>();
+ScrollingData& Plot::get_data(char identifier){
+    return plot_monitor->gui->get_data(identifier);
 }
 
 void Plot::update_paused_data(){
     all_plot_paused_data.clear();
     all_plot_paused_data.reserve(all_plot_data.size());
-    for (const auto& shared_ptr_data : all_plot_data){
-        all_plot_paused_data.push_back(*shared_ptr_data);
+    for (const auto& data : all_plot_data){
+        all_plot_paused_data.push_back(get_data(data));
     }
-    if (other_x_axis) paused_x_axis = *x_axis;
+    if (other_x_axis) paused_x_axis = get_data(x_axis);
     // all_plot_paused_data = all_plot_data;
 }
 
