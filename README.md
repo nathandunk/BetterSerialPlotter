@@ -17,11 +17,11 @@ There are several improvements that are currently being worked on, including:
 - [ ] record data
 - [ ] add documentation
 - [x] resize plots
-- [ ] selectable plot buttons on name window
+- [x] selectable plot buttons on name window
 - [x] drag to x-axis
 - [x] multiple y-axes
 - [x] fix right-click edit name persistance
 - [ ] multi-thread to increase efficiency
 - [x] change duration of plots
 - [ ] add marker for x-y plots
-- [ ] Plot names
+- [x] Plot names

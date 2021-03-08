@@ -6,36 +6,67 @@
 
 namespace bsp{
 
-Plot::Plot(PlotMonitor* plot_monitor_): plot_monitor(plot_monitor_) {}
+Plot::Plot(PlotMonitor* plot_monitor_): 
+    plot_monitor(plot_monitor_),
+    x_axis(-1) 
+    {}
 
 void Plot::make_plot(float time, int plot_num){
     ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 3);
     ImPlot::PushStyleColor(ImPlotCol_FrameBg,ImVec4(0.33f,0.35f,0.39f,1.0f));
-    // ImPlot::PushStyleColor(ImPlotCol_FrameBg,ImVec4(1.0f,1.0f,1.0f,1.0f));
-    if(other_x_axis){
+    if(other_x_axis && !x_axis_realtime){
         auto x_min = mahi::util::min_element(get_data(x_axis).get_y());
         auto x_max = mahi::util::max_element(get_data(x_axis).get_y());
-        x_min -= paused_x_axis_modifier*abs(x_min);
-        x_max += paused_x_axis_modifier*abs(x_max);
+        auto diff = (x_max - x_min);
+        x_min -= paused_x_axis_modifier*diff;
+        x_max += paused_x_axis_modifier*diff;
         ImPlot::SetNextPlotLimitsX(x_min, x_max, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always); 
     }
     else{
-        ImPlot::SetNextPlotLimitsX(time - time_frame, time, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);    
+        if (other_x_axis){
+            auto most_recent_time = mahi::util::max_element(get_data(x_axis).get_y());
+            ImPlot::SetNextPlotLimitsX(most_recent_time - time_frame, most_recent_time, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);
+        }
+        else{
+            ImPlot::SetNextPlotLimitsX(time - time_frame, time, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);
+        }
+    }
+    if (autoscale){
+        // vectors which contain min and max for y axis 0 and y axis 1
+        std::vector<std::vector<float>> min;
+        std::vector<std::vector<float>> max;
+
+        min.push_back(std::vector<float>());
+        min.push_back(std::vector<float>());
+        max.push_back(std::vector<float>());
+        max.push_back(std::vector<float>());
+
+        for (auto it = y_axis.begin(); it != y_axis.end(); it++){
+            min[it->second].push_back(mahi::util::min_element(get_data(it->first).get_y()));
+            max[it->second].push_back(mahi::util::max_element(get_data(it->first).get_y()));
+        }
+        for (auto i = 0; i < 2; i++){
+            bool axis_exists = false;
+
+            for (const auto & [key, value] : y_axis){
+                if (value == i){
+                    axis_exists = true;
+                    break;
+                }
+            }
+            
+            if (axis_exists){
+                ImPlot::SetNextPlotLimitsY(mahi::util::min_element(min[i]),mahi::util::max_element(max[i]),ImGuiCond_Always,i);
+            }           
+        }        
     }
     std::string text = "";
-    if(ImPlot::BeginPlot(name.c_str(), "Time (s)", "Value", {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
+    if(ImPlot::BeginPlot(name.c_str(), other_x_axis ? get_data(x_axis).name.c_str() : "Time (s)", "Value", {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
         plot_data();
         if (ImGui::BeginDragDropTarget()) {
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                 int i = *(int*)payload->Data;
-<<<<<<< HEAD
-                // if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
-                add_identifier(plot_monitor->gui->all_data[i]->m_identifier);
-=======
-                if (!has_identifier(plot_monitor->gui->all_data[i].identifier)) {
-                    all_plot_data.push_back(plot_monitor->gui->all_data[i].identifier);
-                }
->>>>>>> data_restructure
+                add_identifier(plot_monitor->gui->all_data[i].identifier);
             }
             ImGui::EndDragDropTarget();
         }
@@ -43,16 +74,7 @@ void Plot::make_plot(float time, int plot_num){
             if (ImPlot::BeginDragDropTargetY(y)) {
                 if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                     int i = *(int*)payload->Data;
-<<<<<<< HEAD
-                    // if (!has_identifier(plot_monitor->gui->all_data[i]->m_identifier)) all_plot_data.push_back(plot_monitor->gui->all_data[i]);
-                    // y_axis[plot_monitor->gui->all_data[i]->m_identifier] = y;
-                    add_identifier(plot_monitor->gui->all_data[i]->m_identifier, y);
-=======
-                    if (!has_identifier(plot_monitor->gui->all_data[i].identifier)) {
-                        all_plot_data.push_back(plot_monitor->gui->all_data[i].identifier);
-                    }
-                    y_axis[plot_monitor->gui->all_data[i].identifier] = y;
->>>>>>> data_restructure
+                    add_identifier(plot_monitor->gui->all_data[i].identifier, y);                    
                 }
                 ImPlot::EndDragDropTarget();
             }
@@ -68,7 +90,7 @@ void Plot::make_plot(float time, int plot_num){
         
         // handle x-axis resizing
         if(ImPlot::IsPlotXAxisHovered()){
-            if (other_x_axis) paused_x_axis_modifier += plot_monitor->gui->io.MouseWheel/20.0f;
+            if (other_x_axis & !x_axis_realtime) paused_x_axis_modifier += plot_monitor->gui->io.MouseWheel/20.0f;
             else time_frame *= 1.0f+plot_monitor->gui->io.MouseWheel/100.0f;
         }
         // handle context menus
@@ -91,15 +113,44 @@ void Plot::make_plot(float time, int plot_num){
         }
 
         if(ImGui::BeginPopup("##BSPPlotContext")){
-            if ((ImGui::BeginMenu("Remove Data"))){
-                for (auto i = 0; i < idenfifiers.size(); i++){
-                    ImGui::MenuItem(get_data(idenfifiers[i]).name.c_str());
-                    //     idenfifiers.erase(idenfifiers.begin() + i);
-                    //     break;
-                    // }
+            if ((ImGui::BeginMenu("Add Data"))){
+                for (auto i = 0; i < plot_monitor->gui->all_data.size(); i++){
+                    if(ImGui::BeginMenu(plot_monitor->gui->all_data[i].name.c_str())){
+                        // add based on y axis
+                        for (auto y = 0; y < 2; y++){
+                            char menu_item_name[10];
+                            sprintf(menu_item_name, "Y-Axis %i", y);
+                            if(ImGui::MenuItem(menu_item_name)){
+                                add_identifier(plot_monitor->gui->all_data[i].identifier,y);
+                            }
+                        }
+                        // add to x axis
+                        if(ImGui::MenuItem("X-Axis")){
+                            x_axis = plot_monitor->gui->all_data[i].identifier;
+                            other_x_axis = true;
+                        }
+                        ImGui::EndMenu();
+                    }
                 }
                 ImGui::EndMenu();
             } 
+            if ((ImGui::BeginMenu("Remove Data"))){
+                for (auto i = 0; i < all_plot_data.size(); i++){
+                    if(ImGui::MenuItem(get_data(all_plot_data[i]).name.c_str())){
+                        remove_identifier(get_data(all_plot_data[i]).identifier);
+                        break;
+                    }
+                }
+                if (other_x_axis){
+                    if(ImGui::MenuItem((get_data(x_axis).name + " (x-axis)").c_str())){
+                        other_x_axis = false;
+                        x_axis = -1;
+                    }
+                }
+                ImGui::EndMenu();
+            } 
+            ImGui::MenuItem("Auto Scale",0,&autoscale);
+            ImGui::MenuItem("Realtime X-axis",0,&x_axis_realtime);
             ImGui::EndPopup();
         }
 
@@ -107,7 +158,6 @@ void Plot::make_plot(float time, int plot_num){
         plot_y_end = ImGui::GetWindowPos().y + ImGui::GetWindowContentRegionMax().y;
         ImPlot::EndPlot();
     }
-<<<<<<< HEAD
 
     if (ImGui::GetMousePos().y <= plot_y_end + resize_area && ImGui::GetMousePos().y >= plot_y_end - resize_area){
         ImGui::SetMouseCursor(3);
@@ -125,60 +175,57 @@ void Plot::make_plot(float time, int plot_num){
         plot_height += plot_monitor->gui->io.MouseDelta.y;
         ImGui::SetMouseCursor(3);
     }
-=======
->>>>>>> data_restructure
     ImPlot::PopStyleColor();
     ImPlot::PopStyleVar();
 }
 
 void Plot::plot_data(){
-    // this is a dumb duplication of code, but I can't think of a good way to make this work without it at the moment.
-    if (plot_monitor->paused){
-        for (auto i = 0; i < all_plot_paused_data.size(); i++){
-            // if x_axis_id is specified, use that as the x-axis rather than from ScrollingData
-            auto x_data = (other_x_axis) ? &paused_x_axis.Data[0].y : &all_plot_paused_data[i].Data[0].x;
 
-            ImPlot::PushStyleColor(ImPlotCol_Line,all_plot_paused_data[i].color);
-            char id[64];
-            sprintf(id,"%s###%i",all_plot_paused_data[i].name.c_str(),i);
-            ImPlot::SetPlotYAxis(y_axis[plot_monitor->gui->all_data[i].identifier]);
-            ImPlot::PlotLine(id, x_data, &all_plot_paused_data[i].Data[0].y, all_plot_paused_data[i].Data.size(), all_plot_paused_data[i].Offset, 2 * sizeof(float));  
-            ImPlot::PopStyleColor();
-        }    
-    }
-    else{
-        for (auto i = 0; i < all_plot_data.size(); i++){
-            // if x_axis_id is specified, use that as the x-axis rather than from ScrollingData
-            auto x_data = (other_x_axis) ? &get_data(x_axis).Data[0].y : &get_data(all_plot_data[i]).Data[0].x;
+    for (auto i = 0; i < all_plot_data.size(); i++){
+        // get the correct set of data based on what we are currently doing
+        auto &curr_data = plot_monitor->paused ? all_plot_paused_data[i] : get_data(all_plot_data[i]);
+        auto &curr_identifier = plot_monitor->paused ? all_plot_paused_data[i].identifier : all_plot_data[i];
+        float* curr_x_data; // would prefer this to be a reference, but have to assign immediately, so can't
+        if (plot_monitor->paused){
+            curr_x_data = (other_x_axis) ? &paused_x_axis.Data[0].y : &all_plot_paused_data[i].Data[0].x;
+        }
+        else{
+            curr_x_data = (other_x_axis) ? &get_data(x_axis).Data[0].y : &curr_data.Data[0].x;
+        }
 
-            ImPlot::PushStyleColor(ImPlotCol_Line,get_data(all_plot_data[i]).color); 
-            char id[64];
-            sprintf(id,"%s###%i",get_data(all_plot_data[i]).name.c_str(),i);
-            ImPlot::SetPlotYAxis(y_axis[plot_monitor->gui->all_data[i].identifier]);
-            ImPlot::PlotLine(id, x_data, &get_data(all_plot_data[i]).Data[0].y, get_data(all_plot_data[i]).Data.size(), get_data(all_plot_data[i]).Offset, 2 * sizeof(float));  
-            ImPlot::PopStyleColor();
-        }    
-    }
+        ImPlot::PushStyleColor(ImPlotCol_Line,curr_data.color); 
+        char id[64];
+        sprintf(id,"%s###%i",curr_data.name.c_str(),i);
+        ImPlot::SetPlotYAxis(y_axis[curr_identifier]);
+        ImPlot::PlotLine(id, curr_x_data, &curr_data.Data[0].y, curr_data.Data.size(), curr_data.Offset, 2 * sizeof(float));  
+        ImPlot::PopStyleColor();
+    }   
     
 }
 
 void Plot::add_identifier(char identifier, int y_axis_num){
+    bool exists = false;
     // check if it is already there
-    for (const auto &i : idenfifiers){
-        if (identifier == i)
-            return;
+    for (const auto &i : all_plot_data){
+        if (identifier == i) {
+            std::cout << (int)identifier <<  " " << (int)i << std::endl;
+            exists = true;
+            break;
+        }
     }
+    // std::cout << exists;
     
     // if it isnt already there, add it and set y axis to 0 (default)
-    idenfifiers.push_back(identifier);
+    if (!exists) all_plot_data.push_back(identifier);
+    
     y_axis[identifier] = y_axis_num;
 }
 
 void Plot::remove_identifier(char identifier){
     // look for the identifier in the identifiers vector
-    for (auto i = idenfifiers.begin(); i != idenfifiers.end(); i++){
+    for (auto i = all_plot_data.begin(); i != all_plot_data.end(); i++){
         if (*i == identifier) {
-            idenfifiers.erase(i);
+            all_plot_data.erase(i);
             break;
         }
     }

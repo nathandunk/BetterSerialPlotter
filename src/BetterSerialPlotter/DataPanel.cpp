@@ -1,5 +1,6 @@
 #include <BetterSerialPlotter/DataPanel.hpp>
 #include <BetterSerialPlotter/BSP.hpp>
+#include <iostream>
 
 namespace bsp{
 
@@ -35,16 +36,61 @@ void DataPanel::render(){
                 ImGui::PopItemWidth();
                 ImGui::Text("Edit color:");
                 ImGui::SameLine();
-                ImGui::ColorEdit4("##Color", (float*)&gui->all_data[i]->color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+                ImGui::ColorEdit4("##Color", (float*)&gui->all_data[i].color, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
                 ImGui::Text("Plots Active:");
                 ImGui::Separator();
+                // for (auto &plot : gui->plot_monitor.all_plots){
+                //     bool is_in_plot = plot.has_identifier(gui->all_data[i].identifier);
+                //     if(ImGui::Checkbox(plot.name.c_str(), &is_in_plot)){
+                //         if(is_in_plot) plot.add_identifier(gui->all_data[i].identifier);
+                //         else plot.remove_identifier(gui->all_data[i].identifier);
+                //     }
+                // }
                 for (auto &plot : gui->plot_monitor.all_plots){
-                    bool is_in_plot = plot.has_identifier(gui->all_data[i]->m_identifier);
-                    if(ImGui::Checkbox(plot.name.c_str(), &is_in_plot)){
-                        if(is_in_plot) plot.add_identifier(gui->all_data[i]->m_identifier);
-                        else plot.remove_identifier(gui->all_data[i]->m_identifier);
+                    // ImGui::BeginChild(plot.name.c_str(), ImVec2(0, 150), true, ImGuiWindowFlags_MenuBar);
+                    // if (ImGui::BeginMenuBar()){
+                    //     ImGui::Text(plot.name.c_str());
+                    //     ImGui::EndMenuBar();
+                    // }
+                    // if(ImGui::Checkbox(plot.name.c_str(), &is_in_plot)){
+                        
+                    //     if(is_in_plot) plot.add_identifier(gui->all_data[i].identifier);
+                    //     else plot.remove_identifier(gui->all_data[i].identifier);
+                    // }
+                    // ImGui::EndChild();
+                    auto curr_identifier = gui->all_data[i].identifier;
+                    if(ImGui::BeginMenu(plot.name.c_str())){
+                        for (auto y = 0; y < 2; y++){
+                            char menu_item_name[10];
+                            sprintf(menu_item_name, "Y-Axis %i", y);
+                            bool is_axis = plot.y_axis.count(curr_identifier) ? plot.y_axis[curr_identifier] == y : false;
+                            if(ImGui::MenuItem(menu_item_name, 0, is_axis)){
+                                if (is_axis) plot.remove_identifier(curr_identifier);
+                                else plot.add_identifier(curr_identifier,y);
+                            }
+                        }
+                        // add to x axis
+                        bool is_x_axis = plot.x_axis == curr_identifier;
+                        if(ImGui::MenuItem("X-Axis", 0, is_x_axis)){
+                            if (is_x_axis) {
+                                plot.x_axis = -1;
+                                plot.other_x_axis = false;
+                            }
+                            else {
+                                plot.x_axis = curr_identifier;
+                                plot.other_x_axis = true;
+                            }
+                        }
+                        ImGui::EndMenu();
                     }
                 }
+                
+                // ImGui::BeginChild("ChildR", ImVec2(0, 150), true, ImGuiWindowFlags_MenuBar);
+                // if (ImGui::BeginMenuBar()){
+                //     ImGui::Text("here");
+                //     ImGui::EndMenuBar();
+                // }
+                // ImGui::EndChild();
                 
                 if (ImGui::Button("Save") || (ImGui::IsKeyPressed(257)) || (ImGui::IsKeyPressed(335))){ // would change for mac/linux
                     gui->all_data[i].set_name(name);

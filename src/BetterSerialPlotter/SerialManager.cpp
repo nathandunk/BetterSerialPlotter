@@ -24,7 +24,7 @@ void SerialManager::render(){
             const bool com_is_selected = (comport_num == port_names[i]);
             if (ImGui::Selectable(("COM"+std::to_string(port_names[i])).c_str(), com_is_selected)){
                 // make sure this isn't what we are already connected to
-                if(comport_num != port_names[i]) {
+                // if(comport_num != port_names[i]) {
                     if (serial_started){
                         close_serial();
                     }
@@ -32,7 +32,7 @@ void SerialManager::render(){
                     serial_started = true;
                     begin_serial();
                     reset_read();
-                }
+                // }
             }
         }
         ImGui::EndCombo();
@@ -51,7 +51,7 @@ void SerialManager::render(){
             const bool baud_is_selected = (baud_rate == baud_rates[i]);
             if (ImGui::Selectable((std::to_string(baud_rates[i])).c_str(), baud_is_selected)){
                 // make sure this isn't what we are already connected to
-                if(baud_rate != baud_rates[i]) {
+                // if(baud_rate != baud_rates[i]) {
                     baud_rate = baud_rates[i];
                     DCB dcbSerialParams = {0};
                     dcbSerialParams.DCBlength=sizeof(dcbSerialParams);
@@ -64,7 +64,7 @@ void SerialManager::render(){
                         std::cout << "could not set com state" << std::endl;
                     }
                     reset_read();
-                }
+                // }
             }
         }
         ImGui::EndCombo();

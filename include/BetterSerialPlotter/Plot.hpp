@@ -22,17 +22,19 @@ public:
     std::vector<char> all_plot_data;
     std::vector<ScrollingData> all_plot_paused_data;
     bool other_x_axis = false;
+    bool x_axis_realtime = true;
     char x_axis;
     ScrollingData paused_x_axis;
-    std::vector<char> idenfifiers;
+    // std::vector<char> idenfifiers;
     std::unordered_map<char,int> y_axis;
     bool is_resizing = false;
     float time_frame = 10.0f;
     float paused_x_axis_modifier = 0.1f;
-    float plot_height = 200.0f;
+    float plot_height = 300.0f;
     float plot_y_end = 0.0;
     float resize_area = 6.0f;
     std::string name = "Plot 1";
+    bool autoscale = false;
 };
     
 } // namespace bsp

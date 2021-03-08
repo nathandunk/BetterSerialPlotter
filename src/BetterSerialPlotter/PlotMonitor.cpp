@@ -33,7 +33,7 @@ void PlotMonitor::render(){
     ImGui::EndTabItem();
 }
 
-void export_data(){
+void PlotMonitor::export_data(){
 
 }
 

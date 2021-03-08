@@ -1,20 +1,19 @@
+int loop_size = 10;
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
 }
 
 void loop() {
-  int loop_size = 40;
+  double seconds = (double)millis()/1000.0;
+
   for(int i = 0; i < loop_size-1; i++){
-    if(i%2 == 0){
-      Serial.print(sin(static_cast<double>(millis())/1000.0)+0.1*(double(i)));  
-    }
-    else{
-      Serial.print(cos(static_cast<double>(millis())/1000.0)+0.1*(double(i)));  
-    }
+    double val = (i%2 == 0) ? sin(seconds) : cos(seconds);
+    Serial.print(val + 0.1*(double)i + seconds/10.0);
     Serial.print("\t");
   }
-  Serial.println(sin((((double)millis()))/1000.0)+0.1*((double)loop_size));
+  Serial.println(sin(seconds)+0.1*(double)loop_size + seconds/10.0);
 //  Serial.println();
   // put your main code here, to run repeatedly:
 //  Serial.print(sin(static_cast<double>(millis())/1000.0));
