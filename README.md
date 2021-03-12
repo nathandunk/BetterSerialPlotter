@@ -14,7 +14,8 @@ There are several improvements that are currently being worked on, including:
 - [x] enable change of data names
 - [x] close comport when switching
 - [x] pause button
-- [ ] record data
+- [x] record data
+- [ ] save configuration
 - [ ] add documentation
 - [x] resize plots
 - [x] selectable plot buttons on name window
@@ -23,5 +24,7 @@ There are several improvements that are currently being worked on, including:
 - [x] fix right-click edit name persistance
 - [ ] multi-thread to increase efficiency
 - [x] change duration of plots
-- [ ] add marker for x-y plots
-- [x] Plot names
+- [x] plot names
+- [ ] change plot name
+- [x] add colors to add/remove data
+- [x] add axes labels to remove data

@@ -3,6 +3,7 @@
 #include <BetterSerialPlotter/BSP.hpp>
 #include <Mahi/Gui.hpp>
 #include <iostream>
+#include <array>
 
 namespace bsp{
 
@@ -13,6 +14,8 @@ Plot::Plot(PlotMonitor* plot_monitor_):
 
 void Plot::make_plot(float time, int plot_num){
     ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 3);
+    ImPlot::PushStyleVar(ImPlotStyleVar_LabelPadding,ImVec2(3,2));
+    ImPlot::PushStyleVar(ImPlotStyleVar_PlotPadding,ImVec2(2,2));
     ImPlot::PushStyleColor(ImPlotCol_FrameBg,ImVec4(0.33f,0.35f,0.39f,1.0f));
     if(other_x_axis && !x_axis_realtime){
         auto x_min = mahi::util::min_element(get_data(x_axis).get_y());
@@ -61,7 +64,7 @@ void Plot::make_plot(float time, int plot_num){
         }        
     }
     std::string text = "";
-    if(ImPlot::BeginPlot(name.c_str(), other_x_axis ? get_data(x_axis).name.c_str() : "Time (s)", "Value", {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
+    if(ImPlot::BeginPlot(name.c_str(), other_x_axis ? get_data(x_axis).name.c_str() : "Time (s)", 0, {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
         plot_data();
         if (ImGui::BeginDragDropTarget()) {
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
@@ -115,6 +118,7 @@ void Plot::make_plot(float time, int plot_num){
         if(ImGui::BeginPopup("##BSPPlotContext")){
             if ((ImGui::BeginMenu("Add Data"))){
                 for (auto i = 0; i < plot_monitor->gui->all_data.size(); i++){
+                    ImPlot::ItemIcon(plot_monitor->gui->all_data[i].color); ImGui::SameLine();
                     if(ImGui::BeginMenu(plot_monitor->gui->all_data[i].name.c_str())){
                         // add based on y axis
                         for (auto y = 0; y < 2; y++){
@@ -136,7 +140,8 @@ void Plot::make_plot(float time, int plot_num){
             } 
             if ((ImGui::BeginMenu("Remove Data"))){
                 for (auto i = 0; i < all_plot_data.size(); i++){
-                    if(ImGui::MenuItem(get_data(all_plot_data[i]).name.c_str())){
+                    ImPlot::ItemIcon(get_data(all_plot_data[i]).color); ImGui::SameLine();
+                    if(ImGui::MenuItem((get_data(all_plot_data[i]).name + " (y-axis " + std::to_string(y_axis[all_plot_data[i]]) + ")").c_str())){
                         remove_identifier(get_data(all_plot_data[i]).identifier);
                         break;
                     }
@@ -176,6 +181,8 @@ void Plot::make_plot(float time, int plot_num){
         ImGui::SetMouseCursor(3);
     }
     ImPlot::PopStyleColor();
+    ImPlot::PopStyleVar();
+    ImPlot::PopStyleVar();
     ImPlot::PopStyleVar();
 }
 

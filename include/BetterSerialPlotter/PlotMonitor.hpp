@@ -14,7 +14,7 @@ public:
     float paused_time = 0;
     bool paused = false;
     void render();
-    void export_data();
+    void export_data(std::string filepath);
     PlotMonitor(BSP* gui_);
 };
 

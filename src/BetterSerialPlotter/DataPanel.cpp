@@ -24,7 +24,7 @@ void DataPanel::render(){
                 ImGui::EndDragDropSource();
             }
             if (ImGui::BeginPopupContextItem()){
-                static char name[16];
+                static char name[24];
                 if(i != editing_num){
                     editing_num = i;
                     strcpy(name,gui->all_data[i].name.c_str());

@@ -32,7 +32,7 @@ BSP::~BSP()
 void BSP::update(){
     // ImGuiConfigFlags config_flags = ImGuiConfigFlags_
 
-    constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding | ImGuiWindowFlags_MenuBar;
+    constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding;
 
     time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     ImGui::Begin("Better Serial Plotter", &open, padding_flag);
