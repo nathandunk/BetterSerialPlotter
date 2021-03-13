@@ -49,6 +49,7 @@ set(SRC_BSP
     ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/SerialManager.cpp
     ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/PlotMonitor.cpp
     ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/SerialMonitor.cpp
+    ${CMAKE_SOURCE_DIR}/src/BetterSerialPlotter/Serialization.cpp
 )
 
 include_directories(include)

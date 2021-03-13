@@ -15,8 +15,9 @@ namespace bsp{
 
 class BSP : public mahi::gui::Application
 {
-private:
+public:
     bool open = true;
+    bool mark_deserialize = false;
     
     mahi::util::RingBuffer<std::string> PrintBuffer; // ring buffer to keep track of 
     mahi::util::Clock program_clock;                 // clock to track program time
@@ -72,6 +73,9 @@ public:
     // void reset_read();
     ScrollingData& get_data(char identifier);
     void append_all_data(std::vector<float> curr_data);
+
+    void serialize();
+    void deserialize();
 };
 
 } // namespace bsp

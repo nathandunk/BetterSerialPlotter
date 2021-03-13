@@ -16,6 +16,7 @@ public:
     void render();
     void export_data(std::string filepath);
     PlotMonitor(BSP* gui_);
+    PlotMonitor(){};
 };
 
 } // namespace bsp

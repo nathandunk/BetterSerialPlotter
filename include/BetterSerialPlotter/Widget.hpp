@@ -9,6 +9,7 @@ class BSP;
 class Widget{
     public:
     Widget(BSP* gui_);
+    Widget();
     virtual void render() = 0;
     
     BSP* gui;

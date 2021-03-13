@@ -1,2 +1,2 @@
-add_executable(comport_detect comport_detect.cpp ${SRC_BSP})
-target_link_libraries(comport_detect mahi::gui mahi::com)
+add_executable(serialize_test serialize_test.cpp ${SRC_BSP})
+target_link_libraries(serialize_test mahi::gui mahi::com)

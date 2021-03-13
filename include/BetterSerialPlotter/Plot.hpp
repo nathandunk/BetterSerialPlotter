@@ -8,10 +8,11 @@ class PlotMonitor;
 
 class Plot
 {
-private:
+public:
     PlotMonitor* plot_monitor;
 public:
     Plot(PlotMonitor* plot_monitor_);
+    Plot();
     void make_plot(float time, int plot_num);
     void plot_data();
     void add_identifier(char identifier, int y_axis_num = 0);
@@ -23,7 +24,7 @@ public:
     std::vector<ScrollingData> all_plot_paused_data;
     bool other_x_axis = false;
     bool x_axis_realtime = true;
-    char x_axis;
+    char x_axis = -1;
     ScrollingData paused_x_axis;
     // std::vector<char> idenfifiers;
     std::unordered_map<char,int> y_axis;

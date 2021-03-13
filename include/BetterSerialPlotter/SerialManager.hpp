@@ -14,6 +14,7 @@ public:
     void reset_read();
     void read_serial();
     SerialManager(BSP* gui_);
+    SerialManager(){};
     HANDLE hSerial;
     int comport_num = -1;
     std::vector<float> curr_data;

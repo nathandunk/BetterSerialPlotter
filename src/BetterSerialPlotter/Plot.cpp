@@ -8,9 +8,10 @@
 namespace bsp{
 
 Plot::Plot(PlotMonitor* plot_monitor_): 
-    plot_monitor(plot_monitor_),
-    x_axis(-1) 
+    plot_monitor(plot_monitor_)
     {}
+
+Plot::Plot(): plot_monitor(nullptr){}
 
 void Plot::make_plot(float time, int plot_num){
     ImPlot::PushStyleVar(ImPlotStyleVar_LineWeight, 3);
@@ -18,12 +19,14 @@ void Plot::make_plot(float time, int plot_num){
     ImPlot::PushStyleVar(ImPlotStyleVar_PlotPadding,ImVec2(2,2));
     ImPlot::PushStyleColor(ImPlotCol_FrameBg,ImVec4(0.33f,0.35f,0.39f,1.0f));
     if(other_x_axis && !x_axis_realtime){
-        auto x_min = mahi::util::min_element(get_data(x_axis).get_y());
-        auto x_max = mahi::util::max_element(get_data(x_axis).get_y());
-        auto diff = (x_max - x_min);
-        x_min -= paused_x_axis_modifier*diff;
-        x_max += paused_x_axis_modifier*diff;
-        ImPlot::SetNextPlotLimitsX(x_min, x_max, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always); 
+        if (autoscale && !plot_monitor->paused){
+            auto x_min = mahi::util::min_element(get_data(x_axis).get_y());
+            auto x_max = mahi::util::max_element(get_data(x_axis).get_y());
+            // auto diff = (x_max - x_min);
+            // x_min -= paused_x_axis_modifier*diff;
+            // x_max += paused_x_axis_modifier*diff;
+            ImPlot::SetNextPlotLimitsX(x_min, x_max, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always); 
+        }
     }
     else{
         if (other_x_axis){

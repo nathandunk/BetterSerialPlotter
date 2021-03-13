@@ -15,10 +15,10 @@ struct ScrollingData {
      int MaxSize = 5000;
      int Offset  = 0;
      std::string name;
-     bool show = false;
+     // bool show = false;
      ImVector<ImVec2> Data;
      ImVec4 color;
-     int y_axis = 0;
+     // int y_axis = 0;
      ScrollingData()
      {
           Data.reserve(MaxSize);

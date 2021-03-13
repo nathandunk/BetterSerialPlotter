@@ -20,7 +20,9 @@ void PlotMonitor::render(){
     if (ImGui::Button(paused ? "Resume" : "Pause")) paused = !paused; ImGui::SameLine();
     if (ImGui::Button("Export CSV")) export_data("data.csv"); 
     ImGui::SameLine();
-    ImGui::Button("Save Config");
+    if (ImGui::Button("Save Config")) gui->serialize();
+    ImGui::SameLine();
+    if (ImGui::Button("Load Config")) gui->mark_deserialize = true;
     if (paused && !was_paused){
         for (auto &plot : all_plots){
             plot.update_paused_data();

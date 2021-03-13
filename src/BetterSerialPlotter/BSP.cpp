@@ -7,6 +7,8 @@
 #include <Mahi/Gui.hpp>
 #include <Mahi/Util.hpp>
 #include <regex>
+#include <nlohmann/json.hpp>
+#include <BetterSerialPLotter/Serialization.hpp>
 
 namespace bsp{
 
@@ -80,6 +82,10 @@ void BSP::update(){
     
     if(!open) quit();
     if (serial_manager.serial_started) serial_manager.read_serial();
+    if (mark_deserialize) {
+        deserialize();
+        mark_deserialize = false;
+    }
 }
 
 void BSP::append_all_data(std::vector<float> curr_data){
@@ -121,6 +127,59 @@ ScrollingData& BSP::get_data(char identifier){
     }
 
     return ScrollingData();
+}
+
+void BSP::serialize(){
+    BSPData bsp_data(this);
+    nlohmann::json j_out;
+    j_out["bsp_data"] = bsp_data;
+
+    std::string filepath = "test.json";
+
+    std::ofstream ofile(filepath);
+    
+    ofile << j_out;
+
+    ofile.close();
+}
+
+void BSP::deserialize(){
+    serial_manager.close_serial();
+
+    std::ifstream ifile("test.json");
+
+    nlohmann::json j_in;
+    ifile >> j_in;
+    auto bsp_data = j_in["bsp_data"].get<BSPData>(); 
+
+    ifile.close();
+
+    all_data = bsp_data.all_data;
+    plot_monitor = bsp_data.plot_monitor;
+    plot_monitor.gui = this;
+    for (auto &plot : plot_monitor.all_plots)
+    {
+        plot.plot_monitor = &plot_monitor;
+    }
+    
+    serial_manager = bsp_data.serial_manager;
+    serial_manager.gui = this;
+    serial_manager.serial_started = true;
+    serial_manager.begin_serial();
+    
+    DCB dcbSerialParams = {0};
+    dcbSerialParams.DCBlength=sizeof(dcbSerialParams);
+
+    dcbSerialParams.BaudRate=serial_manager.baud_rate;
+    dcbSerialParams.ByteSize=8;
+    dcbSerialParams.StopBits=ONESTOPBIT;
+    dcbSerialParams.Parity=NOPARITY;
+    if(!SetCommState(serial_manager.hSerial, &dcbSerialParams)){
+        std::cout << "could not set com state" << std::endl;
+    }
+    serial_manager.reset_read();
+
+    program_clock.restart();
 }
 
 } // namespace bsp
