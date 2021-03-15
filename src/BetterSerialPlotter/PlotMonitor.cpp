@@ -4,6 +4,8 @@
 #include <Mahi/Util/Logging/Csv.hpp>
 #include <array>
 #include <Mahi/Util/Random.hpp>
+#include <Mahi/Util/Print.hpp>
+#include <thread>
 
 using namespace mahi::util;
 
@@ -18,7 +20,7 @@ PlotMonitor::PlotMonitor(BSP* gui_):
 void PlotMonitor::render(){
     bool was_paused = paused;
     if (ImGui::Button(paused ? "Resume" : "Pause")) paused = !paused; ImGui::SameLine();
-    if (ImGui::Button("Export CSV")) export_data("data.csv"); 
+    if (ImGui::Button("Export CSV")) export_data(); 
     ImGui::SameLine();
     if (ImGui::Button("Save Config")) gui->serialize();
     ImGui::SameLine();
@@ -41,40 +43,50 @@ void PlotMonitor::render(){
     ImGui::EndTabItem();
 }
 
-void PlotMonitor::export_data(std::string filepath){
-    auto num_datas = gui->all_data.size();
+void PlotMonitor::export_data(){
+    auto func = [this]() {
+        std::string filepath;
+        auto result = mahi::gui::save_dialog(filepath, {{"CSV", "csv"}}, "", "data.csv");
+        if (result == mahi::gui::DialogResult::DialogOkay){
+            auto num_datas = gui->all_data.size();
     
-    if (num_datas == 0){
-        std::cout << "no data to export";
-        return;
-    }
+            if (num_datas == 0){
+                std::cout << "no data to export";
+                return;
+            }
 
-    auto num_samples = gui->all_data[0].Data.size();
+            auto num_samples = gui->all_data[0].Data.size();
 
-    std::vector<std::string> headers;
-    std::vector<std::vector<double>> all_rows;
-    
-    headers.reserve(num_datas+1);
+            mahi::util::print("Path: {}",filepath);
+            
+            std::vector<std::string> headers;
+            std::vector<std::vector<double>> all_rows;
+            
+            headers.reserve(num_datas+1);
 
-    // add the names as headers for the csv file
-    headers.push_back("Program Time [s]");
-    for (const auto &data : gui->all_data){
-        headers.push_back(data.name);
-    }
-    
-    // // add all of the data points
-    for (auto i = 0; i < num_samples; i++){
-        std::vector<double> row;
-        row.reserve(num_datas+1);
-        row.push_back(gui->all_data[0].Data[i].x);
-        for (const auto &data : gui->all_data){           
-            row.push_back(data.Data[i].y);
+            // add the names as headers for the csv file
+            headers.push_back("Program Time [s]");
+            for (const auto &data : gui->all_data){
+                headers.push_back(data.name);
+            }
+            
+            // // add all of the data points
+            for (auto i = 0; i < num_samples; i++){
+                std::vector<double> row;
+                row.reserve(num_datas+1);
+                row.push_back(gui->all_data[0].Data[i].x);
+                for (const auto &data : gui->all_data){           
+                    row.push_back(data.Data[i].y);
+                }
+                all_rows.push_back(row);
+            }
+            
+            csv_write_row(filepath, headers);
+            csv_append_rows(filepath, all_rows);
         }
-        all_rows.push_back(row);
-    }
-    
-    csv_write_row(filepath, headers);
-    csv_append_rows(filepath, all_rows);
+    };
+
+    auto csv_thread = std::thread(func); csv_thread.detach();
     
 }
 

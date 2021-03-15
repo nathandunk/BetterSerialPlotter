@@ -133,7 +133,11 @@ void SerialManager::reset_read(){
     curr_line_buff.clear();                              
     curr_data.clear();
     gui->PrintBuffer.clear();
-    gui->all_data.clear();
+    for (auto &data : gui->all_data){
+        data.Data.clear();
+    }
+    
+    // gui->all_data.clear();
     read_once = false;
 }
 

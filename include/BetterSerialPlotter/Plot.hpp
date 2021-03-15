@@ -26,7 +26,6 @@ public:
     bool x_axis_realtime = true;
     char x_axis = -1;
     ScrollingData paused_x_axis;
-    // std::vector<char> idenfifiers;
     std::unordered_map<char,int> y_axis;
     bool is_resizing = false;
     float time_frame = 10.0f;

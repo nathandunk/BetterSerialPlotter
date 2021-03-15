@@ -31,5 +31,6 @@ There are several improvements that are currently being worked on, including:
 - [ ] change plot name
 - [x] add colors to add/remove data
 - [x] add axes labels to remove data
-- [ ] allow file explorer access for csv/read/write configs
-- [ ] fix data persistence for loading configs
+- [x] allow file explorer access for csv/read/write configs
+- [x] fix data persistence for loading configs
+- [ ] add scatter plots

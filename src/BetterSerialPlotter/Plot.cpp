@@ -150,6 +150,7 @@ void Plot::make_plot(float time, int plot_num){
                     }
                 }
                 if (other_x_axis){
+                    ImPlot::ItemIcon(get_data(x_axis).color);  ImGui::SameLine();
                     if(ImGui::MenuItem((get_data(x_axis).name + " (x-axis)").c_str())){
                         other_x_axis = false;
                         x_axis = -1;

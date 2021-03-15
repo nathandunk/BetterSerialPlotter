@@ -10,6 +10,7 @@
 #include <BetterSerialPlotter/Utility.hpp>
 #include <Mahi/Util/Templates/RingBuffer.hpp>
 #include <Mahi/Util/Timing/Clock.hpp>
+#include <mutex>
 
 namespace bsp{
 
@@ -33,6 +34,8 @@ public:
     // ...etc
     std::vector<ScrollingData> all_data;
 
+    std::vector<std::string> data_names;
+    std::vector<ImVec4> data_colors;
     
     // HANDLE hSerial;
 
@@ -68,14 +71,13 @@ public:
     BSP(/* args */);
     ~BSP();
     void update();
-    // void close_serial();
-    // void read_serial();
-    // void reset_read();
     ScrollingData& get_data(char identifier);
     void append_all_data(std::vector<float> curr_data);
 
     void serialize();
     void deserialize();
+
+    std::mutex mtx;
 };
 
 } // namespace bsp

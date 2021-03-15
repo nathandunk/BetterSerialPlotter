@@ -47,6 +47,7 @@ void bsp::from_json(const nlohmann::json& j, bsp::SerialManager& serial_manager)
 // Plot
 void bsp::to_json(nlohmann::json& j, const Plot& plot){
     j = nlohmann::json{{"other_x_axis",           plot.other_x_axis}, 
+                       {"all_plot_data",          plot.all_plot_data}, 
                        {"x_axis_realtime",        plot.x_axis_realtime}, 
                        {"x_axis",                 plot.x_axis},
                        {"y_axis",                 plot.y_axis},
@@ -58,6 +59,7 @@ void bsp::to_json(nlohmann::json& j, const Plot& plot){
 }
 void bsp::from_json(const nlohmann::json& j, Plot& plot){
     j.at("other_x_axis").get_to(plot.other_x_axis);
+    j.at("all_plot_data").get_to(plot.all_plot_data);
     j.at("x_axis_realtime").get_to(plot.x_axis_realtime);
     j.at("x_axis").get_to(plot.x_axis);
     j.at("y_axis").get_to(plot.y_axis);
