@@ -148,19 +148,23 @@ void BSP::deserialize(){
         auto result = mahi::gui::open_dialog(filepath, {{"Config File", "json"}});
         if (result == mahi::gui::DialogResult::DialogOkay){
             std::lock_guard<std::mutex> lock(mtx);
+            // std::cout << "here";
             mahi::util::print("Path: {}",filepath);
-
+            // std::cout << "here";
             serial_manager.close_serial();
 
             std::ifstream ifile(filepath);
-
+            // std::cout << "here";
             nlohmann::json j_in;
             ifile >> j_in;
+            std::cout << "pre_json\n";
             auto bsp_data = j_in["bsp_data"].get<BSPData>(); 
+            std::cout << "post_json\n";
 
             ifile.close();
 
             all_data = bsp_data.all_data;
+            std::cout << "post_all_data\n";
             data_names.resize(all_data.size());
             data_colors.resize(all_data.size());
             for (auto i = 0; i < all_data.size(); i++){
@@ -174,25 +178,19 @@ void BSP::deserialize(){
             {
                 plot.plot_monitor = &plot_monitor;
             }
-            
+
+            std::cout << "bsp_data comport_num: " << bsp_data.serial_manager.comport_num << "\n";
             serial_manager = bsp_data.serial_manager;
+            std::cout << "post serial_manager\n";
             serial_manager.gui = this;
             serial_manager.serial_started = true;
-
+            // std::cout << "here3";
             // this is to try to use the comport
+            serial_manager.comport_num = bsp_data.serial_manager.comport_num;
+            std::cout << bsp_data.serial_manager.comport_num << std::endl;
+            serial_manager.baud_rate = bsp_data.serial_manager.baud_rate;
             serial_manager.begin_serial();
-            
-            // this is the change 
-            DCB dcbSerialParams = {0};
-            dcbSerialParams.DCBlength=sizeof(dcbSerialParams);
-
-            dcbSerialParams.BaudRate=serial_manager.baud_rate;
-            dcbSerialParams.ByteSize=8;
-            dcbSerialParams.StopBits=ONESTOPBIT;
-            dcbSerialParams.Parity=NOPARITY;
-            if(!SetCommState(serial_manager.hSerial, &dcbSerialParams)){
-                std::cout << "could not set com state" << std::endl;
-            }
+            // std::cout << "here4";
             serial_manager.reset_read();
 
             program_clock.restart();

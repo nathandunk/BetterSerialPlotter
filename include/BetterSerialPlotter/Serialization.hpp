@@ -22,6 +22,14 @@ struct BSPData{
         serial_manager(),
         plot_monitor()
         {}
+
+    // BSPData(const BSPData& bsp_data):
+    //     all_data(bsp_data.all_data),
+    //     serial_manager(bsp_data.serial_manager),
+    //     plot_monitor(bsp_data.plot_monitor)
+    //     {}
+
+    // ~BSPData(){};
         
     std::vector<ScrollingData> all_data;
     SerialManager serial_manager;

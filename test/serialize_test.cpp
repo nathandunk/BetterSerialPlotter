@@ -1,36 +1,35 @@
 #include <iostream>
 #include <string>
 #include <Windows.h>
-#include <BetterSerialPlotter/Serialization.hpp>
+#include <Mahi/Com.hpp>
 #include <fstream>
 
-using namespace bsp;
+using namespace mahi::com;
 
 int main(){
-    ImVec4 my_color(0,1,2,3);
+    unsigned char message[1];
+    mahi::com::SerialPort serial_port;
+    serial_port.open((Port)11,115200);
+    // serial_port.flush_TX();
 
-    ScrollingData sd_test;
-    sd_test.color = my_color;
-    sd_test.name = "test_name";
+    unsigned char recv[1];
+    for (size_t i = 0; i < 32; i++)
+    {
+        serial_port.receive_data(recv, 1);
+        for (std::size_t i = 0; i < 1; ++i)
+            std::cout << recv[i] << std::endl;
+    }
 
-    nlohmann::json j_out;
-    j_out["sd"] = sd_test;
+    // for (auto i = 0; i < 32; i++){
+    //     int bits = 0;
+    //     while(!bits){
+    //         bits = serial_port.receive_data(message, 1);
+    //     }
+    //     std::cout << message[i];
+    // }
 
-    std::string filepath = "test.json";
-
-    std::ofstream ofile(filepath);
+    // for (size_t i = 0; i < 32; i++){
+    //     std::cout << message[i] << std::endl;;
+    // }
     
-    ofile << j_out;
-
-    ofile.close();
-
-    std::ifstream ifile(filepath);
-
-    nlohmann::json j_in;
-    ifile >> j_in;
-    auto my_sd = j_in["sd"].get<ScrollingData>(); 
-    std::cout << my_sd.name;
-
-    ifile.close();
-
 }
