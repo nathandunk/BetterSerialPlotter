@@ -43,16 +43,12 @@ void SerialManager::render(){
         for (int i = 0; i < port_names.size(); i++){
             const bool com_is_selected = (comport_num == port_names[i]);
             if (ImGui::Selectable(("COM"+std::to_string(port_names[i])).c_str(), com_is_selected)){
-                // make sure this isn't what we are already connected to
-                // if(comport_num != port_names[i]) {
-                    if (serial_started){
-                        close_serial();
-                    }
-                    comport_num = port_names[i];
-                    serial_started = true;
-                    begin_serial();
-                    reset_read();
-                // }
+                if (serial_started){
+                    close_serial();
+                }
+                comport_num = port_names[i];
+                begin_serial();
+                reset_read();
             }
         }
         ImGui::EndCombo();
@@ -70,23 +66,13 @@ void SerialManager::render(){
         for (int i = 0; i < baud_rates.size(); i++){
             const bool baud_is_selected = (baud_rate == baud_rates[i]);
             if (ImGui::Selectable((std::to_string(baud_rates[i])).c_str(), baud_is_selected)){
-                // make sure this isn't what we are already connected to
-                // if(baud_rate != baud_rates[i]) {
-                    baud_rate = baud_rates[i];
-                    // DCB dcbSerialParams = {0};
-                    // dcbSerialParams.DCBlength=sizeof(dcbSerialParams);
 
-                    // dcbSerialParams.BaudRate=baud_rate;
-                    // dcbSerialParams.ByteSize=8;
-                    // dcbSerialParams.StopBits=ONESTOPBIT;
-                    // dcbSerialParams.Parity=NOPARITY;
-                    // if(!SetCommState(hSerial, &dcbSerialParams)){
-                    //     std::cout << "could not set com state" << std::endl;
-                    // }
-                    close_serial();
-                    begin_serial();
-                    reset_read();
-                // }
+                baud_rate = baud_rates[i];
+
+                close_serial();
+                begin_serial();
+                reset_read();
+
             }
         }
         ImGui::EndCombo();
@@ -99,12 +85,14 @@ void SerialManager::render(){
 
 bool SerialManager::begin_serial(){
     mahi::util::print("opening comport {}", comport_num);
-    auto result = serial_port.open((mahi::com::Port)(comport_num-1),baud_rate);
-    return result;
+    serial_started = serial_port.open((mahi::com::Port)(comport_num-1),baud_rate);
+    serial_port.flush_RXTX();
+    return serial_started;
 }
 
 void SerialManager::close_serial(){
     if (serial_port.is_open()) serial_port.close();
+    serial_started = false;
 }
 
 void SerialManager::reset_read(){

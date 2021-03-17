@@ -34,3 +34,6 @@ There are several improvements that are currently being worked on, including:
 - [x] allow file explorer access for csv/read/write configs
 - [x] fix data persistence for loading configs
 - [ ] add scatter plots
+- [x] fix data export offset
+- [ ] fix autoscale range
+- [ ] cross platform

@@ -18,7 +18,9 @@ class BSP : public mahi::gui::Application
 {
 public:
     bool open = true;
-    bool mark_deserialize = false;
+    // bool mark_deserialize = false;
+    bool deserialize_success = false;
+    std::string deserialize_filepath;
     
     mahi::util::RingBuffer<std::string> PrintBuffer; // ring buffer to keep track of 
     mahi::util::Clock program_clock;                 // clock to track program time
@@ -76,6 +78,7 @@ public:
 
     void serialize();
     void deserialize();
+    void complete_deserialize();
 
     std::mutex mtx;
 };

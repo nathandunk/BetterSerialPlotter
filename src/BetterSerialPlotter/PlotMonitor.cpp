@@ -24,7 +24,7 @@ void PlotMonitor::render(){
     ImGui::SameLine();
     if (ImGui::Button("Save Config")) gui->serialize();
     ImGui::SameLine();
-    if (ImGui::Button("Load Config")) gui->mark_deserialize = true;
+    if (ImGui::Button("Load Config")) gui->deserialize();
     if (paused && !was_paused){
         for (auto &plot : all_plots){
             plot.update_paused_data();
@@ -56,6 +56,7 @@ void PlotMonitor::export_data(){
             }
 
             auto num_samples = gui->all_data[0].Data.size();
+            auto offset = gui->all_data[0].Offset;
 
             mahi::util::print("Path: {}",filepath);
             
@@ -74,9 +75,9 @@ void PlotMonitor::export_data(){
             for (auto i = 0; i < num_samples; i++){
                 std::vector<double> row;
                 row.reserve(num_datas+1);
-                row.push_back(gui->all_data[0].Data[i].x);
+                row.push_back(gui->all_data[0].Data[(i + offset)%num_samples].x);
                 for (const auto &data : gui->all_data){           
-                    row.push_back(data.Data[i].y);
+                    row.push_back(data.Data[(i + offset)%num_samples].y);
                 }
                 all_rows.push_back(row);
             }
