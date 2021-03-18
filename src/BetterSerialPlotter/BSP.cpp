@@ -114,9 +114,15 @@ void BSP::serialize(){
             
             BSPData bsp_data;
 
+            std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
+
             {
                 std::lock_guard<std::mutex> lock(mtx);
+                std::cout << "pre this" << std::endl;
                 bsp_data = BSPData(this);
+                std::cout << "post this" << std::endl;
+
+                std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
             }
 
             nlohmann::json j_out;
@@ -141,11 +147,8 @@ void BSP::deserialize(){
         auto result = mahi::gui::open_dialog(deserialize_filepath, {{"Config File", "json"}});
         if (result == mahi::gui::DialogResult::DialogOkay){
             std::lock_guard<std::mutex> lock(mtx);
-            // std::cout << "here";
             mahi::util::print("Path: {}",deserialize_filepath);
-            // std::cout << "here";
             deserialize_success = true;
-
         }
     };
     std::thread thrd(func); thrd.detach();

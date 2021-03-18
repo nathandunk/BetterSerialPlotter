@@ -37,3 +37,5 @@ There are several improvements that are currently being worked on, including:
 - [x] fix data export offset
 - [ ] fix autoscale range
 - [ ] cross platform
+- [ ] fix data panel same name selection
+- [ ] fix comport saving as -1

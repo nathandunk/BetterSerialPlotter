@@ -1,7 +1,6 @@
 #pragma once
 
 #include <BetterSerialPlotter/Widget.hpp>
-// #include <Windows.h>
 #include <Mahi/Com/SerialPort.hpp>
 
 namespace bsp{
@@ -17,8 +16,7 @@ public:
     SerialManager(BSP* gui_);
     SerialManager();
     SerialManager(const SerialManager& serial_manager);
-    SerialManager operator=(const SerialManager& serial_manager);
-    // HANDLE hSerial;
+    SerialManager& operator=(const SerialManager& serial_manager);
     int comport_num = -1;
     std::vector<float> curr_data;
     std::string curr_number_buff;

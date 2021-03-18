@@ -4,30 +4,35 @@
 #include <tchar.h>
 #include <codecvt>
 #include <regex>
-// #include <locale>
 
 namespace bsp{
 
 SerialManager::SerialManager(BSP* gui_): 
     Widget(gui_),
     serial_port()
-    {}
+    {
+        std::cout << "SerialManager non-default constructor: " << comport_num << std::endl;
+    }
 
 SerialManager::SerialManager(): 
     serial_port()
-    {}
+    {
+        std::cout << "SerialManager default constructor: " << comport_num << std::endl;
+    }
 
 SerialManager::SerialManager(const SerialManager& serial_manager):
     serial_port(),
     comport_num(serial_manager.comport_num),
     baud_rate(serial_manager.baud_rate)
-    {}
+    {
+        std::cout << "SerialManager copy constructor: " << comport_num << std::endl;
+    }
 
-SerialManager SerialManager::operator=(const SerialManager& serial_manager){
-    SerialManager new_serial_manager;
-    new_serial_manager.comport_num = serial_manager.comport_num;
-    new_serial_manager.baud_rate = serial_manager.baud_rate;
-    return new_serial_manager;
+SerialManager& SerialManager::operator=(const SerialManager& serial_manager){
+    comport_num = serial_manager.comport_num;
+    baud_rate = serial_manager.baud_rate;
+    std::cout << "SerialManager assignment operator: " << comport_num << std::endl;
+    return *this;
 }
 
 void SerialManager::render(){

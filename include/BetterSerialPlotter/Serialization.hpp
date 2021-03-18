@@ -15,13 +15,17 @@ struct BSPData{
         all_data(bsp->all_data),
         serial_manager(bsp->serial_manager),
         plot_monitor(bsp->plot_monitor)
-        {}
+        {
+            std::cout << "BSP non-default: " << serial_manager.comport_num << std::endl;
+        }
         
     BSPData():
         all_data(),
         serial_manager(),
         plot_monitor()
-        {}
+        {
+            std::cout << "BSP default: " << serial_manager.comport_num << std::endl;
+        }
 
     // BSPData(const BSPData& bsp_data):
     //     all_data(bsp_data.all_data),
