@@ -31,9 +31,11 @@ void PlotMonitor::render(){
         }
         paused_time = gui->time;
     }
+    // std::cout << "Before make_plot\n";
     for (auto i = 0; i < all_plots.size(); i++){
         all_plots[i].make_plot(paused ? paused_time : gui->time, i);
     }
+    // std::cout << "After make_plot\n";
     ImGui::PushStyleColor(ImGuiCol_Button,gui->PalleteBlue);
     if(ImGui::Button("Add Plot")) {
         all_plots.emplace_back(this);

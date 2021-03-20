@@ -18,7 +18,7 @@ void DataPanel::render(){
                 ImGui::TableNextRow();
                 ImGui::TableNextColumn();
                 ImPlot::ItemIcon(gui->all_data[i].color); ImGui::SameLine();
-                ImGui::Selectable(gui->all_data[i].name.c_str(), false, ImGuiSelectableFlags_SpanAllColumns);
+                ImGui::Selectable((gui->all_data[i].name + "##" + std::to_string(i)).c_str(), false, ImGuiSelectableFlags_SpanAllColumns);
                 if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_AcceptBeforeDelivery)) {
                     ImGui::SetDragDropPayload("DND_PLOT", &i, sizeof(int));
                     ImGui::TextUnformatted(gui->all_data[i].name.c_str());

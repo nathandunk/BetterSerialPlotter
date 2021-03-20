@@ -10,7 +10,7 @@ void bsp::from_json(const nlohmann::json& j, BSPData& bsp_data){
     j.at("all_data").get_to(bsp_data.all_data);
     j.at("serial_manager").get_to(bsp_data.serial_manager);
     j.at("plot_monitor").get_to(bsp_data.plot_monitor);
-    std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate;
+    // std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate;
 }
 
 // ScrollingData

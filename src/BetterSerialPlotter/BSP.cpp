@@ -41,18 +41,22 @@ void BSP::update(){
     io = ImGui::GetIO();
     ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
     data_panel.render();
+    // std::cout << "after data_panel\n";
     
     ImGui::SameLine();
     
     ImGui::BeginGroup();
     serial_manager.render();
+    // std::cout << "after serial_manager\n";
     
     if (ImGui::BeginTabBar("MainAreaTabs")){
         if (ImGui::BeginTabItem("Plots")){
             plot_monitor.render();
         }
+        // std::cout << "after plots\n";
         if (ImGui::BeginTabItem("SerialMonitor")){
             serial_monitor.render();
+            // std::cout << "after serial_monitor\n";
         }
         ImGui::EndTabBar();
     }
@@ -67,6 +71,7 @@ void BSP::update(){
         deserialize_success = false;
     }
     if (serial_manager.serial_started) serial_manager.read_serial();
+    // std::cout << "after seral_manager.read_serial()\n";
     
 }
 
@@ -114,15 +119,15 @@ void BSP::serialize(){
             
             BSPData bsp_data;
 
-            std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
+            // std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
 
             {
                 std::lock_guard<std::mutex> lock(mtx);
-                std::cout << "pre this" << std::endl;
+                // std::cout << "pre this" << std::endl;
                 bsp_data = BSPData(this);
-                std::cout << "post this" << std::endl;
+                // std::cout << "post this" << std::endl;
 
-                std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
+                // std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
             }
 
             nlohmann::json j_out;
@@ -188,7 +193,7 @@ void BSP::complete_deserialize(){
     serial_manager.baud_rate = bsp_data.serial_manager.baud_rate;
     serial_manager.begin_serial();
     serial_manager.reset_read();
-
+    // std::cout << "finished deserialize";
     program_clock.restart();
 }
 

@@ -11,13 +11,13 @@ SerialManager::SerialManager(BSP* gui_):
     Widget(gui_),
     serial_port()
     {
-        std::cout << "SerialManager non-default constructor: " << comport_num << std::endl;
+        // std::cout << "SerialManager non-default constructor: " << comport_num << std::endl;
     }
 
 SerialManager::SerialManager(): 
     serial_port()
     {
-        std::cout << "SerialManager default constructor: " << comport_num << std::endl;
+        // std::cout << "SerialManager default constructor: " << comport_num << std::endl;
     }
 
 SerialManager::SerialManager(const SerialManager& serial_manager):
@@ -25,13 +25,13 @@ SerialManager::SerialManager(const SerialManager& serial_manager):
     comport_num(serial_manager.comport_num),
     baud_rate(serial_manager.baud_rate)
     {
-        std::cout << "SerialManager copy constructor: " << comport_num << std::endl;
+        // std::cout << "SerialManager copy constructor: " << comport_num << std::endl;
     }
 
 SerialManager& SerialManager::operator=(const SerialManager& serial_manager){
     comport_num = serial_manager.comport_num;
     baud_rate = serial_manager.baud_rate;
-    std::cout << "SerialManager assignment operator: " << comport_num << std::endl;
+    // std::cout << "SerialManager assignment operator: " << comport_num << std::endl;
     return *this;
 }
 
@@ -89,7 +89,7 @@ void SerialManager::render(){
 }
 
 bool SerialManager::begin_serial(){
-    mahi::util::print("opening comport {}", comport_num);
+    // mahi::util::print("opening comport {}", comport_num);
     serial_started = serial_port.open((mahi::com::Port)(comport_num-1),baud_rate);
     serial_port.flush_RXTX();
     return serial_started;
