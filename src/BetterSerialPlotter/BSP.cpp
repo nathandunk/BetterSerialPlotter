@@ -6,8 +6,9 @@
 #include <Mahi/Gui.hpp>
 #include <Mahi/Util.hpp>
 #include <regex>
+#include <thread>
 #include <nlohmann/json.hpp>
-#include <BetterSerialPLotter/Serialization.hpp>
+#include <BetterSerialPlotter/Serialization.hpp>
 
 
 namespace bsp{

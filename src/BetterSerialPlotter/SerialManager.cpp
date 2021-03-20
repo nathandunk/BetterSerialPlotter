@@ -42,11 +42,11 @@ void SerialManager::render(){
     ImGui::BeginChild("SerialSetup", ImVec2(-1, 36), false, padding_flag);
     // comport selection
     ImGui::PushItemWidth(200);
-    if (ImGui::BeginCombo("##comport_select", ("COM: " + ((comport_num >= 0) ? std::to_string(comport_num) : "")).c_str())){
+    if (ImGui::BeginCombo("##comport_select", ("Serial Port: " + ((comport_num >= 0) ? get_port_name(comport_num) : "")).c_str())){
         std::vector<int> port_names = get_serial_ports();
         for (int i = 0; i < port_names.size(); i++){
             const bool com_is_selected = (comport_num == port_names[i]);
-            if (ImGui::Selectable(("COM"+std::to_string(port_names[i])).c_str(), com_is_selected)){
+            if (ImGui::Selectable(get_port_name(port_names[i]).c_str(), com_is_selected)){
                 if (serial_started){
                     close_serial();
                 }
@@ -89,7 +89,7 @@ void SerialManager::render(){
 
 bool SerialManager::begin_serial(){
     // mahi::util::print("opening comport {}", comport_num);
-    serial_started = serial_port.open((mahi::com::Port)(comport_num-1),baud_rate);
+    serial_started = serial_port.open((mahi::com::Port)(comport_num),baud_rate);
     serial_port.flush_RXTX();
     return serial_started;
 }
@@ -193,6 +193,20 @@ void SerialManager::read_serial(){
         std::cerr << e.what() << '\n';
         std::cout << curr_number_buff << std::endl;
     }
+
+}
+
+std::string SerialManager::get_port_name(int port_num){
+#ifdef WIN32
+    return "COM" + std::to_string(port_num + 1);
+#else
+    if (port_num >= 16 && port_num <= 21){
+        return "ttyUSB" + std::to_string(port_num - 16);
+    } 
+    else if (port_num >= 24 && port_num <= 25){
+        return "ttyACM" + std::to_string(port_num - 24);
+    }
+#endif
 
 }
 

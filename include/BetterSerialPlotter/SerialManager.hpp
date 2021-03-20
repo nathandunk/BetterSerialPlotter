@@ -31,6 +31,9 @@ public:
     int cycle_timeout = 50;
     bool serial_started = false;
     mahi::com::SerialPort serial_port;
+
+    std::string get_port_name(int port_num);
+
 private:
     std::vector<int> baud_rates = {110,
                                    300,
