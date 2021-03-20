@@ -1,10 +1,13 @@
 #include <BetterSerialPlotter/Utility.hpp>
 #include <Mahi/Gui.hpp>
-#include <Windows.h>
 #include <iostream>
 
-namespace bsp{
+#ifdef WIN32
+#include <Windows.h>
+#endif
 
+namespace bsp{
+#ifdef WIN32
 std::vector<int> get_serial_ports() //added function to find the present serial 
 {
     char lpTargetPath[5000]; // buffer to store the path of the COMPORTS
@@ -31,5 +34,13 @@ std::vector<int> get_serial_ports() //added function to find the present serial
 
     return port_nums;
 }
+#else
+std::vector<int> get_serial_ports() //added function to find the present serial 
+{
+    std::vector<int> port_nums = {1,2,3,4};
+
+    return port_nums;
+}
+#endif
 
 } // namespace bsp

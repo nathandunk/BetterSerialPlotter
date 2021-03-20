@@ -88,7 +88,7 @@ void BSP::append_all_data(std::vector<float> curr_data){
         }
         else{
             for (auto i = old_size-1; i > old_size - curr_data.size(); i--){
-                std::cout << i << "\n";
+                // std::cout << i << "\n";
                 all_data.erase(all_data.begin()+i);
             }
         }

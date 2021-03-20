@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Mahi/Gui.hpp>
-#include <Windows.h>
+// #include <Windows.h>
 #include <BetterSerialPlotter/Plot.hpp>
 #include <BetterSerialPlotter/DataPanel.hpp>
 #include <BetterSerialPlotter/SerialManager.hpp>
