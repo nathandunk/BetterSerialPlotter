@@ -14,7 +14,6 @@ void SerialMonitor::render(){
     }
     if (auto_scroll) ImGui::SetScrollY(ImGui::GetScrollMaxY());
     ImGui::EndChild();
-    ImGui::EndTabItem();
 }
 
 } // namespace bsp

@@ -24,10 +24,10 @@ void Plot::make_plot(float time, int plot_num){
             float x_min = 0.0f;
             float x_max = 1.0f;
 
-            if (get_data(x_axis).Data.size()){
+            if (get_data(x_axis)->get().Data.size()){
                 // std::cout << get_data(x_axis).Data.size();
-                x_min = mahi::util::min_element(get_data(x_axis).get_y());
-                x_max = mahi::util::max_element(get_data(x_axis).get_y());
+                x_min = mahi::util::min_element(get_data(x_axis)->get().get_y());
+                x_max = mahi::util::max_element(get_data(x_axis)->get().get_y());
             }
             ImPlot::SetNextPlotLimitsX(x_min, x_max, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always); 
         }
@@ -35,8 +35,8 @@ void Plot::make_plot(float time, int plot_num){
     else{
         if (other_x_axis){
             float most_recent_time = 0.0f;
-            if (get_data(x_axis).Data.size()){
-                most_recent_time = mahi::util::max_element(get_data(x_axis).get_y());
+            if (get_data(x_axis)->get().Data.size()){
+                most_recent_time = mahi::util::max_element(get_data(x_axis)->get().get_y());
             }
             ImPlot::SetNextPlotLimitsX(most_recent_time - time_frame, most_recent_time, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);
         }
@@ -55,9 +55,9 @@ void Plot::make_plot(float time, int plot_num){
         max.push_back(std::vector<float>());
 
         for (auto it = y_axis.begin(); it != y_axis.end(); it++){
-            if(!get_data(it->first).Data.empty()){
-                min[it->second].push_back(mahi::util::min_element(get_data(it->first).get_y()));
-                max[it->second].push_back(mahi::util::max_element(get_data(it->first).get_y()));
+            if(!get_data(it->first)->get().Data.empty()){
+                min[it->second].push_back(mahi::util::min_element(get_data(it->first)->get().get_y()));
+                max[it->second].push_back(mahi::util::max_element(get_data(it->first)->get().get_y()));
             }
         }
         for (auto i = 0; i < 2; i++){
@@ -77,7 +77,7 @@ void Plot::make_plot(float time, int plot_num){
     }
     // std::cout << "before begin_plot\n";
     std::string text = "";
-    if(ImPlot::BeginPlot(name.c_str(), other_x_axis ? get_data(x_axis).name.c_str() : "Time (s)", 0, {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
+    if(ImPlot::BeginPlot(name.c_str(), other_x_axis ? get_data(x_axis)->get().name.c_str() : "Time (s)", 0, {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
         plot_data();
         if (ImGui::BeginDragDropTarget()) {
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
@@ -153,15 +153,15 @@ void Plot::make_plot(float time, int plot_num){
             } 
             if ((ImGui::BeginMenu("Remove Data"))){
                 for (auto i = 0; i < all_plot_data.size(); i++){
-                    ImPlot::ItemIcon(get_data(all_plot_data[i]).color); ImGui::SameLine();
-                    if(ImGui::MenuItem((get_data(all_plot_data[i]).name + " (y-axis " + std::to_string(y_axis[all_plot_data[i]]) + ")").c_str())){
-                        remove_identifier(get_data(all_plot_data[i]).identifier);
+                    ImPlot::ItemIcon(get_data(all_plot_data[i])->get().color); ImGui::SameLine();
+                    if(ImGui::MenuItem((get_data(all_plot_data[i])->get().name + " (y-axis " + std::to_string(y_axis[all_plot_data[i]]) + ")").c_str())){
+                        remove_identifier(get_data(all_plot_data[i])->get().identifier);
                         break;
                     }
                 }
                 if (other_x_axis){
-                    ImPlot::ItemIcon(get_data(x_axis).color);  ImGui::SameLine();
-                    if(ImGui::MenuItem((get_data(x_axis).name + " (x-axis)").c_str())){
+                    ImPlot::ItemIcon(get_data(x_axis)->get().color);  ImGui::SameLine();
+                    if(ImGui::MenuItem((get_data(x_axis)->get().name + " (x-axis)").c_str())){
                         other_x_axis = false;
                         x_axis = -1;
                     }
@@ -205,14 +205,14 @@ void Plot::plot_data(){
 
     for (auto i = 0; i < all_plot_data.size(); i++){
         // get the correct set of data based on what we are currently doing
-        auto &curr_data = plot_monitor->paused ? all_plot_paused_data[i] : get_data(all_plot_data[i]);
+        auto &curr_data = plot_monitor->paused ? all_plot_paused_data[i] : get_data(all_plot_data[i])->get();
         auto &curr_identifier = plot_monitor->paused ? all_plot_paused_data[i].identifier : all_plot_data[i];
         float* curr_x_data; // would prefer this to be a reference, but have to assign immediately, so can't
         if (plot_monitor->paused){
             curr_x_data = (other_x_axis) ? &paused_x_axis.Data[0].y : &all_plot_paused_data[i].Data[0].x;
         }
         else{
-            curr_x_data = (other_x_axis) ? &get_data(x_axis).Data[0].y : &curr_data.Data[0].x;
+            curr_x_data = (other_x_axis) ? &get_data(x_axis)->get().Data[0].y : &curr_data.Data[0].x;
         }
 
         ImPlot::PushStyleColor(ImPlotCol_Line,curr_data.color); 
@@ -268,7 +268,7 @@ bool Plot::has_identifier(char identifier) const{
     return false;
 }
 
-ScrollingData& Plot::get_data(char identifier){
+std::optional<std::reference_wrapper<ScrollingData>> Plot::get_data(char identifier){
     return plot_monitor->gui->get_data(identifier);
 }
 
@@ -276,9 +276,9 @@ void Plot::update_paused_data(){
     all_plot_paused_data.clear();
     all_plot_paused_data.reserve(all_plot_data.size());
     for (const auto& data : all_plot_data){
-        all_plot_paused_data.push_back(get_data(data));
+        all_plot_paused_data.push_back(get_data(data)->get());
     }
-    if (other_x_axis) paused_x_axis = get_data(x_axis);
+    if (other_x_axis) paused_x_axis = get_data(x_axis)->get();
     // all_plot_paused_data = all_plot_data;
 }
 

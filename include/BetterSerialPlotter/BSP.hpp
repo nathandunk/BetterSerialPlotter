@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Mahi/Gui.hpp>
-// #include <Windows.h>
+#include <optional>
 #include <BetterSerialPlotter/Plot.hpp>
 #include <BetterSerialPlotter/DataPanel.hpp>
 #include <BetterSerialPlotter/SerialManager.hpp>
@@ -73,7 +73,7 @@ public:
     BSP(/* args */);
     ~BSP();
     void update();
-    ScrollingData& get_data(char identifier);
+    std::optional<std::reference_wrapper<ScrollingData>> get_data(char identifier);
     void append_all_data(std::vector<float> curr_data);
 
     void serialize();

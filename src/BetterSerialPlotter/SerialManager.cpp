@@ -1,7 +1,6 @@
 #include <BetterSerialPlotter/SerialManager.hpp>
 #include <BetterSerialPlotter/BSP.hpp>
 #include <iostream>
-#include <tchar.h>
 #include <codecvt>
 #include <regex>
 

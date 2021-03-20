@@ -1,6 +1,7 @@
 #pragma once
 
 #include <BetterSerialPlotter/Utility.hpp>
+#include <optional>
 
 namespace bsp{
 
@@ -19,7 +20,7 @@ public:
     void remove_identifier(char identifier);
     bool has_identifier(char identifier) const;
     void update_paused_data();
-    ScrollingData& get_data(char identifier);
+    std::optional<std::reference_wrapper<ScrollingData>> get_data(char identifier);
     std::vector<char> all_plot_data;
     std::vector<ScrollingData> all_plot_paused_data;
     bool other_x_axis = false;

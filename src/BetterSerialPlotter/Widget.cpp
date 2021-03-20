@@ -1,5 +1,3 @@
-#pragma once
-
 #include <BetterSerialPlotter/Widget.hpp>
 
 namespace bsp{

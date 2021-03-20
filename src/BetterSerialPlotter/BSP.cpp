@@ -1,4 +1,3 @@
-#include <tchar.h>
 #include <codecvt>
 #include <locale>
 #include <iostream>
@@ -34,7 +33,7 @@ BSP::~BSP()
 void BSP::update(){
 
     constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding;
-
+    // std::cout << "after data_panel\n";
     time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     ImGui::Begin("Better Serial Plotter", &open, padding_flag);
 
@@ -52,11 +51,13 @@ void BSP::update(){
     if (ImGui::BeginTabBar("MainAreaTabs")){
         if (ImGui::BeginTabItem("Plots")){
             plot_monitor.render();
+            ImGui::EndTabItem();
         }
         // std::cout << "after plots\n";
         if (ImGui::BeginTabItem("SerialMonitor")){
             serial_monitor.render();
             // std::cout << "after serial_monitor\n";
+            ImGui::EndTabItem();
         }
         ImGui::EndTabBar();
     }
@@ -99,14 +100,14 @@ void BSP::append_all_data(std::vector<float> curr_data){
     }
 }
 
-ScrollingData& BSP::get_data(char identifier){
+std::optional<std::reference_wrapper<ScrollingData>> BSP::get_data(char identifier){
     for (auto &data : all_data){
         if (data.identifier == identifier){
             return data;
         }
     }
 
-    return ScrollingData();
+    return std::nullopt; //ScrollingData();
 }
 
 void BSP::serialize(){

@@ -42,7 +42,6 @@ void PlotMonitor::render(){
         all_plots[all_plots.size()-1].name = "Plot " + std::to_string(all_plots.size());
     }
     ImGui::PopStyleColor();
-    ImGui::EndTabItem();
 }
 
 void PlotMonitor::export_data(){
