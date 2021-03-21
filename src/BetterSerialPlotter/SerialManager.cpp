@@ -98,9 +98,9 @@ void SerialManager::close_serial(){
 }
 
 void SerialManager::reset_read(){
-    curr_number_buff.clear();
+    // curr_number_buff.clear();
     curr_line_buff.clear();                              
-    curr_data.clear();
+    // curr_data.clear();
     gui->PrintBuffer.clear();
     for (auto &data : gui->all_data){
         data.Data.clear();
@@ -130,53 +130,85 @@ void SerialManager::read_serial(){
 
 void SerialManager::parse_buffer(unsigned char* buff, size_t buff_len){
     for (size_t i = 0; i < buff_len; i++){
-        curr_line_buff += buff[i];
-        // if the current char is valid, add it to a string buff representing the current number
-        // valid chars include:
-        // digits 0-9 which can be a part of any number
-        // +/- to denote positive/negativeness
-        // E/e to denote scientific notation
-        if (std::regex_match(std::string(1, buff[i]),std::regex("[0-9Ee\\.+-]")) && read_once){
-            curr_number_buff += buff[i];
-            if (gui->verbose) std::cout << buff[i];
-        }
-        // if tab (0x09) or space (0x20) or newline (0x0a)
-        else if ((buff[i] == 0x09 || buff[i] == 0x20 || buff[i] == 0x0a) && read_once){
-
-            // add the current number to the data for the current line
-            try{
-                curr_data.push_back(std::stof(curr_number_buff));
+        // if we got a newline character, (0x0a)
+        if (buff[i] == 0x0a){
+            // if we haven't run through once, just note that, and 
+            // then return to make sure we have clean data
+            if (!read_once){
+                read_once = true;
+                curr_line_buff.clear();
             }
-            catch(const std::exception& e){
-                std::cerr << e.what() << '\n';
-            }
-            curr_number_buff = "";
-            if (gui->verbose) std::cout << "\t";
-            baud_status = true;
+            // if we have run through once, send the full line to be parsed
+            else{
+                std::vector<float> curr_data = parse_line(curr_line_buff);
+                gui->append_all_data(curr_data);
 
-            // if this is a newline character, then do further cleaning of line information variables 
-            if (buff[i] == 0x0a){
                 gui->PrintBuffer.push_back(curr_line_buff);
                 curr_line_buff.clear();
-                gui->append_all_data(curr_data);
                 if (gui->verbose) std::cout << std::endl;
-                curr_data.clear();
-                read_once = true;
             }
         }
-        // if we got an unexpected value (return character (0x0d) gets ignored), set baud status to false
-        else if (buff[i] != 0x0d && read_once) {
-            baud_status = false;
+        // otherwise, if we got a normal character then append it to the current line
+        else if (read_once && buff[i] != 0x0d){
+            curr_line_buff += buff[i];
+            if (gui->verbose) std::cout << buff[i];
         }
-        // get through a full line once so that we get the beginning of a line without any half-numbers
-        else if (buff[i] == 0x0a){
-            read_once = true;
+        else if (buff[i] != 0x0d){
+            curr_line_buff.clear();
+            read_once = false;
         }
     }
 }
 
+int SerialManager::receive_data(unsigned char * message, int packet_size){
+
+#if defined(WIN32) || defined(__linux__)
+    return serial_port.receive_data(message, packet_size);
+#else
+    return 0;
+#endif
+
+}
+
+std::vector<float> SerialManager::parse_line(std::string line){
+    // std::cout << line << "\n";
+
+    std::vector<float> curr_data;
+
+    // if the number is valid, add it to a float vecotr representing the current number set
+    // valid numbers include:
+    // digits 0-9 which can be a part of any number
+    // +/- to denote positive/negativeness
+    // E/e to denote scientific notation
+
+    // split by tab and space characters
+    static const std::regex re_delims("[\t ]");                                  // regular expression for either tab or space
+    static const std::regex re_fp_num("[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?"); // regular expression for floating point number
+
+    std::sregex_token_iterator first{line.begin(), line.end(), re_delims, -1}, last; //the '-1' is what makes the regex split (-1 := what was not matched)
+    std::vector<std::string> numbers{first, last};
+
+    // iterate through the separated numbers
+    for (const auto &number : numbers){
+        if (std::regex_match(number,re_fp_num)){
+            try{
+                curr_data.push_back(std::stof(number));
+            }
+            catch(const std::exception &e){
+                std::cerr << e.what();
+            }
+            baud_status = true;
+        }
+        else{
+            // if (gui->verbose) std::cout << "invalid number: " << number << "\n";
+        }
+    }
+    
+    return curr_data;
+}
+
 std::string SerialManager::get_port_name(int port_num){
-#ifdef WIN32
+#if defined(WIN32)
     return "COM" + std::to_string(port_num + 1);
 #else
     if (port_num >= 16 && port_num <= 21){

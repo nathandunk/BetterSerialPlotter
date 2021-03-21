@@ -29,6 +29,7 @@ BSP::BSP(/* args */) :
 
 BSP::~BSP()
 {
+    serial_manager.close_serial();
 }
 
 void BSP::update(){
@@ -81,7 +82,8 @@ void BSP::append_all_data(std::vector<float> curr_data){
     auto old_size = all_data.size();
     if (old_size != curr_data.size()){
         if (old_size < curr_data.size()){
-            for (int i = old_size; i < curr_data.size(); i++){
+            for (auto i = old_size; i < curr_data.size(); i++){
+                // std::cout << i << std::endl;
                 all_data.emplace_back();
                 all_data[i].set_name("data " + std::to_string(i));
                 all_data[i].identifier = old_size+i;

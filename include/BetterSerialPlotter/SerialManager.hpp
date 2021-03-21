@@ -18,9 +18,9 @@ public:
     bool serial_status  = false; // indicates that the program is able to receive any information from the serial port
 
     // variables related to the current state of data collection (either current number or current line)
-    std::string        curr_number_buff; // string representing the current analyzed number
+    // std::string        curr_number_buff; // string representing the current analyzed number
     std::string        curr_line_buff;   // string representing the current analyzed line
-    std::vector<float> curr_data;        // vector of all of the data for the current line
+    // std::vector<float> curr_data;        // vector of all of the data for the current line
     
     bool read_once    = false;
     int cycles_waited = 0;
@@ -50,10 +50,14 @@ public:
     void reset_read();
     /// attempt to read from the serial port
     void read_serial();
+    /// just the abstracted read from serial which is platform dependent
+    int receive_data(unsigned char * message, int packet_size);
     /// returns human readable port name (e.g. COM5 for windows or ttyUSB3 for Linux)
     std::string get_port_name(int port_num);
     /// parses a buffer received from a serial port read
     void parse_buffer(unsigned char* message, size_t buff_len);
+    /// parses a single line received from the buffer
+    std::vector<float> parse_line(std::string line);
 
 private:
     std::vector<int> baud_rates = {110,
@@ -71,6 +75,8 @@ private:
                                    115200,
                                    128000,
                                    256000};
+    
+    
 };
 
 } // namespace bsp
