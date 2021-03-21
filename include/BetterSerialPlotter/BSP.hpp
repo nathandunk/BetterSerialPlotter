@@ -73,7 +73,9 @@ public:
     BSP(/* args */);
     ~BSP();
     void update();
+    /// returns an optional reference wrapper to a scrolling data object. This returns the data corresponding to the requested identifier if available, or nullopt otherwise
     std::optional<std::reference_wrapper<ScrollingData>> get_data(char identifier);
+    /// appends the vector of current data to the current data set. Need to make sure that this is working for any size of data
     void append_all_data(std::vector<float> curr_data);
 
     void serialize();

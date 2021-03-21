@@ -9,28 +9,21 @@ namespace bsp{
 SerialManager::SerialManager(BSP* gui_): 
     Widget(gui_),
     serial_port()
-    {
-        // std::cout << "SerialManager non-default constructor: " << comport_num << std::endl;
-    }
+    {}
 
 SerialManager::SerialManager(): 
     serial_port()
-    {
-        // std::cout << "SerialManager default constructor: " << comport_num << std::endl;
-    }
+    {}
 
 SerialManager::SerialManager(const SerialManager& serial_manager):
     serial_port(),
     comport_num(serial_manager.comport_num),
     baud_rate(serial_manager.baud_rate)
-    {
-        // std::cout << "SerialManager copy constructor: " << comport_num << std::endl;
-    }
+    {}
 
 SerialManager& SerialManager::operator=(const SerialManager& serial_manager){
     comport_num = serial_manager.comport_num;
     baud_rate = serial_manager.baud_rate;
-    // std::cout << "SerialManager assignment operator: " << comport_num << std::endl;
     return *this;
 }
 
@@ -88,9 +81,14 @@ void SerialManager::render(){
 }
 
 bool SerialManager::begin_serial(){
-    // mahi::util::print("opening comport {}", comport_num);
-    serial_started = serial_port.open((mahi::com::Port)(comport_num),baud_rate);
-    serial_port.flush_RXTX();
+    try{
+        serial_started = serial_port.open((mahi::com::Port)(comport_num),baud_rate);
+        serial_port.flush_RXTX();
+    }
+    catch(const std::exception& e){
+        std::cerr << e.what() << '\n';
+        serial_started = false;
+    }
     return serial_started;
 }
 
@@ -108,92 +106,73 @@ void SerialManager::reset_read(){
         data.Data.clear();
     }
     
-    // gui->all_data.clear();
     read_once = false;
 }
 
 void SerialManager::read_serial(){
     int BytesRead = 0;
-    bool line_done = false;
-    try{
+    static unsigned char message[packet_size];
     
     do{
         BytesRead = serial_port.receive_data(message, packet_size);
-        // if(!ReadFile(hSerial, message, packet_size, &dwBytesRead, NULL)){
-        //     // std::cout << "error reading from serial" << std::endl;
-        // }
-        // else{
+        // if we got something from serial, parse it, and indicate that serial is functioning
         if(BytesRead > 0 ){
-            // std::cout << "bytesread: " << dwBytesRead << "\n";
-            // GETTING TO NEWLINE BEFORE DOING ANYTHING
-            for (size_t i = 0; i < BytesRead; i++){
-                curr_line_buff += message[i];
-
-                // if tab (0x09) or space (0x20)
-                if ((message[i] == 0x09 || message[i] == 0x20) && read_once){
-                    if(std::regex_match(curr_number_buff,std::regex("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"))
-                    ){
-                        curr_data.push_back(std::stof(curr_number_buff));
-                        curr_number_buff = "";
-                        if (gui->verbose) std::cout << "\t";
-                        baud_status = true;
-                    }
-                    else{
-                        curr_number_buff.clear();
-                        curr_line_buff.clear();                              
-                        curr_data.clear();
-                        baud_status = false;
-                    }
-                }
-                // if new line
-                else if (message[i] == 0x0a && read_once){
-                    if(std::regex_match(curr_number_buff,std::regex("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"))
-                        ){
-                        curr_data.push_back(std::stof(curr_number_buff));
-                        gui->PrintBuffer.push_back(curr_line_buff);
-                        curr_number_buff.clear();
-                        curr_line_buff.clear();
-                        gui->append_all_data(curr_data);
-                        if (gui->verbose) std::cout << std::endl;
-                        
-                        curr_data.clear();
-                        line_done = true;
-                        read_once = true;
-                        baud_status = true;
-                    }
-                    else{
-                        curr_number_buff.clear();
-                        curr_line_buff.clear();                              
-                        curr_data.clear();
-                        baud_status = false;
-                    }
-                }
-                else if ((message[i] >= '0' && message[i] <= '9' || message[i] == '.' || message[i] == '-') && read_once){
-                    curr_number_buff += message[i];
-                    if (gui->verbose) std::cout << message[i];
-                }
-                else if (message[i] != 0x0d && read_once) {
-                    baud_status = false;
-                    // std::cout << "invalid character: " << message[i] << std::endl;
-                }
-                else if (message[i] == 0x0a){
-                    read_once = true;
-                }
-            }
+            parse_buffer(message, BytesRead);
             cycles_waited = 0;
             serial_status = true;
         }
+        // if we have waited too many cycles, indicate that serial is not functioning
         else{
             if (++cycles_waited > cycle_timeout) serial_status = false;
         }
-        // }
-    } while (!line_done && BytesRead > 0);
-    }
-    catch(const std::exception& e){
-        std::cerr << e.what() << '\n';
-        std::cout << curr_number_buff << std::endl;
-    }
+    } while (BytesRead > 0);
+}
 
+void SerialManager::parse_buffer(unsigned char* buff, size_t buff_len){
+    for (size_t i = 0; i < buff_len; i++){
+        curr_line_buff += buff[i];
+        // if the current char is valid, add it to a string buff representing the current number
+        // valid chars include:
+        // digits 0-9 which can be a part of any number
+        // +/- to denote positive/negativeness
+        // E/e to denote scientific notation
+        if (std::regex_match(std::string(1, buff[i]),std::regex("[0-9Ee\\.+-]")) && read_once){
+            curr_number_buff += buff[i];
+            if (gui->verbose) std::cout << buff[i];
+        }
+        // if tab (0x09) or space (0x20) or newline (0x0a)
+        else if ((buff[i] == 0x09 || buff[i] == 0x20 || buff[i] == 0x0a) && read_once){
+
+            // add the current number to the data for the current line
+            try{
+                curr_data.push_back(std::stof(curr_number_buff));
+            }
+            catch(const std::exception& e){
+                std::cerr << e.what() << '\n';
+            }
+            curr_number_buff = "";
+            if (gui->verbose) std::cout << "\t";
+            baud_status = true;
+
+            // if this is a newline character, then do further cleaning of line information variables 
+            if (buff[i] == 0x0a){
+                gui->PrintBuffer.push_back(curr_line_buff);
+                curr_line_buff.clear();
+                gui->append_all_data(curr_data);
+                if (gui->verbose) std::cout << std::endl;
+                curr_data.clear();
+                read_once = true;
+            }
+        }
+        // if we got an unexpected value (return character (0x0d) gets ignored), set baud status to false
+        else if (buff[i] != 0x0d && read_once) {
+            baud_status = false;
+        }
+        // get through a full line once so that we get the beginning of a line without any half-numbers
+        else if (buff[i] == 0x0a){
+            read_once = true;
+        }
+    }
 }
 
 std::string SerialManager::get_port_name(int port_num){

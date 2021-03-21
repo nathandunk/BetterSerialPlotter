@@ -165,7 +165,6 @@ void BSP::complete_deserialize(){
     serial_manager.close_serial();
 
     std::ifstream ifile(deserialize_filepath);
-    // std::cout << "here";
     nlohmann::json j_in;
     ifile >> j_in;
     auto bsp_data = j_in["bsp_data"].get<BSPData>(); 
