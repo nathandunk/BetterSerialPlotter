@@ -37,13 +37,13 @@ SerialManager& SerialManager::operator=(const SerialManager& serial_manager){
 void SerialManager::render(){
     constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding;
 
-    ImGui::PushStyleColor(ImGuiCol_FrameBg, (comport_num > 0) ? (serial_status ? gui->PalleteGreen : gui->PalleteRed) : gui->PalleteGray);
-    ImGui::PushStyleColor(ImGuiCol_Header, (comport_num > 0) ? (serial_status ? gui->PalleteGreen : gui->PalleteRed) : gui->PalleteGray);
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, (comport_valid()) ? (serial_status ? gui->PalleteGreen : gui->PalleteRed) : gui->PalleteGray);
+    ImGui::PushStyleColor(ImGuiCol_Header, (comport_valid()) ? (serial_status ? gui->PalleteGreen : gui->PalleteRed) : gui->PalleteGray);
     ImGui::BeginChild("SerialSetup", ImVec2(-1, 36), false, padding_flag);
     // comport selection
     ImGui::PushItemWidth(200);
-    if (ImGui::BeginCombo("##comport_select", ("Serial Port: " + ((comport_num >= 0) ? get_port_name(comport_num) : "")).c_str())){
-        std::vector<int> port_names = get_serial_ports();
+    if (ImGui::BeginCombo("##comport_select", ("Serial Port: " + ((comport_valid()) ? get_port_name(comport_num) : "")).c_str())){
+        auto port_names = get_serial_ports();
         for (int i = 0; i < port_names.size(); i++){
             const bool com_is_selected = (comport_num == port_names[i]);
             if (ImGui::Selectable(get_port_name(port_names[i]).c_str(), com_is_selected)){
@@ -197,12 +197,13 @@ void SerialManager::read_serial(){
         std::cerr << e.what() << '\n';
         std::cout << curr_number_buff << std::endl;
     }
-
 }
 
-std::string SerialManager::get_port_name(int port_num){
-#ifdef WIN32
+std::string SerialManager::get_port_name(BspPort port_num){
+#if defined(WIN32)
     return "COM" + std::to_string(port_num + 1);
+#elif defined(__APPLE__)
+    return port_num
 #else
     if (port_num >= 16 && port_num <= 21){
         return "ttyUSB" + std::to_string(port_num - 16);
@@ -212,6 +213,14 @@ std::string SerialManager::get_port_name(int port_num){
     }
 #endif
 
+}
+
+bool SerialManager::comport_valid(){
+#if defined(__APPLE__)
+    return comport_num != "";
+#else
+    return comport_num > -1;
+#endif
 }
 
 } // namespace bsp

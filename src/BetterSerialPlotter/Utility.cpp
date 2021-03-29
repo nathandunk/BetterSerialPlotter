@@ -37,6 +37,22 @@ std::vector<int> get_serial_ports() //added function to find the present serial
 
     return port_nums;
 }
+#elif defined(__APPLE__)
+std::vector<std::string> get_serial_ports() //added function to find the present serial 
+{
+    std::vector<int> port_nums;
+    std::string usb_string = "tty.";
+
+    std::string path = "/dev/";
+    for (const auto & entry : fs::directory_iterator(path)){
+        if (entry.path().filename().generic_string().find(usb_string) != std::string::npos) {
+            std::string fp = entry.path().filename().generic_string();
+            port_nums.push_back(fp);
+        }
+    }
+        
+    return port_nums;
+}
 #else
 std::vector<int> get_serial_ports() //added function to find the present serial 
 {

@@ -5,6 +5,12 @@
 
 namespace bsp{
 
+#ifdef __APPLE__
+typedef std::string BspPort;
+#else
+typedef int BspPort;
+#endif
+
 class SerialManager : public Widget
 {
 public:
@@ -17,7 +23,6 @@ public:
     SerialManager();
     SerialManager(const SerialManager& serial_manager);
     SerialManager& operator=(const SerialManager& serial_manager);
-    int comport_num = -1;
     std::vector<float> curr_data;
     std::string curr_number_buff;
     std::string curr_line_buff;
@@ -32,7 +37,14 @@ public:
     bool serial_started = false;
     mahi::com::SerialPort serial_port;
 
-    std::string get_port_name(int port_num);
+    std::string get_port_name(BspPort port_num);
+    bool comport_valid();
+
+#ifdef __APPLE__
+    BspPort comport_num;
+#else
+    BspPort comport_num = -1;
+#endif
 
 private:
     std::vector<int> baud_rates = {110,

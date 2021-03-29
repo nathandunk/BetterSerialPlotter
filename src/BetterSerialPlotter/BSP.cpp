@@ -10,7 +10,6 @@
 #include <nlohmann/json.hpp>
 #include <BetterSerialPlotter/Serialization.hpp>
 
-
 namespace bsp{
 
 BSP::BSP(/* args */) : 
