@@ -18,9 +18,36 @@ This program is intended to work for any program that already uses the built-in 
 Make sure that your arduino (or serial-interface device) is plugged into your computer and running. Run the **Better Serial Plotter** application, and a graphical interface should open up. From there, click on the **Serial Port** dropdown on the top of the screen. You should see a list of serial devices attached to your PC. Click on the serial port that your device is attached to. Then, you should click the dropdown for the baud rate and select the baud rate that you used in your `Serial.Begin()` function in your arduino code. If everything is set up properly, you should see your data on the left side of the application. If you are having trouble, make sure to check out the troubleshooting tips at the end of this page.
 
 ## Configuring Data
-Once you are properly connected, on the left side of the screen, you should see a list of all of the variables that you have sent from your arduino code. If you want to configure, the name, plot color, or what plots a variable shows up on, you can right-click the variable name. A context menu should open up as SHOWN BELOW, where you can edit these items. Click on save to make your changes. You can also right click on each plot to configure several parts of the application
+
+Once you are properly connected, on the left side of the screen, you should see a list of all of the variables that you have sent from your arduino code. If you want to configure, the name, plot color, or what plots a variable shows up on, you can right-click the variable name. A context menu should open up as SHOWN BELOW, where you can edit these items. Click on save to make your changes. 
+
+## Drag and Drop
+
+You can click and drag variables from the Data Panel to any plot to add it to that plot. You can also drag variables to a specific axis on any of the plots (x-axis, left y-axis, right y-axis) to add them to a specific axis.
+
+## Plot Controls
+
+There are several configuration options to change how to display your plots, including:
+- Resize the plot by clicking and dragging the bottom of it
+- Add variables to the plot by right clicking and selecting *Add Data*
+- Add variables to the plot by right clicking and selecting *Remove Data*
+- Autoscale to make the limits of the axes line up with the available data
+- Scroll when hovering over any axis to change the limits (except when autoscale is on)
+- Double click on the plot to set the y-limits to the currently available data
+- Click and drag on the plot to pan along the non-locked axes
+- If you have added a custom x-axis variable, you can right click and select *Realtime X-axis* to keep it's max x-axis limit to be the max x-axis variable value.
+
+## Saving Data
+
+You can save data that you are collecting by clicking on the **Export CSV** button. This should open a file explorer window where you can choose where to save your data as a .csv file. This will save all of the data that is currently available, meaning that it will still output all of the data from after you clicked the button to when you click save. I am hoping to add an option to save paused data as well, so that you can leave it in a specific state as you work on saving the data.
+
+## Saving/loading configuration
+
+You can save the configuration of your data and plots by clicking the **Save Config** button. This will save the names and colors of each of the variables, as well as the configuration of the plots, including each of the plot-specific configuration options and what variables are on what axes. This feature has not been extensively tested, so it is possible that this could crash if configured incorrectly.
 
 ## Serial Monitor
+
+The serial monitor lets you view all of your data as if it was on the built-in arduino serial monitor. By default, the data will autoscroll to keep you looking at the most recent data input, but you can click or unclick the autoscroll checkbox to enable or disable this functionality.
 
 ## Example Arduino Code
 
