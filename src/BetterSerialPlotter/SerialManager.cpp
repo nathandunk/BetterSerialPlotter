@@ -81,14 +81,12 @@ void SerialManager::render(){
 }
 
 bool SerialManager::begin_serial(){
-    try{
-        serial_started = serial_port.open((mahi::com::Port)(comport_num),baud_rate);
-        serial_port.flush_RXTX();
-    }
-    catch(const std::exception& e){
-        std::cerr << e.what() << '\n';
-        serial_started = false;
-    }
+#ifdef __APPLE__
+    serial_started = serial_port.open("1",baud_rate);
+#else
+    serial_started = serial_port.open((mahi::com::Port)(comport_num),baud_rate);
+#endif
+    serial_port.flush_RXTX();
     return serial_started;
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <BetterSerialPlotter/Utility.hpp>
+#include <unordered_map>
 #include <optional>
 
 namespace bsp{
