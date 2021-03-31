@@ -88,13 +88,20 @@ void SerialManager::render(){
 }
 
 bool SerialManager::begin_serial(){
-    // mahi::util::print("opening comport {}", comport_num);
+    serial_started = false;
+
+    try{
 #ifdef __APPLE__
-    serial_started = serial_port.open("1",baud_rate);
+        serial_started = serial_port.open(comport_num,baud_rate);
 #else
-    serial_started = serial_port.open((mahi::com::Port)(comport_num),baud_rate);
+        serial_started = serial_port.open((mahi::com::Port)(comport_num),baud_rate);
 #endif
-    serial_port.flush_RXTX();
+        serial_port.flush_RXTX();
+    }
+    catch(const std::exception& e){
+        std::cerr << e.what() << '\n';
+    }
+
     return serial_started;
 }
 
