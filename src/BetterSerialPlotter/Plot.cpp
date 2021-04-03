@@ -18,67 +18,90 @@ void Plot::make_plot(float time, int plot_num){
     ImPlot::PushStyleVar(ImPlotStyleVar_LabelPadding,ImVec2(3,2));
     ImPlot::PushStyleVar(ImPlotStyleVar_PlotPadding,ImVec2(2,2));
     ImPlot::PushStyleColor(ImPlotCol_FrameBg,ImVec4(0.33f,0.35f,0.39f,1.0f));
-    if(other_x_axis && !x_axis_realtime){
-        if (autoscale && !plot_monitor->paused){
-            
-            float x_min = 0.0f;
-            float x_max = 1.0f;
-
-            if (get_data(x_axis)->get().Data.size()){
-                // std::cout << get_data(x_axis).Data.size();
-                x_min = mahi::util::min_element(get_data(x_axis)->get().get_y());
-                x_max = mahi::util::max_element(get_data(x_axis)->get().get_y());
-            }
-            ImPlot::SetNextPlotLimitsX(x_min, x_max, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always); 
-        }
-    }
-    else{
+    // set x_axis limits if we aren't paused
+    if(!plot_monitor->paused){
+        float x_min = 0.0f;
+        float x_max = 1.0f;
+        // if we are a user-variable as the x-axis, 
         if (other_x_axis){
-            float most_recent_time = 0.0f;
-            if (get_data(x_axis)->get().Data.size()){
-                most_recent_time = mahi::util::max_element(get_data(x_axis)->get().get_y());
+            // if it is a realtime x-axis, get lragest data (aka most-recent time)
+            if (x_axis_realtime){
+                float most_recent_time = 0.0f;
+                if (get_data(x_axis)->get().Data.size()){
+                    most_recent_time = mahi::util::max_element(get_data(x_axis)->get().get_y());
+                }
+                x_min = most_recent_time - time_frame;
+                x_max = most_recent_time;
+                ImPlot::SetNextPlotLimitsX(x_min, x_max, ImGuiCond_Always);
             }
-            ImPlot::SetNextPlotLimitsX(most_recent_time - time_frame, most_recent_time, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);
+            // otherwise, if it is autoscale, get the min and max elements of the data
+            else if(autoscale){
+                if (get_data(x_axis)->get().Data.size()){
+                    x_min = mahi::util::min_element(get_data(x_axis)->get().get_y());
+                    x_max = mahi::util::max_element(get_data(x_axis)->get().get_y());
+                }
+                ImPlot::SetNextPlotLimitsX(x_min, x_max, ImGuiCond_Always); 
+            }
         }
+        // otherwise, we just use time with timeframe to set x-lims
         else{
-            ImPlot::SetNextPlotLimitsX(time - time_frame, time, plot_monitor->paused ? ImGuiCond_Once : ImGuiCond_Always);
+            x_min = time - time_frame;
+            x_max = time;
+            ImPlot::SetNextPlotLimitsX(x_min, x_max, ImGuiCond_Always);
         }
-    }
-    if (autoscale){
-        // vectors which contain min and max for y axis 0 and y axis 1
-        std::vector<std::vector<float>> min;
-        std::vector<std::vector<float>> max;
 
-        min.push_back(std::vector<float>());
-        min.push_back(std::vector<float>());
-        max.push_back(std::vector<float>());
-        max.push_back(std::vector<float>());
+        // set y_axis limits if autoscaled
+        if (autoscale){
+            // vectors which contain min and max for y axis 0 and y axis 1
+            std::vector<float> y_min = {0.0f,0.0f};
+            std::vector<float> y_max = {1.0f,1.0f};
+            std::vector<bool>  axis_exists = {false,false};
 
-        for (auto it = y_axis.begin(); it != y_axis.end(); it++){
-            if(!get_data(it->first)->get().Data.empty()){
-                min[it->second].push_back(mahi::util::min_element(get_data(it->first)->get().get_y()));
-                max[it->second].push_back(mahi::util::max_element(get_data(it->first)->get().get_y()));
-            }
-        }
-        for (auto i = 0; i < 2; i++){
-            bool axis_exists = false;
+            // go through each of the variables for the plot
+            for (auto it = y_axis.begin(); it != y_axis.end(); it++){
+                // make sure the variable has data first
+                if(!get_data(it->first)->get().Data.empty()){
 
-            for (const auto & [key, value] : y_axis){
-                if (value == i && !min[i].empty()){
-                    axis_exists = true;
-                    break;
+                    auto x_vals = get_data(it->first)->get().get_x();
+                    auto y_vals = get_data(it->first)->get().get_y();
+
+                    for (auto i = 0; i < x_vals.size(); i++){
+
+                        // check if it is actually visible on the plot
+                        if (x_vals[i] >= x_min && x_vals[i] <= x_max){
+                            // if it is first read through, set initial lims to the first value
+                            if(!axis_exists[it->second]){
+                                y_min[it->second] = y_vals[i];
+                                y_max[it->second] = y_vals[i];
+                                axis_exists[it->second] = true;
+                            }
+                            // otherwise, check if these are min and max values
+                            else if (y_vals[i] < y_min[it->second]){
+                                y_min[it->second] = y_vals[i];
+                            }
+                            else if (y_vals[i] > y_max[it->second]){
+                                y_max[it->second] = y_vals[i];
+                            }
+                        }
+
+                    }
                 }
             }
-            
-            if (axis_exists){
-                ImPlot::SetNextPlotLimitsY(mahi::util::min_element(min[i]),mahi::util::max_element(max[i]),ImGuiCond_Always,i);
-            }           
-        }        
+            // only if we marked axes as existing, set lims based on found values
+            for (auto i = 0; i < 2; i++){            
+                if (axis_exists[i]){
+                    ImPlot::SetNextPlotLimitsY(y_min[i],y_max[i],ImGuiCond_Always,i);
+                }           
+            }        
+        }
     }
-    // std::cout << "before begin_plot\n";
-    std::string text = "";
+    
+    // make plot given x and y variables
     if(ImPlot::BeginPlot(name.c_str(), other_x_axis ? get_data(x_axis)->get().name.c_str() : "Time (s)", 0, {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
-        plot_data();
+        
+        plot_data(); // see plot_data() function
+        
+        // make drag and drop targets for all axes and the main plot area
         if (ImGui::BeginDragDropTarget()) {
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                 int i = *(int*)payload->Data;
@@ -104,7 +127,7 @@ void Plot::make_plot(float time, int plot_num){
             ImPlot::EndDragDropTarget();
         }
         
-        // handle x-axis resizing
+        // handle x-axis resizing if hovering x-axis
         if(ImPlot::IsPlotXAxisHovered()){
             if (other_x_axis & !x_axis_realtime) paused_x_axis_modifier += plot_monitor->gui->io.MouseWheel/20.0f;
             else time_frame *= 1.0f+plot_monitor->gui->io.MouseWheel/100.0f;
@@ -116,19 +139,21 @@ void Plot::make_plot(float time, int plot_num){
             }
 
             else if (ImPlot::IsPlotXAxisHovered()){
-                ImGui::OpenPopup("##XAxisContext");
+                ImGui::OpenPopup("##XAxisContext"); // not yet implemented
             }
 
             else if (ImPlot::IsPlotYAxisHovered(0)){
-                ImGui::OpenPopup("##YAxis0Context");
+                ImGui::OpenPopup("##YAxis0Context"); // not yet implemented
             }
 
             else if (ImPlot::IsPlotYAxisHovered(1)){
-                ImGui::OpenPopup("##YAxis1Context");
+                ImGui::OpenPopup("##YAxis1Context"); // not yet implemented
             }
         }
 
+        // context menu for right clicking main area
         if(ImGui::BeginPopup("##BSPPlotContext")){
+            // add data to plot
             if ((ImGui::BeginMenu("Add Data"))){
                 for (auto i = 0; i < plot_monitor->gui->all_data.size(); i++){
                     ImPlot::ItemIcon(plot_monitor->gui->all_data[i].color); ImGui::SameLine();
@@ -151,6 +176,7 @@ void Plot::make_plot(float time, int plot_num){
                 }
                 ImGui::EndMenu();
             } 
+            // remove data from plot
             if ((ImGui::BeginMenu("Remove Data"))){
                 for (auto i = 0; i < all_plot_data.size(); i++){
                     ImPlot::ItemIcon(get_data(all_plot_data[i])->get().color); ImGui::SameLine();
@@ -177,8 +203,8 @@ void Plot::make_plot(float time, int plot_num){
         plot_y_end = ImGui::GetWindowPos().y + ImGui::GetWindowContentRegionMax().y;
         ImPlot::EndPlot();
     }
-    // std::cout << "before resizing\n";
-
+    
+    // reize plot if we are in the right area
     if (ImGui::GetMousePos().y <= plot_y_end + resize_area && ImGui::GetMousePos().y >= plot_y_end - resize_area){
         ImGui::SetMouseCursor(3);
         if (ImGui::IsMouseClicked(0)){
@@ -230,12 +256,10 @@ void Plot::add_identifier(char identifier, int y_axis_num){
     // check if it is already there
     for (const auto &i : all_plot_data){
         if (identifier == i) {
-            // std::cout << (int)identifier <<  " " << (int)i << std::endl;
             exists = true;
             break;
         }
     }
-    // std::cout << exists;
     
     // if it isnt already there, add it and set y axis to 0 (default)
     if (!exists) all_plot_data.push_back(identifier);
@@ -279,7 +303,6 @@ void Plot::update_paused_data(){
         all_plot_paused_data.push_back(get_data(data)->get());
     }
     if (other_x_axis) paused_x_axis = get_data(x_axis)->get();
-    // all_plot_paused_data = all_plot_data;
 }
 
 }
