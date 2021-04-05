@@ -122,10 +122,10 @@ There are several improvements that are currently being worked on, including:
 - [x] fix data persistence for loading configs
 - [ ] add scatter plots
 - [x] fix data export offset
-- [ ] fix autoscale range
+- [x] fix autoscale range
 - [ ] cross platform
 - [x] fix data panel same name selection
 - [x] fix comport saving as -1
-- [ ] add tests
-- [ ] make more functionalized
-- [ ] change to analyzing by line, not by char
+- [x] add tests
+- [x] make more functionalized
+- [x] change to analyzing by line, not by char
