@@ -9,14 +9,23 @@ namespace bsp{
 class PlotMonitor : public Widget
 {
 public:
-    std::vector<Plot> all_plots;
-    std::vector<std::shared_ptr<ScrollingData>> paused_data;
-    float paused_time = 0;
-    bool paused = false;
-    void render();
-    void export_data();
+    /// constructor which takes in gui pointer
     PlotMonitor(BSP* gui_);
+    
+    /// default constructor
     PlotMonitor(){};
+    
+    /// renders the imgui information for the widget
+    void render();
+    
+    /// exports the data as a CSV
+    void export_data();
+
+    std::vector<Plot> all_plots; // vector of plot objects
+
+    bool paused = false;                                     // tracks whether the plots are paused
+    std::vector<std::shared_ptr<ScrollingData>> paused_data; // stores all data states for when pause is pressed
+    float paused_time = 0;                                   // time that gui was paused
 };
 
 } // namespace bsp

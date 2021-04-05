@@ -22,12 +22,13 @@ public:
     std::string        curr_line_buff;   // string representing the current analyzed line
     // std::vector<float> curr_data;        // vector of all of the data for the current line
     
-    bool read_once    = false;
-    int cycles_waited = 0;
-    int cycle_timeout = 50;
+    bool read_once    = false; // marks whether we have read through data at least once
+    int cycles_waited = 0;     // number of cycles waited since a valid read, for timeouts
+    int cycle_timeout = 50;    //  how many cycles to wait before showing a timeout
     
     static constexpr int packet_size = 1024;
 
+    // abstracted serial port object for windows/mac/linux
     mahi::com::SerialPort serial_port;
 
     /// constructur
@@ -60,6 +61,7 @@ public:
     std::vector<float> parse_line(std::string line);
 
 private:
+    // list of valid baudrates
     std::vector<int> baud_rates = {110,
                                    300,
                                    600,

@@ -10,19 +10,22 @@
 
 namespace bsp{
 
+// data structure to handle a single variable coming in from serial
 struct ScrollingData {
-     char identifier = 0;
-     int MaxSize = 5000;
-     int Offset  = 0;
-     std::string name;
-     // bool show = false;
-     ImVector<ImVec2> Data;
-     ImVec4 color;
-     // int y_axis = 0;
-     ScrollingData()
-     {
+     char identifier = 0;   // unique identifier that can be used to pull this data
+     int MaxSize = 5000;    // maximum amount of data points that will be stored
+     int Offset  = 0;       // offset to handle plotting
+     std::string name;      // variable name whenever it appears in the gui
+     ImVector<ImVec2> Data; // vector of x and y data. X data always is time
+     ImVec4 color;          // color to plot this variable as
+     
+     /// default constructor
+     ScrollingData(){
           Data.reserve(MaxSize);
      }
+
+     /// add a point to this variable instance. Adds a variable to the Data vector
+     /// and updates the offset for plotting
      void AddPoint(float x, float y) {
           if (Data.size() < MaxSize)
                Data.push_back(ImVec2(x,y));
@@ -31,6 +34,8 @@ struct ScrollingData {
                Offset =  (Offset + 1) % MaxSize;
           }
      }
+
+     /// returns the most recent data point received from serial
      ImVec2& get_back(){
           if (Data.size() < MaxSize){
                return Data.back();
@@ -39,17 +44,25 @@ struct ScrollingData {
                return Data[Offset != 0 ? (Offset-1) : MaxSize];
           }
      }
+
+     /// returns vector of x-data (not fixed for offset)
      ImVector<float> get_x(){
           ImVector<float> x_data;
           for (const auto &i : Data) x_data.push_back(i.x);
           return x_data;
      }
+
+     /// returns vector of all y-data (not fixed for offset)
      ImVector<float> get_y(){
           ImVector<float> y_data;
           for (const auto &i : Data) y_data.push_back(i.y);
           return y_data;
      }
+
+     /// set the name of the variable
      void set_name(std::string name_){name = name_;}
+     
+     /// set the unique identifier of the variable
      void set_identifier(char identifier){identifier = identifier;}
 };
 
