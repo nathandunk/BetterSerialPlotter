@@ -54,7 +54,10 @@ struct ScrollingData {
 };
 
 // void plot_data(const ScrollingData &data, int i);
-
+#ifdef __APPLE__
+std::vector<std::string> get_serial_ports();
+#else 
 std::vector<int> get_serial_ports();
+#endif
 
 } // namespace bsp

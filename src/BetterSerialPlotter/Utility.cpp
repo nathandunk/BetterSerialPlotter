@@ -40,7 +40,7 @@ std::vector<int> get_serial_ports() //added function to find the present serial
 #elif defined(__APPLE__)
 std::vector<std::string> get_serial_ports() //added function to find the present serial 
 {
-    std::vector<int> port_nums;
+    std::vector<std::string> port_nums;
     std::string usb_string = "tty.";
 
     std::string path = "/dev/";

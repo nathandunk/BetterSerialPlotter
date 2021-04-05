@@ -210,7 +210,7 @@ std::string SerialManager::get_port_name(BspPort port_num){
 #if defined(WIN32)
     return "COM" + std::to_string(port_num + 1);
 #elif defined(__APPLE__)
-    return port_num
+    return port_num;
 #else
     if (port_num >= 16 && port_num <= 21){
         return "ttyUSB" + std::to_string(port_num - 16);
