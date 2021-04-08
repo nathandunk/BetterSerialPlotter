@@ -45,7 +45,9 @@ void PlotMonitor::render(){
 }
 
 void PlotMonitor::export_data(){
+#ifndef __APPLE__
     auto func = [this]() {
+#endif
         std::string filepath;
         auto result = mahi::gui::save_dialog(filepath, {{"CSV", "csv"}}, "", "data.csv");
         if (result == mahi::gui::DialogResult::DialogOkay){
@@ -86,10 +88,10 @@ void PlotMonitor::export_data(){
             csv_write_row(filepath, headers);
             csv_append_rows(filepath, all_rows);
         }
+#ifndef __APPLE__
     };
-
     auto csv_thread = std::thread(func); csv_thread.detach();
-    
+#endif
 }
 
 } // namespace bsp

@@ -111,8 +111,9 @@ std::optional<std::reference_wrapper<ScrollingData>> BSP::get_data(char identifi
 }
 
 void BSP::serialize(){
-
+#ifndef __APPLE__
     auto func = [this]() {
+#endif
         std::string filepath;
         auto result = mahi::gui::save_dialog(filepath, {{"Config File", "json"}}, "", "bsp_config");
         if (result == mahi::gui::DialogResult::DialogOkay){
@@ -141,23 +142,27 @@ void BSP::serialize(){
 
             ofile.close();
         }
+#ifndef __APPLE__
     };
-
     std::thread thrd(func); thrd.detach();
-    
+#endif
 }
 
 void BSP::deserialize(){
 
+#ifndef __APPLE__
     auto func = [this]() {
+#endif
         auto result = mahi::gui::open_dialog(deserialize_filepath, {{"Config File", "json"}});
         if (result == mahi::gui::DialogResult::DialogOkay){
             std::lock_guard<std::mutex> lock(mtx);
             mahi::util::print("Path: {}",deserialize_filepath);
             deserialize_success = true;
         }
+#ifndef __APPLE__
     };
     std::thread thrd(func); thrd.detach();
+#endif
 }
 
 void BSP::complete_deserialize(){
