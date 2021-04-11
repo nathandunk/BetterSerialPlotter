@@ -35,6 +35,7 @@ public:
     // all_data[1] contains the full vector for variable 1
     // ...etc
     std::vector<ScrollingData> all_data;
+    std::vector<ScrollingData> mutexed_all_data;
 
     std::vector<std::string> data_names;
     std::vector<ImVec4> data_colors;

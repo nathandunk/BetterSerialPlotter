@@ -2,6 +2,7 @@
 
 #include <BetterSerialPlotter/Widget.hpp>
 #include <Mahi/Com/SerialPort.hpp>
+#include <mutex>
 
 namespace bsp{
 
@@ -30,12 +31,13 @@ public:
     static constexpr int packet_size = 1024;
     unsigned char message[packet_size];
     int baud_rate = 115200;
-    bool baud_status = false;
-    bool serial_status = false;
+    std::atomic<bool> baud_status = false;
+    std::atomic<bool> serial_status = false;
     int cycles_waited = 0;
-    int cycle_timeout = 50;
-    bool serial_started = false;
+    int cycle_timeout = 500;
+    std::atomic<bool> serial_started = false;
     mahi::com::SerialPort serial_port;
+    std::mutex mtx;
 
     std::string get_port_name(BspPort port_num);
     bool comport_valid();

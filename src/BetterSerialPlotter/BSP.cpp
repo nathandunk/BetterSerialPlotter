@@ -28,35 +28,36 @@ BSP::BSP(/* args */) :
 
 BSP::~BSP()
 {
+    serial_manager.close_serial();
 }
 
 void BSP::update(){
+    {
+        std::lock_guard<std::mutex> lock(serial_manager.mtx);
+        all_data = mutexed_all_data;
+    }
 
     constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding;
-    // std::cout << "after data_panel\n";
+
     time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     ImGui::Begin("Better Serial Plotter", &open, padding_flag);
 
     io = ImGui::GetIO();
     ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
     data_panel.render();
-    // std::cout << "after data_panel\n";
     
     ImGui::SameLine();
     
     ImGui::BeginGroup();
     serial_manager.render();
-    // std::cout << "after serial_manager\n";
     
     if (ImGui::BeginTabBar("MainAreaTabs")){
         if (ImGui::BeginTabItem("Plots")){
             plot_monitor.render();
             ImGui::EndTabItem();
         }
-        // std::cout << "after plots\n";
         if (ImGui::BeginTabItem("SerialMonitor")){
             serial_monitor.render();
-            // std::cout << "after serial_monitor\n";
             ImGui::EndTabItem();
         }
         ImGui::EndTabBar();
@@ -70,33 +71,33 @@ void BSP::update(){
     if (deserialize_success){
         complete_deserialize();
         deserialize_success = false;
-    }
-    if (serial_manager.serial_started) serial_manager.read_serial();
-    // std::cout << "after seral_manager.read_serial()\n";
-    
+    }    
 }
 
-void BSP::append_all_data(std::vector<float> curr_data){
-    auto old_size = all_data.size();
+void BSP::append_all_data(std::vector<float> curr_data){    
+    std::lock_guard<std::mutex> lock(serial_manager.mtx);
+
+    auto old_size = mutexed_all_data.size();
     if (old_size != curr_data.size()){
         if (old_size < curr_data.size()){
             for (int i = old_size; i < curr_data.size(); i++){
-                all_data.emplace_back();
-                all_data[i].set_name("data " + std::to_string(i));
-                all_data[i].identifier = old_size+i;
-                all_data[i].color = plot_colors[i%plot_colors.size()];
+                mutexed_all_data.emplace_back();
+                mutexed_all_data[i].set_name("data " + std::to_string(i));
+                mutexed_all_data[i].identifier = old_size+i;
+                mutexed_all_data[i].color = plot_colors[i%plot_colors.size()];
             }
         }
         else{
             for (auto i = old_size-1; i > old_size - curr_data.size(); i--){
-                // std::cout << i << "\n";
-                all_data.erase(all_data.begin()+i);
+                mutexed_all_data.erase(mutexed_all_data.begin()+i);
             }
         }
     }
+    
     float curr_time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
+    
     for (auto i = 0; i < curr_data.size(); i++){
-        all_data[i].AddPoint(curr_time, curr_data[i]);
+        mutexed_all_data[i].AddPoint(curr_time, curr_data[i]);
     }
 }
 

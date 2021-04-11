@@ -101,11 +101,18 @@ bool SerialManager::begin_serial(){
     catch(const std::exception& e){
         std::cerr << e.what() << '\n';
     }
-
+    // std::thread read_thread(&BSP::read_serial,this);
+    if (serial_started){
+        // std::cout << "starting new thread\n";
+        std::thread read_thread( [this] { read_serial(); } );
+        read_thread.detach();
+    }
+    
     return serial_started;
 }
 
 void SerialManager::close_serial(){
+    std::lock_guard<std::mutex> lock(mtx);
     if (serial_port.is_open()) serial_port.close();
     serial_started = false;
 }
@@ -117,92 +124,99 @@ void SerialManager::reset_read(){
     gui->PrintBuffer.clear();
     for (auto &data : gui->all_data){
         data.Data.clear();
+        data.Offset = 0;
+    }
+    { // CHECK HERE
+        std::lock_guard<std::mutex> lock(mtx);
+        for (auto &data : gui->mutexed_all_data){
+            data.Data.clear();
+            data.Offset = 0;
+        }
     }
     
-    // gui->all_data.clear();
+    
     read_once = false;
 }
 
 void SerialManager::read_serial(){
-    int BytesRead = 0;
-    bool line_done = false;
-    try{
-    
-    do{
-        BytesRead = serial_port.receive_data(message, packet_size);
-        // if(!ReadFile(hSerial, message, packet_size, &dwBytesRead, NULL)){
-        //     // std::cout << "error reading from serial" << std::endl;
-        // }
-        // else{
-        if(BytesRead > 0 ){
-            // std::cout << "bytesread: " << dwBytesRead << "\n";
-            // GETTING TO NEWLINE BEFORE DOING ANYTHING
-            for (size_t i = 0; i < BytesRead; i++){
-                curr_line_buff += message[i];
-
-                // if tab (0x09) or space (0x20)
-                if ((message[i] == 0x09 || message[i] == 0x20) && read_once){
-                    if(std::regex_match(curr_number_buff,std::regex("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"))
-                    ){
-                        curr_data.push_back(std::stof(curr_number_buff));
-                        curr_number_buff = "";
-                        if (gui->verbose) std::cout << "\t";
-                        baud_status = true;
-                    }
-                    else{
-                        curr_number_buff.clear();
-                        curr_line_buff.clear();                              
-                        curr_data.clear();
-                        baud_status = false;
-                    }
-                }
-                // if new line
-                else if (message[i] == 0x0a && read_once){
-                    if(std::regex_match(curr_number_buff,std::regex("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"))
-                        ){
-                        curr_data.push_back(std::stof(curr_number_buff));
-                        gui->PrintBuffer.push_back(curr_line_buff);
-                        curr_number_buff.clear();
-                        curr_line_buff.clear();
-                        gui->append_all_data(curr_data);
-                        if (gui->verbose) std::cout << std::endl;
-                        
-                        curr_data.clear();
-                        line_done = true;
-                        read_once = true;
-                        baud_status = true;
-                    }
-                    else{
-                        curr_number_buff.clear();
-                        curr_line_buff.clear();                              
-                        curr_data.clear();
-                        baud_status = false;
-                    }
-                }
-                else if ((message[i] >= '0' && message[i] <= '9' || message[i] == '.' || message[i] == '-') && read_once){
-                    curr_number_buff += message[i];
-                    if (gui->verbose) std::cout << message[i];
-                }
-                else if (message[i] != 0x0d && read_once) {
-                    baud_status = false;
-                    // std::cout << "invalid character: " << message[i] << std::endl;
-                }
-                else if (message[i] == 0x0a){
-                    read_once = true;
-                }
+    while(serial_started){
+        int BytesRead = 0;
+        bool line_done = false;
+        try{
+            {
+                std::lock_guard<std::mutex> lock(mtx);
+                BytesRead = serial_port.receive_data(message, packet_size);
             }
-            cycles_waited = 0;
-            serial_status = true;
+            
+            if(BytesRead > 0 ){
+                // GETTING TO NEWLINE BEFORE DOING ANYTHING
+                for (size_t i = 0; i < BytesRead; i++){
+                    curr_line_buff += message[i];
+
+                    // if tab (0x09) or space (0x20)
+                    if ((message[i] == 0x09 || message[i] == 0x20) && read_once){
+                        if(std::regex_match(curr_number_buff,std::regex("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"))
+                        ){
+                            curr_data.push_back(std::stof(curr_number_buff));
+                            curr_number_buff = "";
+                            if (gui->verbose) std::cout << "\t";
+                            baud_status = true;
+                        }
+                        else{
+                            curr_number_buff.clear();
+                            curr_line_buff.clear();                              
+                            curr_data.clear();
+                            baud_status = false;
+                        }
+                    }
+                    // if new line
+                    else if (message[i] == 0x0a && read_once){
+                        if(std::regex_match(curr_number_buff,std::regex("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)"))
+                            ){
+                            mahi::util::Clock timing_clock;
+                            curr_data.push_back(std::stof(curr_number_buff));
+                            {
+                                std::lock_guard<std::mutex> lock(mtx);
+                                gui->PrintBuffer.push_back(curr_line_buff);
+                            }
+                            gui->append_all_data(curr_data);
+                            curr_number_buff.clear();
+                            curr_line_buff.clear();
+                            if (gui->verbose) std::cout << std::endl;
+                            
+                            curr_data.clear();
+                            line_done = true;
+                            read_once = true;
+                            baud_status = true;
+                        }
+                        else{
+                            curr_number_buff.clear();
+                            curr_line_buff.clear();                              
+                            curr_data.clear();
+                            baud_status = false;
+                        }
+                    }
+                    else if ((message[i] >= '0' && message[i] <= '9' || message[i] == '.' || message[i] == '-') && read_once){
+                        curr_number_buff += message[i];
+                        if (gui->verbose) std::cout << message[i];
+                    }
+                    else if (message[i] != 0x0d && read_once) {
+                        baud_status = false;
+                    }
+                    else if (message[i] == 0x0a){
+                        read_once = true;
+                    }
+                }
+                cycles_waited = 0;
+                serial_status = true;
+            }
+            else{
+                if (++cycles_waited > cycle_timeout) serial_status = false;
+            }
         }
-        else{
-            if (++cycles_waited > cycle_timeout) serial_status = false;
+        catch(const std::exception& e){
+            std::cerr << e.what() << '\n';
         }
-        // }
-    } while (!line_done && BytesRead > 0);
-    }
-    catch(const std::exception& e){
-        std::cerr << e.what() << '\n';
-        std::cout << curr_number_buff << std::endl;
     }
 }
 
