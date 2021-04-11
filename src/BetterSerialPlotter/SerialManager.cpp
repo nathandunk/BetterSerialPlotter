@@ -3,6 +3,7 @@
 #include <iostream>
 #include <codecvt>
 #include <regex>
+#include <thread>
 
 namespace bsp{
 

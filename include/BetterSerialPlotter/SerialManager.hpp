@@ -34,7 +34,7 @@ public:
     std::atomic<bool> baud_status = false;
     std::atomic<bool> serial_status = false;
     int cycles_waited = 0;
-    int cycle_timeout = 500;
+    int cycle_timeout = 5000;
     std::atomic<bool> serial_started = false;
     mahi::com::SerialPort serial_port;
     std::mutex mtx;
