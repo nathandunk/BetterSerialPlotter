@@ -118,22 +118,14 @@ void SerialManager::close_serial(){
 }
 
 void SerialManager::reset_read(){
+    std::lock_guard<std::mutex> lock(mtx);
+    std::cout << "resetting read\n";
     curr_number_buff.clear();
     curr_line_buff.clear();                              
     curr_data.clear();
     gui->PrintBuffer.clear();
-    for (auto &data : gui->all_data){
-        data.Data.clear();
-        data.Offset = 0;
-    }
-    { // CHECK HERE
-        std::lock_guard<std::mutex> lock(mtx);
-        for (auto &data : gui->mutexed_all_data){
-            data.Data.clear();
-            data.Offset = 0;
-        }
-    }
-    
+    gui->all_data.clear();       
+    gui->mutexed_all_data.clear();
     
     read_once = false;
 }
@@ -144,6 +136,7 @@ void SerialManager::read_serial(){
         bool line_done = false;
         try{
             {
+                // std::cout << "trying to read\n";
                 std::lock_guard<std::mutex> lock(mtx);
                 BytesRead = serial_port.receive_data(message, packet_size);
             }

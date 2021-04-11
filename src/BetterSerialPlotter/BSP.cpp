@@ -32,7 +32,8 @@ BSP::~BSP()
 }
 
 void BSP::update(){
-    {
+    // std::cout << "begin update\n";
+    if(serial_manager.serial_status){
         std::lock_guard<std::mutex> lock(serial_manager.mtx);
         all_data = mutexed_all_data;
     }
@@ -72,9 +73,11 @@ void BSP::update(){
         complete_deserialize();
         deserialize_success = false;
     }    
+    // std::cout << "end update\n";
 }
 
 void BSP::append_all_data(std::vector<float> curr_data){    
+    // std::cout << "begin append\n";
     std::lock_guard<std::mutex> lock(serial_manager.mtx);
 
     auto old_size = mutexed_all_data.size();
@@ -99,6 +102,7 @@ void BSP::append_all_data(std::vector<float> curr_data){
     for (auto i = 0; i < curr_data.size(); i++){
         mutexed_all_data[i].AddPoint(curr_time, curr_data[i]);
     }
+    // std::cout << "end append\n";
 }
 
 std::optional<std::reference_wrapper<ScrollingData>> BSP::get_data(char identifier){
@@ -112,58 +116,43 @@ std::optional<std::reference_wrapper<ScrollingData>> BSP::get_data(char identifi
 }
 
 void BSP::serialize(){
-#ifndef __APPLE__
-    auto func = [this]() {
-#endif
-        std::string filepath;
-        auto result = mahi::gui::save_dialog(filepath, {{"Config File", "json"}}, "", "bsp_config");
-        if (result == mahi::gui::DialogResult::DialogOkay){
-            mahi::util::print("Path: {}",filepath);
-            
-            BSPData bsp_data;
+    std::string filepath;
+    auto result = mahi::gui::save_dialog(filepath, {{"Config File", "json"}}, "", "bsp_config");
+    if (result == mahi::gui::DialogResult::DialogOkay){
+        mahi::util::print("Path: {}",filepath);
+        
+        BSPData bsp_data;
+
+        // std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
+
+        {
+            std::lock_guard<std::mutex> lock(mtx);
+            // std::cout << "pre this" << std::endl;
+            bsp_data = BSPData(this);
+            // std::cout << "post this" << std::endl;
 
             // std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
-
-            {
-                std::lock_guard<std::mutex> lock(mtx);
-                // std::cout << "pre this" << std::endl;
-                bsp_data = BSPData(this);
-                // std::cout << "post this" << std::endl;
-
-                // std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
-            }
-
-            nlohmann::json j_out;
-
-            j_out["bsp_data"] = bsp_data;
-
-            std::ofstream ofile(filepath);
-            
-            ofile << j_out;
-
-            ofile.close();
         }
-#ifndef __APPLE__
-    };
-    std::thread thrd(func); thrd.detach();
-#endif
+
+        nlohmann::json j_out;
+
+        j_out["bsp_data"] = bsp_data;
+
+        std::ofstream ofile(filepath);
+        
+        ofile << j_out;
+
+        ofile.close();
+    }
 }
 
 void BSP::deserialize(){
-
-#ifndef __APPLE__
-    auto func = [this]() {
-#endif
-        auto result = mahi::gui::open_dialog(deserialize_filepath, {{"Config File", "json"}});
-        if (result == mahi::gui::DialogResult::DialogOkay){
-            std::lock_guard<std::mutex> lock(mtx);
-            mahi::util::print("Path: {}",deserialize_filepath);
-            deserialize_success = true;
-        }
-#ifndef __APPLE__
-    };
-    std::thread thrd(func); thrd.detach();
-#endif
+    auto result = mahi::gui::open_dialog(deserialize_filepath, {{"Config File", "json"}});
+    if (result == mahi::gui::DialogResult::DialogOkay){
+        std::lock_guard<std::mutex> lock(mtx);
+        mahi::util::print("Path: {}",deserialize_filepath);
+        deserialize_success = true;
+    }
 }
 
 void BSP::complete_deserialize(){

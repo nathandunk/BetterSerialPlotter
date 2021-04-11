@@ -79,6 +79,7 @@ void Plot::make_plot(float time, int plot_num){
     std::string text = "";
     if(ImPlot::BeginPlot(name.c_str(), other_x_axis ? get_data(x_axis)->get().name.c_str() : "Time (s)", 0, {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
         plot_data();
+        // std::cout << "after plot_data\n";
         if (ImGui::BeginDragDropTarget()) {
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("DND_PLOT")) {
                 int i = *(int*)payload->Data;
@@ -199,6 +200,7 @@ void Plot::make_plot(float time, int plot_num){
     ImPlot::PopStyleVar();
     ImPlot::PopStyleVar();
     ImPlot::PopStyleVar();
+    // std::cout << "end plot\n";
 }
 
 void Plot::plot_data(){

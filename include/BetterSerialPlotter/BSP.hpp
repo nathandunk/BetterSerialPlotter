@@ -18,7 +18,6 @@ class BSP : public mahi::gui::Application
 {
 public:
     bool open = true;
-    // bool mark_deserialize = false;
     bool deserialize_success = false;
     std::string deserialize_filepath;
     
