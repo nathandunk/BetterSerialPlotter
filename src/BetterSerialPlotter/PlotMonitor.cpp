@@ -70,7 +70,7 @@ void PlotMonitor::export_data(){
         // add the names as headers for the csv file
         headers.push_back("Program Time [s]");
         for (const auto &data : gui->all_data){
-            headers.push_back(data.name);
+            headers.push_back(gui->get_name(data.identifier));
         }
         
         // // add all of the data points

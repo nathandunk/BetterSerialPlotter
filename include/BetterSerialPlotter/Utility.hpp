@@ -14,10 +14,10 @@ struct ScrollingData {
      char identifier = 0;
      int MaxSize = 5000;
      int Offset  = 0;
-     std::string name;
+     // std::string name;
      // bool show = false;
      ImVector<ImVec2> Data;
-     ImVec4 color;
+     // ImVec4 color;
      // int y_axis = 0;
      ScrollingData()
      {
@@ -49,6 +49,14 @@ struct ScrollingData {
           for (const auto &i : Data) y_data.push_back(i.y);
           return y_data;
      }
+     // void set_name(std::string name_){name = name_;}
+     void set_identifier(char identifier){identifier = identifier;}
+};
+
+struct DataInfo {
+     // char identifier = 0;
+     std::string name;
+     ImVec4 color;
      void set_name(std::string name_){name = name_;}
      void set_identifier(char identifier){identifier = identifier;}
 };

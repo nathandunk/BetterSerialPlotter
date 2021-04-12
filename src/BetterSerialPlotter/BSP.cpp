@@ -32,7 +32,6 @@ BSP::~BSP()
 }
 
 void BSP::update(){
-    // std::cout << "begin update\n";
     if(serial_manager.serial_status){
         std::lock_guard<std::mutex> lock(serial_manager.mtx);
         all_data = mutexed_all_data;
@@ -85,9 +84,11 @@ void BSP::append_all_data(std::vector<float> curr_data){
         if (old_size < curr_data.size()){
             for (int i = old_size; i < curr_data.size(); i++){
                 mutexed_all_data.emplace_back();
-                mutexed_all_data[i].set_name("data " + std::to_string(i));
                 mutexed_all_data[i].identifier = old_size+i;
-                mutexed_all_data[i].color = plot_colors[i%plot_colors.size()];
+                if (all_data_info.find(mutexed_all_data[i].identifier) == all_data_info.end()){
+                    all_data_info[mutexed_all_data[i].identifier].set_name("data " + std::to_string(i));
+                    all_data_info[mutexed_all_data[i].identifier].color = plot_colors[i%plot_colors.size()];
+                }
             }
         }
         else{
@@ -113,6 +114,16 @@ std::optional<std::reference_wrapper<ScrollingData>> BSP::get_data(char identifi
     }
 
     return std::nullopt; //ScrollingData();
+}
+
+std::string BSP::get_name(char identifier){
+    auto found_it = all_data_info.find(identifier);
+    return (found_it != all_data_info.end()) ? found_it->second.name : "";
+}
+
+ImVec4 BSP::get_color(char identifier){
+    auto found_it = all_data_info.find(identifier);
+    return (found_it != all_data_info.end()) ? found_it->second.color : ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void BSP::serialize(){
@@ -159,7 +170,6 @@ void BSP::complete_deserialize(){
     serial_manager.close_serial();
 
     std::ifstream ifile(deserialize_filepath);
-    // std::cout << "here";
     nlohmann::json j_in;
     ifile >> j_in;
     auto bsp_data = j_in["bsp_data"].get<BSPData>(); 
@@ -167,12 +177,8 @@ void BSP::complete_deserialize(){
     ifile.close();
 
     all_data = bsp_data.all_data;
-    data_names.resize(all_data.size());
-    data_colors.resize(all_data.size());
-    for (auto i = 0; i < all_data.size(); i++){
-        data_names[i] = all_data[i].name;
-        data_colors[i] = all_data[i].color;
-    }
+    mutexed_all_data = all_data;
+    all_data_info = bsp_data.all_data_info;
 
     plot_monitor = bsp_data.plot_monitor;
     plot_monitor.gui = this;
@@ -189,8 +195,9 @@ void BSP::complete_deserialize(){
     serial_manager.baud_rate = bsp_data.serial_manager.baud_rate;
     serial_manager.begin_serial();
     serial_manager.reset_read();
-    // std::cout << "finished deserialize";
+
     program_clock.restart();
+    std::cout << "done deserializing";
 }
 
 } // namespace bsp

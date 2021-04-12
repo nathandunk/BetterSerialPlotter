@@ -4,27 +4,34 @@
 void bsp::to_json(nlohmann::json& j, const BSPData& bsp_data){
     j = nlohmann::json{{"all_data",       bsp_data.all_data}, 
                        {"serial_manager", bsp_data.serial_manager}, 
-                       {"plot_monitor",   bsp_data.plot_monitor}};
+                       {"plot_monitor",   bsp_data.plot_monitor},
+                       {"all_data_info",  bsp_data.all_data_info}};
 }
 void bsp::from_json(const nlohmann::json& j, BSPData& bsp_data){
     j.at("all_data").get_to(bsp_data.all_data);
     j.at("serial_manager").get_to(bsp_data.serial_manager);
     j.at("plot_monitor").get_to(bsp_data.plot_monitor);
-    // std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate;
+    j.at("all_data_info").get_to(bsp_data.all_data_info);
 }
 
 // ScrollingData
 void bsp::to_json(nlohmann::json& j, const bsp::ScrollingData& scrolling_data){
     j = nlohmann::json{{"identifier", scrolling_data.identifier}, 
-                       {"MaxSize",    scrolling_data.MaxSize}, 
-                       {"name",       scrolling_data.name},
-                       {"color",      scrolling_data.color}};
+                       {"MaxSize",    scrolling_data.MaxSize}};
 }
 void bsp::from_json(const nlohmann::json& j, bsp::ScrollingData& scrolling_data){
     j.at("identifier").get_to(scrolling_data.identifier);
     j.at("MaxSize").get_to(scrolling_data.MaxSize);
-    j.at("name").get_to(scrolling_data.name);
-    j.at("color").get_to(scrolling_data.color);
+}
+
+// DataInfo
+void bsp::to_json(nlohmann::json& j, const bsp::DataInfo& data_info){
+    j = nlohmann::json{{"identifier", data_info.color}, 
+                       {"MaxSize",    data_info.name}};
+}
+void bsp::from_json(const nlohmann::json& j, bsp::DataInfo& data_info){
+    j.at("identifier").get_to(data_info.color);
+    j.at("MaxSize").get_to(data_info.name);
 }
 
 // PlotMonitor

@@ -36,8 +36,10 @@ public:
     std::vector<ScrollingData> all_data;
     std::vector<ScrollingData> mutexed_all_data;
 
-    std::vector<std::string> data_names;
-    std::vector<ImVec4> data_colors;
+    // std::vector<std::string> data_names;
+    // std::vector<ImVec4> data_colors;
+
+    std::unordered_map<char,DataInfo> all_data_info;
     
     // HANDLE hSerial;
 
@@ -73,8 +75,13 @@ public:
     BSP(/* args */);
     ~BSP();
     void update();
+    /// returns an optional reference wrapper to a scrolling data object. This returns the data corresponding to the requested identifier if available, or nullopt otherwise
     std::optional<std::reference_wrapper<ScrollingData>> get_data(char identifier);
+    /// appends the vector of current data to the current data set. Need to make sure that this is working for any size of data
     void append_all_data(std::vector<float> curr_data);
+
+    std::string get_name(char identifier);
+    ImVec4 get_color(char identifier);
 
     void serialize();
     void deserialize();
