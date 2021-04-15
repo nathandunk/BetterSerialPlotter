@@ -10,7 +10,6 @@
 #include <nlohmann/json.hpp>
 #include <BetterSerialPlotter/Serialization.hpp>
 
-
 namespace bsp{
 
 BSP::BSP(/* args */) : 
@@ -33,32 +32,32 @@ BSP::~BSP()
 }
 
 void BSP::update(){
+    if(serial_manager.serial_status){
+        std::lock_guard<std::mutex> lock(serial_manager.mtx);
+        all_data = mutexed_all_data;
+    }
 
     constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding;
-    // std::cout << "after data_panel\n";
+
     time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     ImGui::Begin("Better Serial Plotter", &open, padding_flag);
 
     io = ImGui::GetIO();
     ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
     data_panel.render();
-    // std::cout << "after data_panel\n";
     
     ImGui::SameLine();
     
     ImGui::BeginGroup();
     serial_manager.render();
-    // std::cout << "after serial_manager\n";
     
     if (ImGui::BeginTabBar("MainAreaTabs")){
         if (ImGui::BeginTabItem("Plots")){
             plot_monitor.render();
             ImGui::EndTabItem();
         }
-        // std::cout << "after plots\n";
         if (ImGui::BeginTabItem("SerialMonitor")){
             serial_monitor.render();
-            // std::cout << "after serial_monitor\n";
             ImGui::EndTabItem();
         }
         ImGui::EndTabBar();
@@ -72,35 +71,39 @@ void BSP::update(){
     if (deserialize_success){
         complete_deserialize();
         deserialize_success = false;
-    }
-    if (serial_manager.serial_started) serial_manager.read_serial();
-    // std::cout << "after seral_manager.read_serial()\n";
-    
+    }    
+    // std::cout << "end update\n";
 }
 
-void BSP::append_all_data(std::vector<float> curr_data){
-    auto old_size = all_data.size();
+void BSP::append_all_data(std::vector<float> curr_data){    
+    // std::cout << "begin append\n";
+    std::lock_guard<std::mutex> lock(serial_manager.mtx);
+
+    auto old_size = mutexed_all_data.size();
     if (old_size != curr_data.size()){
         if (old_size < curr_data.size()){
-            for (auto i = old_size; i < curr_data.size(); i++){
-                // std::cout << i << std::endl;
-                all_data.emplace_back();
-                all_data[i].set_name("data " + std::to_string(i));
-                all_data[i].identifier = old_size+i;
-                all_data[i].color = plot_colors[i%plot_colors.size()];
+            for (int i = old_size; i < curr_data.size(); i++){
+                mutexed_all_data.emplace_back();
+                mutexed_all_data[i].identifier = old_size+i;
+                if (all_data_info.find(mutexed_all_data[i].identifier) == all_data_info.end()){
+                    all_data_info[mutexed_all_data[i].identifier].set_name("data " + std::to_string(i));
+                    all_data_info[mutexed_all_data[i].identifier].color = plot_colors[i%plot_colors.size()];
+                }
             }
         }
         else{
             for (auto i = old_size-1; i > old_size - curr_data.size(); i--){
-                // std::cout << i << "\n";
-                all_data.erase(all_data.begin()+i);
+                mutexed_all_data.erase(mutexed_all_data.begin()+i);
             }
         }
     }
+    
     float curr_time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
+    
     for (auto i = 0; i < curr_data.size(); i++){
-        all_data[i].AddPoint(curr_time, curr_data[i]);
+        mutexed_all_data[i].AddPoint(curr_time, curr_data[i]);
     }
+    // std::cout << "end append\n";
 }
 
 std::optional<std::reference_wrapper<ScrollingData>> BSP::get_data(char identifier){
@@ -113,54 +116,54 @@ std::optional<std::reference_wrapper<ScrollingData>> BSP::get_data(char identifi
     return std::nullopt; //ScrollingData();
 }
 
-void BSP::serialize(){
+std::string BSP::get_name(char identifier){
+    auto found_it = all_data_info.find(identifier);
+    return (found_it != all_data_info.end()) ? found_it->second.name : "";
+}
 
-    auto func = [this]() {
-        std::string filepath;
-        auto result = mahi::gui::save_dialog(filepath, {{"Config File", "json"}}, "", "bsp_config");
-        if (result == mahi::gui::DialogResult::DialogOkay){
-            mahi::util::print("Path: {}",filepath);
-            
-            BSPData bsp_data;
+ImVec4 BSP::get_color(char identifier){
+    auto found_it = all_data_info.find(identifier);
+    return (found_it != all_data_info.end()) ? found_it->second.color : ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+void BSP::serialize(){
+    std::string filepath;
+    auto result = mahi::gui::save_dialog(filepath, {{"Config File", "json"}}, "", "bsp_config");
+    if (result == mahi::gui::DialogResult::DialogOkay){
+        mahi::util::print("Path: {}",filepath);
+        
+        BSPData bsp_data;
+
+        // std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
+
+        {
+            std::lock_guard<std::mutex> lock(mtx);
+            // std::cout << "pre this" << std::endl;
+            bsp_data = BSPData(this);
+            // std::cout << "post this" << std::endl;
 
             // std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
-
-            {
-                std::lock_guard<std::mutex> lock(mtx);
-                // std::cout << "pre this" << std::endl;
-                bsp_data = BSPData(this);
-                // std::cout << "post this" << std::endl;
-
-                // std::cout << bsp_data.serial_manager.comport_num << ", " << bsp_data.serial_manager.baud_rate << std::endl;
-            }
-
-            nlohmann::json j_out;
-
-            j_out["bsp_data"] = bsp_data;
-
-            std::ofstream ofile(filepath);
-            
-            ofile << j_out;
-
-            ofile.close();
         }
-    };
 
-    std::thread thrd(func); thrd.detach();
-    
+        nlohmann::json j_out;
+
+        j_out["bsp_data"] = bsp_data;
+
+        std::ofstream ofile(filepath);
+        
+        ofile << j_out;
+
+        ofile.close();
+    }
 }
 
 void BSP::deserialize(){
-
-    auto func = [this]() {
-        auto result = mahi::gui::open_dialog(deserialize_filepath, {{"Config File", "json"}});
-        if (result == mahi::gui::DialogResult::DialogOkay){
-            std::lock_guard<std::mutex> lock(mtx);
-            mahi::util::print("Path: {}",deserialize_filepath);
-            deserialize_success = true;
-        }
-    };
-    std::thread thrd(func); thrd.detach();
+    auto result = mahi::gui::open_dialog(deserialize_filepath, {{"Config File", "json"}});
+    if (result == mahi::gui::DialogResult::DialogOkay){
+        std::lock_guard<std::mutex> lock(mtx);
+        mahi::util::print("Path: {}",deserialize_filepath);
+        deserialize_success = true;
+    }
 }
 
 void BSP::complete_deserialize(){
@@ -174,12 +177,8 @@ void BSP::complete_deserialize(){
     ifile.close();
 
     all_data = bsp_data.all_data;
-    data_names.resize(all_data.size());
-    data_colors.resize(all_data.size());
-    for (auto i = 0; i < all_data.size(); i++){
-        data_names[i] = all_data[i].name;
-        data_colors[i] = all_data[i].color;
-    }
+    mutexed_all_data = all_data;
+    all_data_info = bsp_data.all_data_info;
 
     plot_monitor = bsp_data.plot_monitor;
     plot_monitor.gui = this;
@@ -196,8 +195,9 @@ void BSP::complete_deserialize(){
     serial_manager.baud_rate = bsp_data.serial_manager.baud_rate;
     serial_manager.begin_serial();
     serial_manager.reset_read();
-    // std::cout << "finished deserialize";
+
     program_clock.restart();
+    std::cout << "done deserializing";
 }
 
 } // namespace bsp

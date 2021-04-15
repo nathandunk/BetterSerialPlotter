@@ -22,13 +22,17 @@ void Plot::make_plot(float time, int plot_num){
     if(!plot_monitor->paused){
         float x_min = 0.0f;
         float x_max = 1.0f;
+
+        std::vector<bool> active_other_x_indices;
         // if we are a user-variable as the x-axis, 
         if (other_x_axis){
+            auto other_x_data = get_data(x_axis)->get().get_y();
+            active_other_x_indices = std::vector<bool>(other_x_data.size(),false);
             // if it is a realtime x-axis, get lragest data (aka most-recent time)
             if (x_axis_realtime){
                 float most_recent_time = 0.0f;
                 if (get_data(x_axis)->get().Data.size()){
-                    most_recent_time = mahi::util::max_element(get_data(x_axis)->get().get_y());
+                    most_recent_time = mahi::util::max_element(other_x_data);
                 }
                 x_min = most_recent_time - time_frame;
                 x_max = most_recent_time;
@@ -37,10 +41,15 @@ void Plot::make_plot(float time, int plot_num){
             // otherwise, if it is autoscale, get the min and max elements of the data
             else if(autoscale){
                 if (get_data(x_axis)->get().Data.size()){
-                    x_min = mahi::util::min_element(get_data(x_axis)->get().get_y());
-                    x_max = mahi::util::max_element(get_data(x_axis)->get().get_y());
+                    x_min = mahi::util::min_element(other_x_data);
+                    x_max = mahi::util::max_element(other_x_data);
                 }
                 ImPlot::SetNextPlotLimitsX(x_min, x_max, ImGuiCond_Always); 
+            }
+            for (auto i = 0; i < other_x_data.size(); i++){
+                if (other_x_data[i] <= x_max && other_x_data[i] >= x_min){
+                    active_other_x_indices[i] = true;    
+                }
             }
         }
         // otherwise, we just use time with timeframe to set x-lims
@@ -49,7 +58,6 @@ void Plot::make_plot(float time, int plot_num){
             x_max = time;
             ImPlot::SetNextPlotLimitsX(x_min, x_max, ImGuiCond_Always);
         }
-
         // set y_axis limits if autoscaled
         if (autoscale){
             // vectors which contain min and max for y axis 0 and y axis 1
@@ -68,7 +76,8 @@ void Plot::make_plot(float time, int plot_num){
                     for (auto i = 0; i < x_vals.size(); i++){
 
                         // check if it is actually visible on the plot
-                        if (x_vals[i] >= x_min && x_vals[i] <= x_max){
+                        if (((x_vals[i] >= x_min && x_vals[i] <= x_max) && !other_x_axis) || 
+                            (other_x_axis && active_other_x_indices[i]) ){
                             // if it is first read through, set initial lims to the first value
                             if(!axis_exists[it->second]){
                                 y_min[it->second] = y_vals[i];
@@ -83,7 +92,6 @@ void Plot::make_plot(float time, int plot_num){
                                 y_max[it->second] = y_vals[i];
                             }
                         }
-
                     }
                 }
             }
@@ -91,13 +99,16 @@ void Plot::make_plot(float time, int plot_num){
             for (auto i = 0; i < 2; i++){            
                 if (axis_exists[i]){
                     ImPlot::SetNextPlotLimitsY(y_min[i],y_max[i],ImGuiCond_Always,i);
-                }           
+                }
+                else if(i == 0){
+                    std::cout << name + " axis 0 doesn't exist\n";
+                }
             }        
         }
     }
     
     // make plot given x and y variables
-    if(ImPlot::BeginPlot(name.c_str(), other_x_axis ? get_data(x_axis)->get().name.c_str() : "Time (s)", 0, {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
+    if(ImPlot::BeginPlot(name.c_str(), other_x_axis ? plot_monitor->gui->get_name(x_axis).c_str() : "Time (s)", 0, {-1,plot_height}, ImPlotFlags_NoMenus | ImPlotFlags_YAxis2, 0, 0)){
         
         plot_data(); // see plot_data() function
         
@@ -156,8 +167,8 @@ void Plot::make_plot(float time, int plot_num){
             // add data to plot
             if ((ImGui::BeginMenu("Add Data"))){
                 for (auto i = 0; i < plot_monitor->gui->all_data.size(); i++){
-                    ImPlot::ItemIcon(plot_monitor->gui->all_data[i].color); ImGui::SameLine();
-                    if(ImGui::BeginMenu(plot_monitor->gui->all_data[i].name.c_str())){
+                    ImPlot::ItemIcon(plot_monitor->gui->get_color(plot_monitor->gui->all_data[i].identifier)); ImGui::SameLine();
+                    if(ImGui::BeginMenu(plot_monitor->gui->get_name(plot_monitor->gui->all_data[i].identifier).c_str())){
                         // add based on y axis
                         for (auto y = 0; y < 2; y++){
                             char menu_item_name[10];
@@ -179,15 +190,15 @@ void Plot::make_plot(float time, int plot_num){
             // remove data from plot
             if ((ImGui::BeginMenu("Remove Data"))){
                 for (auto i = 0; i < all_plot_data.size(); i++){
-                    ImPlot::ItemIcon(get_data(all_plot_data[i])->get().color); ImGui::SameLine();
-                    if(ImGui::MenuItem((get_data(all_plot_data[i])->get().name + " (y-axis " + std::to_string(y_axis[all_plot_data[i]]) + ")").c_str())){
+                    ImPlot::ItemIcon(plot_monitor->gui->get_color(all_plot_data[i])); ImGui::SameLine();
+                    if(ImGui::MenuItem((plot_monitor->gui->get_name(all_plot_data[i]) + " (y-axis " + std::to_string(y_axis[all_plot_data[i]]) + ")").c_str())){
                         remove_identifier(get_data(all_plot_data[i])->get().identifier);
                         break;
                     }
                 }
                 if (other_x_axis){
-                    ImPlot::ItemIcon(get_data(x_axis)->get().color);  ImGui::SameLine();
-                    if(ImGui::MenuItem((get_data(x_axis)->get().name + " (x-axis)").c_str())){
+                    ImPlot::ItemIcon(plot_monitor->gui->get_color(x_axis));  ImGui::SameLine();
+                    if(ImGui::MenuItem((plot_monitor->gui->get_name(x_axis) + " (x-axis)").c_str())){
                         other_x_axis = false;
                         x_axis = -1;
                     }
@@ -225,6 +236,7 @@ void Plot::make_plot(float time, int plot_num){
     ImPlot::PopStyleVar();
     ImPlot::PopStyleVar();
     ImPlot::PopStyleVar();
+    // std::cout << "end plot\n";
 }
 
 void Plot::plot_data(){
@@ -241,9 +253,9 @@ void Plot::plot_data(){
             curr_x_data = (other_x_axis) ? &get_data(x_axis)->get().Data[0].y : &curr_data.Data[0].x;
         }
 
-        ImPlot::PushStyleColor(ImPlotCol_Line,curr_data.color); 
+        ImPlot::PushStyleColor(ImPlotCol_Line,plot_monitor->gui->get_color(curr_data.identifier)); 
         char id[64];
-        sprintf(id,"%s###%i",curr_data.name.c_str(),i);
+        sprintf(id,"%s###%i",plot_monitor->gui->get_name(curr_data.identifier).c_str(),i);
         ImPlot::SetPlotYAxis(y_axis[curr_identifier]);
         ImPlot::PlotLine(id, curr_x_data, &curr_data.Data[0].y, curr_data.Data.size(), curr_data.Offset, 2 * sizeof(float));  
         ImPlot::PopStyleColor();

@@ -2,29 +2,37 @@
 
 #include <BetterSerialPlotter/Widget.hpp>
 #include <Mahi/Com/SerialPort.hpp>
+#include <mutex>
 
 namespace bsp{
+
+#ifdef __APPLE__
+typedef std::string BspPort;
+#else
+typedef int BspPort;
+#endif
 
 class SerialManager : public Widget
 {
 public:
 
     // variables related to the current state of the serial port
-    int  comport_num    = -1;    // serial port number selected (this is related to enums from SerialPort class in mahi-com)
+    // int  comport_num    = -1;    // serial port number selected (this is related to enums from SerialPort class in mahi-com)
                                  // -1 indicates that there is not comport num selected yet
     int  baud_rate      = 9600;  // baud rate selected
-    bool serial_started = false; // indicates whether serial prot has been successfully opened
-    bool baud_status    = false; // indicates whether or not the serial port is consistently reading good data at this baud rate
-    bool serial_status  = false; // indicates that the program is able to receive any information from the serial port
+    std::atomic<bool> serial_started = false; // indicates whether serial prot has been successfully opened
+    std::atomic<bool> baud_status    = false; // indicates whether or not the serial port is consistently reading good data at this baud rate
+    std::atomic<bool> serial_status  = false; // indicates that the program is able to receive any information from the serial port
 
     // variables related to the current state of data collection (either current number or current line)
-    // std::string        curr_number_buff; // string representing the current analyzed number
     std::string        curr_line_buff;   // string representing the current analyzed line
-    // std::vector<float> curr_data;        // vector of all of the data for the current line
+
+    std::mutex mtx; // mutex so that data can be shared when in the serial_manager thread
     
     bool read_once    = false; // marks whether we have read through data at least once
     int cycles_waited = 0;     // number of cycles waited since a valid read, for timeouts
     int cycle_timeout = 50;    //  how many cycles to wait before showing a timeout
+
     
     static constexpr int packet_size = 1024;
 
@@ -59,6 +67,14 @@ public:
     void parse_buffer(unsigned char* message, size_t buff_len);
     /// parses a single line received from the buffer
     std::vector<float> parse_line(std::string line);
+
+    bool comport_valid();
+
+#ifdef __APPLE__
+    BspPort comport_num;
+#else
+    BspPort comport_num = -1;
+#endif
 
 private:
     // list of valid baudrates

@@ -15,9 +15,7 @@ struct ScrollingData {
      char identifier = 0;   // unique identifier that can be used to pull this data
      int MaxSize = 5000;    // maximum amount of data points that will be stored
      int Offset  = 0;       // offset to handle plotting
-     std::string name;      // variable name whenever it appears in the gui
      ImVector<ImVec2> Data; // vector of x and y data. X data always is time
-     ImVec4 color;          // color to plot this variable as
      
      /// default constructor
      ScrollingData(){
@@ -60,14 +58,24 @@ struct ScrollingData {
      }
 
      /// set the name of the variable
-     void set_name(std::string name_){name = name_;}
+     // void set_name(std::string name_){name = name_;}
+     void set_identifier(char identifier){identifier = identifier;}
+};
+
+struct DataInfo {
+     // char identifier = 0;
+     std::string name;
+     ImVec4 color;
      
      /// set the unique identifier of the variable
      void set_identifier(char identifier){identifier = identifier;}
 };
 
 // void plot_data(const ScrollingData &data, int i);
-
+#ifdef __APPLE__
+std::vector<std::string> get_serial_ports();
+#else 
 std::vector<int> get_serial_ports();
+#endif
 
 } // namespace bsp

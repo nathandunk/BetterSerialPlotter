@@ -3,6 +3,7 @@
 #include <iostream>
 #include <codecvt>
 #include <regex>
+#include <thread>
 
 namespace bsp{
 
@@ -30,13 +31,13 @@ SerialManager& SerialManager::operator=(const SerialManager& serial_manager){
 void SerialManager::render(){
     constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding;
 
-    ImGui::PushStyleColor(ImGuiCol_FrameBg, (comport_num > 0) ? (serial_status ? gui->PalleteGreen : gui->PalleteRed) : gui->PalleteGray);
-    ImGui::PushStyleColor(ImGuiCol_Header, (comport_num > 0) ? (serial_status ? gui->PalleteGreen : gui->PalleteRed) : gui->PalleteGray);
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, (comport_valid()) ? (serial_status ? gui->PalleteGreen : gui->PalleteRed) : gui->PalleteGray);
+    ImGui::PushStyleColor(ImGuiCol_Header, (comport_valid()) ? (serial_status ? gui->PalleteGreen : gui->PalleteRed) : gui->PalleteGray);
     ImGui::BeginChild("SerialSetup", ImVec2(-1, 36), false, padding_flag);
     // comport selection
     ImGui::PushItemWidth(200);
-    if (ImGui::BeginCombo("##comport_select", ("Serial Port: " + ((comport_num >= 0) ? get_port_name(comport_num) : "")).c_str())){
-        std::vector<int> port_names = get_serial_ports();
+    if (ImGui::BeginCombo("##comport_select", ("Serial Port: " + ((comport_valid()) ? get_port_name(comport_num) : "")).c_str())){
+        auto port_names = get_serial_ports();
         for (int i = 0; i < port_names.size(); i++){
             const bool com_is_selected = (comport_num == port_names[i]);
             if (ImGui::Selectable(get_port_name(port_names[i]).c_str(), com_is_selected)){
@@ -81,49 +82,65 @@ void SerialManager::render(){
 }
 
 bool SerialManager::begin_serial(){
+    serial_started = false;
+
+    try{
 #ifdef __APPLE__
-    serial_started = serial_port.open("1",baud_rate);
+        serial_started = serial_port.open(comport_num,baud_rate);
 #else
-    serial_started = serial_port.open((mahi::com::Port)(comport_num),baud_rate);
+        serial_started = serial_port.open((mahi::com::Port)(comport_num),baud_rate);
 #endif
-    serial_port.flush_RXTX();
+        serial_port.flush_RXTX();
+    }
+    catch(const std::exception& e){
+        std::cerr << e.what() << '\n';
+    }
+    // std::thread read_thread(&BSP::read_serial,this);
+    if (serial_started){
+        // std::cout << "starting new thread\n";
+        std::thread read_thread( [this] { read_serial(); } );
+        read_thread.detach();
+    }
+    
     return serial_started;
 }
 
 void SerialManager::close_serial(){
+    std::lock_guard<std::mutex> lock(mtx);
     if (serial_port.is_open()) serial_port.close();
     serial_started = false;
 }
 
 void SerialManager::reset_read(){
-    // curr_number_buff.clear();
+    std::lock_guard<std::mutex> lock(mtx);
     curr_line_buff.clear();                              
-    // curr_data.clear();
     gui->PrintBuffer.clear();
-    for (auto &data : gui->all_data){
-        data.Data.clear();
-    }
+    gui->all_data.clear();       
+    gui->mutexed_all_data.clear();
     
     read_once = false;
 }
 
+// std::string SerialManager::get_port_name(BspPort port_num){
 void SerialManager::read_serial(){
-    int BytesRead = 0;
-    static unsigned char message[packet_size];
-    
-    do{
-        BytesRead = serial_port.receive_data(message, packet_size);
-        // if we got something from serial, parse it, and indicate that serial is functioning
-        if(BytesRead > 0 ){
-            parse_buffer(message, BytesRead);
-            cycles_waited = 0;
-            serial_status = true;
-        }
-        // if we have waited too many cycles, indicate that serial is not functioning
-        else{
-            if (++cycles_waited > cycle_timeout) serial_status = false;
-        }
-    } while (BytesRead > 0);
+    while(serial_started){
+        int BytesRead = 0;
+        static unsigned char message[packet_size];
+        
+        do{
+            BytesRead = serial_port.receive_data(message, packet_size);
+            // if we got something from serial, parse it, and indicate that serial is functioning
+            if(BytesRead > 0 ){
+                parse_buffer(message, BytesRead);
+                cycles_waited = 0;
+                serial_status = true;
+            }
+            // if we have waited too many cycles, indicate that serial is not functioning
+            else{
+                if (++cycles_waited > cycle_timeout) serial_status = false;
+            }
+        } while (BytesRead > 0);
+    }
 }
 
 void SerialManager::parse_buffer(unsigned char* buff, size_t buff_len){
@@ -141,7 +158,10 @@ void SerialManager::parse_buffer(unsigned char* buff, size_t buff_len){
                 std::vector<float> curr_data = parse_line(curr_line_buff);
                 gui->append_all_data(curr_data);
 
-                gui->PrintBuffer.push_back(curr_line_buff);
+                {
+                    std::lock_guard<std::mutex> lock(mtx);
+                    gui->PrintBuffer.push_back(curr_line_buff);
+                }
                 curr_line_buff.clear();
                 if (gui->verbose) std::cout << std::endl;
             }
@@ -156,16 +176,6 @@ void SerialManager::parse_buffer(unsigned char* buff, size_t buff_len){
             read_once = false;
         }
     }
-}
-
-int SerialManager::receive_data(unsigned char * message, int packet_size){
-
-#if defined(WIN32) || defined(__linux__)
-    return serial_port.receive_data(message, packet_size);
-#else
-    return 0;
-#endif
-
 }
 
 std::vector<float> SerialManager::parse_line(std::string line){
@@ -208,6 +218,8 @@ std::vector<float> SerialManager::parse_line(std::string line){
 std::string SerialManager::get_port_name(int port_num){
 #if defined(WIN32)
     return "COM" + std::to_string(port_num + 1);
+#elif defined(__APPLE__)
+    return port_num;
 #else
     if (port_num >= 16 && port_num <= 21){
         return "ttyUSB" + std::to_string(port_num - 16);
@@ -217,6 +229,14 @@ std::string SerialManager::get_port_name(int port_num){
     }
 #endif
 
+}
+
+bool SerialManager::comport_valid(){
+#if defined(__APPLE__)
+    return comport_num != "";
+#else
+    return comport_num > -1;
+#endif
 }
 
 } // namespace bsp
