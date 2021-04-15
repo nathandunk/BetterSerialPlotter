@@ -88,6 +88,9 @@ public:
     void complete_deserialize();
 
     std::mutex mtx;
+
+private:
+    void window_resize_handler(int width, int height);
 };
 
 } // namespace bsp

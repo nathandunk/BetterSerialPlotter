@@ -13,7 +13,7 @@
 namespace bsp{
 
 BSP::BSP(/* args */) : 
-    mahi::gui::Application(),
+    mahi::gui::Application(1260,720,"Better Serial Plotter",true),
     data_panel(this),
     serial_manager(this),
     plot_monitor(this),
@@ -23,12 +23,18 @@ BSP::BSP(/* args */) :
     program_clock.restart();
     auto &app_colors = ImGui::GetStyle().Colors;
     app_colors[ImGuiCol_ChildBg] = PalleteBlueGray; // child window bg
+    ImGui::DisableViewports();
 
+    on_window_resized.connect(this, &BSP::window_resize_handler); 
 }
 
 BSP::~BSP()
 {
     serial_manager.close_serial();
+}
+
+void BSP::window_resize_handler(int width, int height) {
+    render_imgui();
 }
 
 void BSP::update(){
@@ -38,10 +44,10 @@ void BSP::update(){
     }
 
     constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding;
+    auto w_size = get_window_size();
+    ImGui::BeginFixed("Better Serial Plotter", {0,0}, {w_size.x, w_size.y}, padding_flag);
 
     time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
-    ImGui::Begin("Better Serial Plotter", &open, padding_flag);
-
     io = ImGui::GetIO();
     ImGui::GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
     data_panel.render();
