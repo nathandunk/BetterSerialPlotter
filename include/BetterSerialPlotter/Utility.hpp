@@ -57,8 +57,7 @@ struct ScrollingData {
           return y_data;
      }
 
-     /// set the name of the variable
-     // void set_name(std::string name_){name = name_;}
+     /// set the identifier
      void set_identifier(char identifier){identifier = identifier;}
 };
 
@@ -68,6 +67,7 @@ struct DataInfo {
      ImVec4 color;
      
      /// set the unique identifier of the variable
+     void set_name(std::string name_){name = name_;}
      void set_identifier(char identifier){identifier = identifier;}
 };
 

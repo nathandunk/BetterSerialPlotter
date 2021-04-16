@@ -31,7 +31,7 @@ public:
     
     bool read_once    = false; // marks whether we have read through data at least once
     int cycles_waited = 0;     // number of cycles waited since a valid read, for timeouts
-    int cycle_timeout = 50;    //  how many cycles to wait before showing a timeout
+    int cycle_timeout = 5000;    //  how many cycles to wait before showing a timeout
 
     
     static constexpr int packet_size = 1024;
