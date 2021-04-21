@@ -56,7 +56,7 @@ set(SRC_BSP
 
 include_directories(include)
 
-add_executable(BetterSerialPlotter WIN32 src/main.cpp ${SRC_BSP} icon/BSP_icon.rc)
+add_executable(BetterSerialPlotter MACOSX_BUNDLE WIN32 src/main.cpp ${SRC_BSP} icon/BSP_icon.rc)
 
 target_link_libraries(BetterSerialPlotter mahi::gui mahi::com)
 

@@ -43,7 +43,7 @@ void BSP::update(){
         all_data = mutexed_all_data;
     }
 
-    constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding;
+    constexpr ImGuiWindowFlags padding_flag = ImGuiWindowFlags_AlwaysUseWindowPadding | ImGuiWindowFlags_NoTitleBar;
     auto w_size = get_window_size();
     ImGui::BeginFixed("Better Serial Plotter", {0,0}, {w_size.x, w_size.y}, padding_flag);
 
