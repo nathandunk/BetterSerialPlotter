@@ -9,7 +9,7 @@ using namespace bsp;
 // this makes it so that there is no window
 #ifdef WIN32
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
-#elif
+#else
 int main()
 #endif
 {
