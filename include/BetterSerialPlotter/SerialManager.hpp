@@ -27,15 +27,16 @@ public:
     // variables related to the current state of data collection (either current number or current line)
     std::string        curr_line_buff;   // string representing the current analyzed line
 
-
     std::mutex mtx; // mutex so that data can be shared when in the serial_manager thread
+    
+    bool read_once    = false; // marks whether we have read through data at least once
+    int cycles_waited = 0;     // number of cycles waited since a valid read, for timeouts
+    int cycle_timeout = 5000;    //  how many cycles to wait before showing a timeout
 
-    bool read_once    = false;
-    int cycles_waited = 0;
-    int cycle_timeout = 5000;
     
     static constexpr int packet_size = 1024;
 
+    // abstracted serial port object for windows/mac/linux
     mahi::com::SerialPort serial_port;
 
     /// constructur
@@ -76,6 +77,7 @@ public:
 #endif
 
 private:
+    // list of valid baudrates
     std::vector<int> baud_rates = {110,
                                    300,
                                    600,
