@@ -215,7 +215,7 @@ std::vector<float> SerialManager::parse_line(std::string line){
     return curr_data;
 }
 
-std::string SerialManager::get_port_name(int port_num){
+std::string SerialManager::get_port_name(BspPort port_num){
 #if defined(WIN32)
     return "COM" + std::to_string(port_num + 1);
 #elif defined(__APPLE__)

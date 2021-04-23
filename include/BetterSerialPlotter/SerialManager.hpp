@@ -62,7 +62,7 @@ public:
     /// just the abstracted read from serial which is platform dependent
     int receive_data(unsigned char * message, int packet_size);
     /// returns human readable port name (e.g. COM5 for windows or ttyUSB3 for Linux)
-    std::string get_port_name(int port_num);
+    std::string get_port_name(BspPort port_num);
     /// parses a buffer received from a serial port read
     void parse_buffer(unsigned char* message, size_t buff_len);
     /// parses a single line received from the buffer
