@@ -56,13 +56,17 @@ set(SRC_BSP
 
 include_directories(include)
 
-set(MACOSX_BUNDLE_ICON_FILE ${CMAKE_SOURCE_DIR}/icon/BSP_Logo.icns)
+set(MACOSX_BUNDLE_ICON_FILE BSP_Logo.icns)
 
-add_executable(BetterSerialPlotter MACOSX_BUNDLE WIN32 src/main.cpp ${SRC_BSP} icon/BSP_icon.rc)
+set(APP_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon/BSP_Logo.icns)
+# set_source_files_properties(APP_ICON PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+
 if (APPLE)
+    add_executable(BetterSerialPlotter MACOSX_BUNDLE src/main.cpp ${SRC_BSP} ${APP_ICON})
     set_target_properties(BetterSerialPlotter PROPERTIES
-        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/icon/info.plist"
-    )
+                          RESOURCE ${APP_ICON})
+else()
+    add_executable(BetterSerialPlotter WIN32 src/main.cpp ${SRC_BSP} icon/BSP_icon.rc)
 endif()
 
 target_link_libraries(BetterSerialPlotter mahi::gui mahi::com)
