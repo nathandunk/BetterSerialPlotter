@@ -45,6 +45,14 @@ void PlotMonitor::render(){
         all_plots[all_plots.size()-1].name = "Plot " + std::to_string(all_plots.size());
     }
     ImGui::PopStyleColor();
+    if (all_plots.size() > 1){
+        ImGui::SameLine();
+        ImGui::PushStyleColor(ImGuiCol_Button,gui->PalleteRed);
+        if(ImGui::Button("Remove Plot")) {
+            all_plots.pop_back();
+        }
+        ImGui::PopStyleColor();
+    }
 }
 
 void PlotMonitor::plot_all_data(){
