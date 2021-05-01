@@ -18,6 +18,9 @@ public:
     /// renders the imgui information for the widget
     void render();
     
+    /// plots all data on the first plot of the interface
+    void plot_all_data();
+
     /// exports the data as a CSV
     void export_data();
 
