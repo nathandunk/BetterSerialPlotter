@@ -18,21 +18,6 @@ PlotMonitor::PlotMonitor(BSP* gui_):
     }
 
 void PlotMonitor::render(){
-    // std::cout << "being plot monitor\n";
-    bool was_paused = paused;
-    if (ImGui::Button("Plot All Data")) plot_all_data(); ImGui::SameLine();
-    if (ImGui::Button(paused ? "Resume" : "Pause")) paused = !paused; ImGui::SameLine();
-    if (ImGui::Button("Export CSV")) export_data(); 
-    ImGui::SameLine();
-    if (ImGui::Button("Save Config")) gui->serialize();
-    ImGui::SameLine();
-    if (ImGui::Button("Load Config")) gui->deserialize();
-    if (paused && !was_paused){
-        for (auto &plot : all_plots){
-            plot.update_paused_data();
-        }
-        paused_time = gui->time;
-    }
 
     for (auto i = 0; i < all_plots.size(); i++){
         all_plots[i].make_plot(paused ? paused_time : gui->time, i);

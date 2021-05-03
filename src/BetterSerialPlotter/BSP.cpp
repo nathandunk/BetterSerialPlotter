@@ -56,17 +56,34 @@ void BSP::update(){
     
     ImGui::BeginGroup();
     serial_manager.render();
+
+    bool was_paused = plot_monitor.paused;
+    if (ImGui::Button("Plot All Data")) plot_monitor.plot_all_data(); ImGui::SameLine();
+    if (ImGui::Button(plot_monitor.paused ? "Resume" : "Pause")) plot_monitor.paused = !plot_monitor.paused; ImGui::SameLine();
+    if (ImGui::Button("Export CSV")) plot_monitor.export_data(); 
+    ImGui::SameLine();
+    if (ImGui::Button("Save Config")) serialize();
+    ImGui::SameLine();
+    if (ImGui::Button("Load Config")) deserialize();
+    if (plot_monitor.paused && !was_paused){
+        for (auto &plot : plot_monitor.all_plots){
+            plot.update_paused_data();
+        }
+        plot_monitor.paused_time = time;
+    }
     
-    if (ImGui::BeginTabBar("MainAreaTabs")){
-        if (ImGui::BeginTabItem("Plots")){
-            plot_monitor.render();
-            ImGui::EndTabItem();
+    if(serial_manager.baud_status){
+        if (ImGui::BeginTabBar("MainAreaTabs")){
+            if (ImGui::BeginTabItem("Plots")){
+                plot_monitor.render();
+                ImGui::EndTabItem();
+            }
+            if (ImGui::BeginTabItem("SerialMonitor")){
+                serial_monitor.render();
+                ImGui::EndTabItem();
+            }
+            ImGui::EndTabBar();
         }
-        if (ImGui::BeginTabItem("SerialMonitor")){
-            serial_monitor.render();
-            ImGui::EndTabItem();
-        }
-        ImGui::EndTabBar();
     }
 
     ImGui::EndGroup();

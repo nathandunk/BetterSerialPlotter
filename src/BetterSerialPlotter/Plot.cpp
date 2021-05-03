@@ -25,32 +25,34 @@ void Plot::make_plot(float time, int plot_num){
 
         std::vector<bool> active_other_x_indices;
         // if we are a user-variable as the x-axis, 
-        if (other_x_axis){
-            auto other_x_data = get_data(x_axis)->get().get_y();
-            active_other_x_indices = std::vector<bool>(other_x_data.size(),false);
-            // if it is a realtime x-axis, get lragest data (aka most-recent time)
-            if (x_axis_realtime){
-                float most_recent_time = 0.0f;
-                if (get_data(x_axis)->get().Data.size()){
-                    most_recent_time = mahi::util::max_element(other_x_data);
+        if (other_x_axis && get_data(x_axis) != std::nullopt){
+            // if (get_data(x_axis) != std::nullopt){
+                auto other_x_data = get_data(x_axis)->get().get_y();
+                active_other_x_indices = std::vector<bool>(other_x_data.size(),false);
+                // if it is a realtime x-axis, get lragest data (aka most-recent time)
+                if (x_axis_realtime){
+                    float most_recent_time = 0.0f;
+                    if (get_data(x_axis)->get().Data.size()){
+                        most_recent_time = mahi::util::max_element(other_x_data);
+                    }
+                    x_min = most_recent_time - time_frame;
+                    x_max = most_recent_time;
+                    ImPlot::SetNextPlotLimitsX(x_min, x_max, ImGuiCond_Always);
                 }
-                x_min = most_recent_time - time_frame;
-                x_max = most_recent_time;
-                ImPlot::SetNextPlotLimitsX(x_min, x_max, ImGuiCond_Always);
-            }
-            // otherwise, if it is autoscale, get the min and max elements of the data
-            else if(autoscale){
-                if (get_data(x_axis)->get().Data.size()){
-                    x_min = mahi::util::min_element(other_x_data);
-                    x_max = mahi::util::max_element(other_x_data);
+                // otherwise, if it is autoscale, get the min and max elements of the data
+                else if(autoscale){
+                    if (get_data(x_axis)->get().Data.size()){
+                        x_min = mahi::util::min_element(other_x_data);
+                        x_max = mahi::util::max_element(other_x_data);
+                    }
+                    ImPlot::SetNextPlotLimitsX(x_min, x_max, ImGuiCond_Always); 
                 }
-                ImPlot::SetNextPlotLimitsX(x_min, x_max, ImGuiCond_Always); 
-            }
-            for (auto i = 0; i < other_x_data.size(); i++){
-                if (other_x_data[i] <= x_max && other_x_data[i] >= x_min){
-                    active_other_x_indices[i] = true;    
+                for (auto i = 0; i < other_x_data.size(); i++){
+                    if (other_x_data[i] <= x_max && other_x_data[i] >= x_min){
+                        active_other_x_indices[i] = true;    
+                    }
                 }
-            }
+            // }
         }
         // otherwise, we just use time with timeframe to set x-lims
         else{
@@ -59,7 +61,7 @@ void Plot::make_plot(float time, int plot_num){
             ImPlot::SetNextPlotLimitsX(x_min, x_max, ImGuiCond_Always);
         }
         // set y_axis limits if autoscaled
-        if (autoscale){
+        if (autoscale && get_data(y_axis.begin()->first) != std::nullopt){
             // vectors which contain min and max for y axis 0 and y axis 1
             std::vector<float> y_min = {0.0f,0.0f};
             std::vector<float> y_max = {1.0f,1.0f};
@@ -242,6 +244,7 @@ void Plot::make_plot(float time, int plot_num){
 void Plot::plot_data(){
 
     for (auto i = 0; i < all_plot_data.size(); i++){
+        if (get_data(all_plot_data[i]) == std::nullopt) break;
         // get the correct set of data based on what we are currently doing
         auto &curr_data = plot_monitor->paused ? all_plot_paused_data[i] : get_data(all_plot_data[i])->get();
         auto &curr_identifier = plot_monitor->paused ? all_plot_paused_data[i].identifier : all_plot_data[i];
@@ -258,7 +261,7 @@ void Plot::plot_data(){
         sprintf(id,"%s###%i",plot_monitor->gui->get_name(curr_data.identifier).c_str(),i);
         ImPlot::SetPlotYAxis(y_axis[curr_identifier]);
         ImPlot::PlotLine(id, curr_x_data, &curr_data.Data[0].y, curr_data.Data.size(), curr_data.Offset, 2 * sizeof(float));  
-        ImPlot::PopStyleColor();
+        ImPlot::PopStyleColor();   
     }   
     
 }
