@@ -1,5 +1,5 @@
 # BetterSerialPlotter
-The **Better Serial Plotter** is A drop-in replacement for the arduino serial plotter. You should be able to set up things exactly the same in your arduino code, but work with the extended functionality of the Better Serial Plotter. Some beneficial features of the Better Serial plotter include:
+The **Better Serial Plotter** is a drop-in replacement for the arduino serial plotter. You should be able to use code exactly the same way that you would for your Serial Plotter applications, but work with the extended functionality of the Better Serial Plotter. Some beneficial features of the Better Serial plotter include:
 - Comport and baud rate selection
 - Support for multiple plots
 - Change names and colors of variables
@@ -11,7 +11,7 @@ The **Better Serial Plotter** is A drop-in replacement for the arduino serial pl
 - Autoscale plots
 
 ## What your arduino program should look like
-This program is intended to work for any program that already uses the built-in Arduino Serial Plotter. That means that you need to open the Serial communication channel in your `setup()` function using `Serial.Begin(BAUD_RATE)`. Make sure you take note of what baud rate you use. Then in every iteration of your `loop()` function in your arduino code, you should write to the serial monitor with any amount of variables, each separated by either a tab or a space. Before the loop ends, you should output a newline character. See the Example Arduino Code section at the bottom to see how this could look. See the [Example Arduino Code](#example-arduino-code) section below for an example
+This program is intended to work for any program that already uses the built-in Arduino Serial Plotter. That means that you need to open the Serial communication channel in your `setup()` function using `Serial.begin(BAUD_RATE)`. Make sure you take note of what baud rate you use. Then in every iteration of your `loop()` function in your arduino code, you should write to the serial monitor with any amount of variables, each separated by either a tab or a space. Before the loop ends, you should output a newline character. See the Example Arduino Code section at the bottom to see how this could look. See the [Example Arduino Code](#example-arduino-code) section below for an example
 
 ## Running the application
 
@@ -54,47 +54,52 @@ The serial monitor lets you view all of your data as if it was on the built-in A
 There are many ways that you can setup your Arduino code, with two examples shown below. A nice resource for how to set this up is shown [here](https://arduinogetstarted.com/tutorials/arduino-serial-plotter). The general idea is to use `Serial.print()` functions to print your variables, and to put either a tab `"\t"` or a space `" "` in between serial prints. 
 
 ```cpp
-setup(){
-    Serial.Begin(9600);
+// Better Serial Plotter example code 
+// https://github.com/nathandunk/BetterSerialPlotter
+
+void setup(){
+    Serial.begin(9600);
 }
 
-loop(){
+void loop(){
     // get all of our variables of interest
-    float t = millis();
-    float var_sin = sin(t/1000.0); // sin(t)
-    float var_cos = cos(t/1000.0); // cos(t)
+    float t = millis()/1000.0;
+    float var_sin = sin(t); // sin(t)
+    float var_cos = cos(t); // cos(t)
+    
     // write them all to console with tabs in between them
-    Serial.print(t);         // first variable is arduino time. This can be plotted on an x-axis!
+    Serial.print(t);         // first variable is program time in seconds. This can be plotted on an x-axis!
     Serial.print("\t");
     Serial.print(var_sin);   // second variable is sin(t)
-    Serial.print("\t");  
+    Serial.print("\t");      // this last "\t" isn't required, but doesn't hurt
     Serial.println(var_cos); // third varible is cos(t). make sure to finish with a println!
     
     // For example, at 2.5 seconds, this prints out like so, where \t
     // is the tab character, and \n is the newline character
-    // 2500\t0.598\t-0.801\n
+    // 2500\t0.598\t-0.801\t\n
 }
 ```
 
 ```cpp
-setup(){
-    Serial.Begin(9600);
+// Better Serial Plotter example code 
+// https://github.com/nathandunk/BetterSerialPlotter
+
+void setup(){
+    Serial.begin(9600);
 }
 
-loop(){
-    // get the current program time in milliseconds
-    // and write it to console, and add a space after
-    float t = millis();
-    Serial.print(t);
-    Serial.print(" ");
+void loop(){
+    float t = millis()/1000.0; // get program time
+    Serial.print(t);           // output time in seconds as first variable
+    Serial.print(" ");         // add spacing between variables
     
-    float var_sin = sin(t);
-    Serial.print(var1);
-    Serial.print(" ");
+    float var_sin = sin(t); 
+    Serial.print(var_sin);  // output sin(t) variable
+    Serial.print(" ");      // add spacing between variables
 
-    float var_cos = cos(t);
-    Serial.print(var2);
-    Serial.println(); // this just prints a \n character
+    float var_cos = cos(t); 
+    Serial.print(var_cos);  // output cos(t) variable
+    Serial.println();       // this just prints a \n character if you don't provide an argument
 
     // at 2.5 seconds, this prints out like so, where numbers
     // are separated by spaces, and \n is the newline character
@@ -104,10 +109,12 @@ loop(){
 
 ## Trouble shooting
 - My device isn't showing up
-Check that your device is showing up on your machine without the application. See this article provided by matlab for a useful way to find it https://www.mathworks.com/help/supportpkg/arduinoio/ug/find-arduino-port-on-windows-mac-and-linux.html.
+Check that your device is showing up on your machine without the application. See [this article](https://www.mathworks.com/help/supportpkg/arduinoio/ug/find-arduino-port-on-windows-mac-and-linux.html) provided by matlab for a useful way to find it.
 
+- My program crashes when trying to open a configuration
+Configurations are not that well-tested. They will not translate between platforms because of the way that serial ports are handled on each platform. Additionally, if you look into the json file, you could see how it works. 
 
-There are several improvements that are currently being worked on, including:
+### Current Feature Progress
 - [x] add support for multiple plots
 - [x] add serial monitor
 - [x] add numeric next to data names
