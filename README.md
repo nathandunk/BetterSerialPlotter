@@ -1,5 +1,5 @@
 # BetterSerialPlotter
-The *Better Serial Plotter* is A drop-in replacement for the arduino serial plotter. You should be able to set up things exactly the same in your arduino code, but work with the extended functionality of the Better Serial Plotter. Some beneficial features of the Better Serial plotter include:
+The **Better Serial Plotter** is A drop-in replacement for the arduino serial plotter. You should be able to set up things exactly the same in your arduino code, but work with the extended functionality of the Better Serial Plotter. Some beneficial features of the Better Serial plotter include:
 - Comport and baud rate selection
 - Support for multiple plots
 - Change names and colors of variables
@@ -11,11 +11,11 @@ The *Better Serial Plotter* is A drop-in replacement for the arduino serial plot
 - Autoscale plots
 
 ## What your arduino program should look like
-This program is intended to work for any program that already uses the built-in Arduino Serial Plotter. That means that you need to open the Serial communication channel in your `setup()` function using `Serial.Begin(BAUD_RATE)`. Make sure you take note of what baud rate you use. Then in every iteration of your `loop()` function in your arduino code, you should write to the serial monitor with any amount of variables, each separated by either a tab or a space. Before the loop ends, you should output a newline character. See the Example Arduino Code section at the bottom to see how this could look.
+This program is intended to work for any program that already uses the built-in Arduino Serial Plotter. That means that you need to open the Serial communication channel in your `setup()` function using `Serial.Begin(BAUD_RATE)`. Make sure you take note of what baud rate you use. Then in every iteration of your `loop()` function in your arduino code, you should write to the serial monitor with any amount of variables, each separated by either a tab or a space. Before the loop ends, you should output a newline character. See the Example Arduino Code section at the bottom to see how this could look. See the [Example Arduino Code](#example-arduino-code) section below for an example
 
 ## Running the application
 
-Make sure that your arduino (or serial-interface device) is plugged into your computer and running. Run the **Better Serial Plotter** application, and a graphical interface should open up. From there, click on the **Serial Port** dropdown on the top of the screen. You should see a list of serial devices attached to your PC. Click on the serial port that your device is attached to. Then, you should click the dropdown for the baud rate and select the baud rate that you used in your `Serial.Begin()` function in your arduino code. If everything is set up properly, you should see your data on the left side of the application. If you are having trouble, make sure to check out the troubleshooting tips at the end of this page.
+Make sure that your arduino (or serial-interface device) is plugged into your computer and running. Run the **Better Serial Plotter** application, and a graphical interface should open up. From there, click on the **Serial Port** dropdown on the top of the screen. You should see a list of serial devices attached to your PC. Click on the serial port that your device is attached to. Then, you should click the dropdown for the baud rate and select the baud rate that you used in your `Serial.Begin()` function in your arduino code. If everything is set up properly, you should see your data on the left side of the application, under the Incoming Data section. If you are having trouble, make sure to check out the troubleshooting tips at the end of this page.
 
 ## Configuring Data
 
@@ -47,42 +47,52 @@ You can save the configuration of your data and plots by clicking the **Save Con
 
 ## Serial Monitor
 
-The serial monitor lets you view all of your data as if it was on the built-in arduino serial monitor. By default, the data will autoscroll to keep you looking at the most recent data input, but you can click or unclick the autoscroll checkbox to enable or disable this functionality.
+The serial monitor lets you view all of your data as if it was on the built-in Arduino serial monitor. By default, the data will autoscroll to keep you looking at the most recent data input, but you can click or unclick the autoscroll checkbox to enable or disable this functionality.
 
 ## Example Arduino Code
 
+There are many ways that you can setup your Arduino code, with two examples shown below. A nice resource for how to set this up is shown [here](https://arduinogetstarted.com/tutorials/arduino-serial-plotter). The general idea is to use `Serial.print()` functions to print your variables, and to put either a tab `"\t"` or a space `" "` in between serial prints. 
+
 ```cpp
+setup(){
+    Serial.Begin(9600);
+}
+
 loop(){
     // get all of our variables of interest
-    int t = millis();
-    float var1 = sin((float)t/1000.0);
-    float var2 = cos((float)t/1000.0);
+    float t = millis();
+    float var_sin = sin(t/1000.0); // sin(t)
+    float var_cos = cos(t/1000.0); // cos(t)
     // write them all to console with tabs in between them
-    Serial.print(t);
+    Serial.print(t);         // first variable is arduino time. This can be plotted on an x-axis!
     Serial.print("\t");
-    Serial.print(var1);
-    Serial.print("\t");
-    Serial.println(var2); // make sure to finish with a println!
+    Serial.print(var_sin);   // second variable is sin(t)
+    Serial.print("\t");  
+    Serial.println(var_cos); // third varible is cos(t). make sure to finish with a println!
     
-    // at 2.5 seconds, this prints out like so, where \t
+    // For example, at 2.5 seconds, this prints out like so, where \t
     // is the tab character, and \n is the newline character
     // 2500\t0.598\t-0.801\n
 }
 ```
 
 ```cpp
+setup(){
+    Serial.Begin(9600);
+}
+
 loop(){
     // get the current program time in milliseconds
     // and write it to console, and add a space after
-    int t = millis();
+    float t = millis();
     Serial.print(t);
     Serial.print(" ");
     
-    float var1 = sin((float)t);
+    float var_sin = sin(t);
     Serial.print(var1);
     Serial.print(" ");
 
-    float var2 = cos((float)t);
+    float var_cos = cos(t);
     Serial.print(var2);
     Serial.println(); // this just prints a \n character
 
