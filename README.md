@@ -11,7 +11,7 @@ The **Better Serial Plotter** is a drop-in replacement for the arduino serial pl
 - Autoscale plots
 
 ## What your arduino program should look like
-This program is intended to work for any program that already uses the built-in Arduino Serial Plotter. That means that you need to open the Serial communication channel in your `setup()` function using `Serial.begin(BAUD_RATE)`. Make sure you take note of what baud rate you use. Then in every iteration of your `loop()` function in your arduino code, you should write to the serial monitor with any amount of variables, each separated by either a tab or a space. Before the loop ends, you should output a newline character. See the Example Arduino Code section at the bottom to see how this could look. See the [Example Arduino Code](#example-arduino-code) section below for an example
+This program is intended to work for any program that already uses the built-in Arduino Serial Plotter. That means that you need to open the Serial communication channel in your `setup()` function using `Serial.begin(BAUD_RATE)` where `BAUD_RATE` could be `9600`. Make sure you take note of what baud rate you use. Then in every iteration of your `loop()` function in your arduino code, you should write to the serial monitor with any amount of variables, each separated by either a tab or a space. Before the loop ends, you should output a newline character. See the Example Arduino Code section at the bottom to see how this could look. See the [Example Arduino Code](#example-arduino-code) section below for an example
 
 ## Running the application
 
@@ -29,13 +29,15 @@ The BSP becomes *really* useful when you want to do some more interesting config
 
 ## Adding and Removing Variables to Plots
 
-There are several options for adding and removing variables to plots. Portions of these are shown in the gif above.
+There are several options for adding and removing variables to plots. Portions of these are shown in the gif below.
 
 - Click and drag variables from the `Incoming Data` Panel to any plot to add it to that plot. You can also drag variables to a specific axis on any of the plots (x-axis, left y-axis, right y-axis) to add them to a specific axis. 
 
 - Right-click a variable on the `Incoming Data` tab, and configure it in the `Plots Active` section, as shown below. You can both add and remove data using this section.
 
 - Right click on a specific plot choose either `Add Data` or `Remove Data` based on what you would like to do.
+
+![Configuring Variables](/gifs/add_remove_variables.gif)
 
 ## Plot Controls
 
@@ -67,7 +69,7 @@ The serial monitor lets you view all of your data as if it was on the built-in A
 
 ## Example Arduino Code
 
-There are many ways that you can setup your Arduino code, with two examples shown below. A nice resource for how to set this up is shown [here](https://arduinogetstarted.com/tutorials/arduino-serial-plotter). The general idea is to use `Serial.print()` functions to print your variables, and to put either a tab `"\t"` or a space `" "` in between serial prints. 
+There are many ways that you can setup your Arduino code, with two examples shown below.Anything that works with the built-in arduino serial plotter (A nice resource for how to set this up is shown [here](https://arduinogetstarted.com/tutorials/arduino-serial-plotter)) should work with the Better Serial Plotter. The general idea is to use `Serial.print()` functions to print your variables, and to put either a tab `"\t"` or a space `" "` in between serial prints. 
 
 ```cpp
 // Better Serial Plotter example code 
