@@ -76,6 +76,13 @@ void SerialManager::render(){
         ImGui::EndCombo();
     }
     ImGui::PopItemWidth();
+
+    ImGui::SameLine();
+    if (ImGui::Button("Close Comport")){
+        close_serial();
+        reset_read();
+    }
+
     ImGui::EndChild();
     ImGui::PopStyleColor();
     ImGui::PopStyleColor();

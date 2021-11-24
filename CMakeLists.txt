@@ -17,7 +17,7 @@
 cmake_minimum_required(VERSION 3.13.0)
 
 # create project
-project(BSP VERSION 0.1.0 LANGUAGES CXX)
+project(BSP VERSION 0.1.1 LANGUAGES CXX)
 
 # defines conventional GNU isntallation directories
 include(GNUInstallDirs)
