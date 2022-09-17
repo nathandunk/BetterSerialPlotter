@@ -38,7 +38,7 @@ FetchContent_MakeAvailable(mahi-gui)
 
 # MAHI COM
 FetchContent_Declare(mahi-com 
-                    GIT_REPOSITORY https://github.com/mahilab/mahi-com.git
+                    GIT_REPOSITORY https://github.com/nathandunk/mahi-com.git
                     GIT_TAG origin/mac-serial)
 FetchContent_MakeAvailable(mahi-com)
 
