@@ -94,7 +94,9 @@ private:
                                    128000,
                                    256000};
     
-    
+    bool use_custom_baud = false;
+    int custom_baud = 9600;
+    int custom_baud_input = 9600;
 };
 
 } // namespace bsp

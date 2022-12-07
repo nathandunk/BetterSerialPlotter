@@ -62,9 +62,10 @@ void SerialManager::render(){
     ImGui::PushStyleColor(ImGuiCol_Header, (baud_rate > 0) ? (baud_status ? gui->PalleteGreen : gui->PalleteRed) : gui->PalleteGray);
     if (ImGui::BeginCombo("##baud_rate", ("Baud Rate: " + ((baud_rate >= 0) ? std::to_string(baud_rate) : "")).c_str())){
         for (int i = 0; i < baud_rates.size(); i++){
-            const bool baud_is_selected = (baud_rate == baud_rates[i]);
+            // make sure custom baud isn't on for selection
+            const bool baud_is_selected = (baud_rate == baud_rates[i]) && !use_custom_baud;
             if (ImGui::Selectable((std::to_string(baud_rates[i])).c_str(), baud_is_selected)){
-
+                use_custom_baud = false;
                 baud_rate = baud_rates[i];
 
                 close_serial();
@@ -73,19 +74,47 @@ void SerialManager::render(){
 
             }
         }
+        // extra option for custom baud rate
+        if (ImGui::Selectable(("Custom: " + std::to_string(custom_baud)).c_str(), use_custom_baud)){
+            use_custom_baud = true;
+            baud_rate = custom_baud;
+
+            close_serial();
+            begin_serial();
+            reset_read();
+        }
         ImGui::EndCombo();
     }
     ImGui::PopItemWidth();
-
     ImGui::SameLine();
+    ImGui::PopStyleColor();
+    ImGui::PopStyleColor();
+    // Only show this if the user has selected to use a custom baud rate
+    if(use_custom_baud){
+        ImGui::Text("Custom Baud: ");
+        ImGui::SameLine();
+        ImGui::PushItemWidth(150);
+        ImGui::InputInt("##custom_baud", &custom_baud_input);
+        ImGui::PopItemWidth();
+        ImGui::SameLine();
+        ImGui::PushItemWidth(200);
+        // Button press is required to actually use the custom baud rate
+        if(ImGui::Button("Set Custom Baud")){
+            custom_baud = custom_baud_input;
+            baud_rate = custom_baud;
+            close_serial();
+            begin_serial();
+            reset_read();
+        }
+        ImGui::PopItemWidth();
+        ImGui::SameLine();
+    }
     if (ImGui::Button("Close Comport")){
         close_serial();
         reset_read();
     }
 
     ImGui::EndChild();
-    ImGui::PopStyleColor();
-    ImGui::PopStyleColor();
 }
 
 bool SerialManager::begin_serial(){
