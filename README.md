@@ -1,3 +1,5 @@
+You can download the latest release [here](https://github.com/nathandunk/BetterSerialPlotter/releases)!
+
 # BetterSerialPlotter
 The **Better Serial Plotter** is a drop-in replacement for the arduino serial plotter. You should be able to use code exactly the same way that you would for your Serial Plotter applications, but work with the extended functionality of the Better Serial Plotter. Some beneficial features of the Better Serial plotter include:
 - Comport and baud rate selection
