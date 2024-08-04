@@ -102,21 +102,23 @@ void BSP::append_all_data(std::vector<float> curr_data){
     // std::cout << "begin append\n";
     std::lock_guard<std::mutex> lock(serial_manager.mtx);
 
-    auto old_size = mutexed_all_data.size();
-    if (old_size != curr_data.size()){
-        if (old_size < curr_data.size()){
-            for (int i = old_size; i < curr_data.size(); i++){
-                mutexed_all_data.emplace_back();
-                mutexed_all_data[i].identifier = old_size+i;
-                if (all_data_info.find(mutexed_all_data[i].identifier) == all_data_info.end()){
-                    all_data_info[mutexed_all_data[i].identifier].set_name("data " + std::to_string(i));
-                    all_data_info[mutexed_all_data[i].identifier].color = plot_colors[i%plot_colors.size()];
-                }
-            }
-        }
-        else{
-            for (auto i = old_size-1; i > old_size - curr_data.size(); i--){
-                mutexed_all_data.erase(mutexed_all_data.begin()+i);
+    int old_unnamed_data_count = std::count_if(
+            mutexed_all_data.begin(),
+            mutexed_all_data.end(),
+            [](const ScrollingData& element) {
+        return element.identifier.rfind("unnamed ", 0) == 0;
+    });
+
+    if (old_unnamed_data_count < curr_data.size()){
+        for (int i = old_unnamed_data_count; i < curr_data.size(); i++){
+            ScrollingData new_data;
+            std::string new_identifier = "unnamed " + std::to_string(i);
+            new_data.identifier = new_identifier;
+
+            mutexed_all_data.emplace_back(new_data);
+            if (all_data_info.find(new_identifier) == all_data_info.end()){
+                all_data_info[new_identifier].set_name("data " + std::to_string(i));
+                all_data_info[new_identifier].color = plot_colors[i%plot_colors.size()];
             }
         }
     }
@@ -124,12 +126,54 @@ void BSP::append_all_data(std::vector<float> curr_data){
     float curr_time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
     
     for (auto i = 0; i < curr_data.size(); i++){
-        mutexed_all_data[i].AddPoint(curr_time, curr_data[i]);
+        std::string identifier = "unnamed " + std::to_string(i);
+
+        auto data_element = std::find_if(
+                mutexed_all_data.begin(),
+                mutexed_all_data.end(),
+                [&identifier](const ScrollingData& element) {
+            return element.identifier == identifier;
+        });
+
+        data_element->AddPoint(curr_time, curr_data[i]);
     }
     // std::cout << "end append\n";
 }
 
-std::optional<std::reference_wrapper<ScrollingData>> BSP::get_data(char identifier){
+void BSP::append_all_data(std::vector<NamedSerialData> curr_data){
+    // std::cout << "begin append\n";
+    std::lock_guard<std::mutex> lock(serial_manager.mtx);
+
+    float curr_time = static_cast<float>(program_clock.get_elapsed_time().as_seconds());
+
+    for (const auto& data : curr_data) {
+        std::string identifier = "named " + data.name;
+
+        auto data_element = std::find_if(
+                mutexed_all_data.begin(),
+                mutexed_all_data.end(),
+                [&identifier](const ScrollingData& element) {
+            return element.identifier == identifier;
+        });
+
+        if (data_element == mutexed_all_data.end()) {
+            ScrollingData new_data;
+            new_data.identifier = identifier;
+
+            mutexed_all_data.emplace_back(new_data);
+            if (all_data_info.find(identifier) == all_data_info.end()){
+                all_data_info[identifier].set_name(data.name);
+                all_data_info[identifier].color = plot_colors[mutexed_all_data.size() % plot_colors.size()];
+            }
+
+            new_data.AddPoint(curr_time, data.data);
+        } else {
+            data_element->AddPoint(curr_time, data.data);
+        }
+    }
+}
+
+std::optional<std::reference_wrapper<ScrollingData>> BSP::get_data(std::string identifier){
     for (auto &data : all_data){
         if (data.identifier == identifier){
             return data;
@@ -139,12 +183,12 @@ std::optional<std::reference_wrapper<ScrollingData>> BSP::get_data(char identifi
     return std::nullopt; //ScrollingData();
 }
 
-std::string BSP::get_name(char identifier){
+std::string BSP::get_name(std::string identifier){
     auto found_it = all_data_info.find(identifier);
     return (found_it != all_data_info.end()) ? found_it->second.name : "";
 }
 
-ImVec4 BSP::get_color(char identifier){
+ImVec4 BSP::get_color(std::string identifier){
     auto found_it = all_data_info.find(identifier);
     return (found_it != all_data_info.end()) ? found_it->second.color : ImVec4(0.0f, 0.0f, 0.0f, 1.0f);
 }

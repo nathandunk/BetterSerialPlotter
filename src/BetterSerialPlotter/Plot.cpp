@@ -266,7 +266,7 @@ void Plot::plot_data(){
     
 }
 
-void Plot::add_identifier(char identifier, int y_axis_num){
+void Plot::add_identifier(std::string identifier, int y_axis_num){
     bool exists = false;
     // check if it is already there
     for (const auto &i : all_plot_data){
@@ -282,7 +282,7 @@ void Plot::add_identifier(char identifier, int y_axis_num){
     y_axis[identifier] = y_axis_num;
 }
 
-void Plot::remove_identifier(char identifier){
+void Plot::remove_identifier(std::string identifier){
     // look for the identifier in the identifiers vector
     for (auto i = all_plot_data.begin(); i != all_plot_data.end(); i++){
         if (*i == identifier) {
@@ -300,14 +300,14 @@ void Plot::remove_identifier(char identifier){
     }
 }
 
-bool Plot::has_identifier(char identifier) const{
+bool Plot::has_identifier(std::string identifier) const{
     for (const auto &data : all_plot_data){
         if (data == identifier) return true;
     }
     return false;
 }
 
-std::optional<std::reference_wrapper<ScrollingData>> Plot::get_data(char identifier){
+std::optional<std::reference_wrapper<ScrollingData>> Plot::get_data(std::string identifier){
     return plot_monitor->gui->get_data(identifier);
 }
 

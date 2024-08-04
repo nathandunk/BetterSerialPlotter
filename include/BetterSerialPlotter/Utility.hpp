@@ -12,7 +12,7 @@ namespace bsp{
 
 // data structure to handle a single variable coming in from serial
 struct ScrollingData {
-     char identifier = 0;   // unique identifier that can be used to pull this data
+     std::string identifier;   // unique identifier that can be used to pull this data
      int MaxSize = 5000;    // maximum amount of data points that will be stored
      int Offset  = 0;       // offset to handle plotting
      ImVector<ImVec2> Data; // vector of x and y data. X data always is time
@@ -58,7 +58,7 @@ struct ScrollingData {
      }
 
      /// set the identifier
-     void set_identifier(char identifier){identifier = identifier;}
+     void set_identifier(std::string identifier){identifier = identifier;}
 };
 
 struct DataInfo {
@@ -69,6 +69,11 @@ struct DataInfo {
      /// set the unique identifier of the variable
      void set_name(std::string name_){name = name_;}
      void set_identifier(char identifier){identifier = identifier;}
+};
+
+struct NamedSerialData {
+    std::string name;
+    float data;
 };
 
 // void plot_data(const ScrollingData &data, int i);

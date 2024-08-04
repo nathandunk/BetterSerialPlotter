@@ -42,7 +42,7 @@ struct BSPData{
     std::vector<ScrollingData> all_data;
     SerialManager serial_manager;
     PlotMonitor plot_monitor;
-    std::unordered_map<char,DataInfo> all_data_info;
+    std::unordered_map<std::string,DataInfo> all_data_info;
 };
 
 // all of these need to be in the bsp namespace because the to_json

@@ -151,10 +151,18 @@ void SerialManager::read_serial(){
 }
 
 void SerialManager::parse_buffer(unsigned char* buff, size_t buff_len){
+    const std::regex unnamed_data_regex(
+            "^[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?([ \t][-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?)*$"
+    );
+
+    const std::regex named_data_regex(
+            "^([a-zA-Z_][a-zA-Z0-9_]*:[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?)([ \t,][a-zA-Z_][a-zA-Z0-9_]*:[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?)*$"
+    );
+
     for (size_t i = 0; i < buff_len; i++){
         // if we got a newline character, (0x0a)
         if (buff[i] == 0x0a){
-            // if we haven't run through once, just note that, and 
+            // if we haven't run through once, just note that, and
             // then return to make sure we have clean data
             if (!read_once){
                 read_once = true;
@@ -162,12 +170,24 @@ void SerialManager::parse_buffer(unsigned char* buff, size_t buff_len){
             }
             // if we have run through once, send the full line to be parsed
             else{
-                std::vector<float> curr_data = parse_line(curr_line_buff);
-                gui->append_all_data(curr_data);
+                // Parse as unnamed data if regex matches
+                if (std::regex_match(curr_line_buff, unnamed_data_regex)){
+                    std::vector<float> curr_data = parse_unnamed_data_line(curr_line_buff);
+                    gui->append_all_data(curr_data);
 
-                {
-                    std::lock_guard<std::mutex> lock(mtx);
-                    gui->PrintBuffer.push_back(curr_line_buff);
+                    {
+                        std::lock_guard<std::mutex> lock(mtx);
+                        gui->PrintBuffer.push_back(curr_line_buff);
+                    }
+                }
+                else if (std::regex_match(curr_line_buff, named_data_regex)){
+                    std::vector<NamedSerialData> curr_data = parse_named_data_line(curr_line_buff);
+                    gui->append_all_data(curr_data);
+
+                    {
+                        std::lock_guard<std::mutex> lock(mtx);
+                        gui->PrintBuffer.push_back(curr_line_buff);
+                    }
                 }
                 curr_line_buff.clear();
                 if (gui->verbose) std::cout << std::endl;
@@ -185,7 +205,7 @@ void SerialManager::parse_buffer(unsigned char* buff, size_t buff_len){
     }
 }
 
-std::vector<float> SerialManager::parse_line(std::string line){
+std::vector<float> SerialManager::parse_unnamed_data_line(std::string line){
     // std::cout << line << "\n";
 
     std::vector<float> curr_data;
@@ -219,6 +239,38 @@ std::vector<float> SerialManager::parse_line(std::string line){
         }
     }
     
+    return curr_data;
+}
+
+std::vector<NamedSerialData> SerialManager::parse_named_data_line(std::string line) {
+    std::vector<NamedSerialData> curr_data;
+
+    // Regex for splitting the line by spaces, tabs, or commas
+    static const std::regex re_delims("[ \t,]+");
+    // Regex for matching the name:float pattern
+    static const std::regex re_named_fp_num("([a-zA-Z_][a-zA-Z0-9_]*):([-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?)");
+
+    std::sregex_token_iterator first{line.begin(), line.end(), re_delims, -1}, last;
+    std::vector<std::string> name_data_pairs{first, last};
+
+    for (const auto &name_data_pair : name_data_pairs) {
+        std::smatch match;
+        if (std::regex_match(name_data_pair, match, re_named_fp_num)) {
+            try {
+                NamedSerialData named_data;
+                named_data.name = match[1].str();
+                named_data.data = std::stof(match[2].str());
+                curr_data.push_back(named_data);
+            }
+            catch(const std::exception &e) {
+                std::cerr << "Error: " << e.what() << "\n";
+            }
+            baud_status = true;
+        } else {
+            std::cerr << "Invalid pair: " << name_data_pair << "\n";
+        }
+    }
+
     return curr_data;
 }
 

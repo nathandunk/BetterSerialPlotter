@@ -5,7 +5,7 @@
     TEST(line_parsing, name){\
         auto str_num = strings[num];\
         auto num_num = numbers[num];\
-        auto parse_result = sm.parse_line(str_num);\
+        auto parse_result = sm.parse_unnamed_data_line(str_num);\
         EXPECT_EQ(parse_result[0], num_num);\
     }
 
@@ -57,7 +57,7 @@ TEST(line_parsing, tab_delimited){
         if (i != test_string.size()-1) test_string += "\t";
     }
 
-    auto parse_result = sm.parse_line(test_string);
+    auto parse_result = sm.parse_unnamed_data_line(test_string);
     EXPECT_EQ(parse_result,numbers);
 }
 
@@ -68,7 +68,7 @@ TEST(line_parsing, space_delimited){
         if (i != test_string.size()-1) test_string += " ";
     }
 
-    auto parse_result = sm.parse_line(test_string);
+    auto parse_result = sm.parse_unnamed_data_line(test_string);
     EXPECT_EQ(parse_result,numbers);
 }
 
@@ -79,14 +79,14 @@ TEST(line_parsing, both_delimited){
         if (i != test_string.size()-1) test_string += (i%2) ? "\t" : " ";
     }
 
-    auto parse_result = sm.parse_line(test_string);
+    auto parse_result = sm.parse_unnamed_data_line(test_string);
     EXPECT_EQ(parse_result,numbers);
 }
 
 TEST(line_parsing, combined_numbers){
     std::string combined_numbers = "0.10.2";
 
-    auto parse_result = sm.parse_line(combined_numbers);
+    auto parse_result = sm.parse_unnamed_data_line(combined_numbers);
     EXPECT_EQ(parse_result.size(),0);
 }
 
@@ -94,7 +94,7 @@ TEST(line_parsing, one_combined_number){
     std::string combined_numbers = "1.23 0.10.2 1.3e7";
     std::vector<float> float_result = {1.23f, 1.3e7f};
 
-    auto parse_result = sm.parse_line(combined_numbers);
+    auto parse_result = sm.parse_unnamed_data_line(combined_numbers);
     EXPECT_EQ(parse_result, float_result);
 }
 
@@ -102,6 +102,6 @@ TEST(line_parsing, extra_spaces){
     std::string combined_numbers = "  1.23 1.3e7   ";
     std::vector<float> float_result = {1.23f, 1.3e7f};
 
-    auto parse_result = sm.parse_line(combined_numbers);
+    auto parse_result = sm.parse_unnamed_data_line(combined_numbers);
     EXPECT_EQ(parse_result, float_result);
 }

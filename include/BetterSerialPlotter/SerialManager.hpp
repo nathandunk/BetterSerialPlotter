@@ -3,6 +3,7 @@
 #include <BetterSerialPlotter/Widget.hpp>
 #include <Mahi/Com/SerialPort.hpp>
 #include <mutex>
+#include "Utility.hpp"
 
 namespace bsp{
 
@@ -65,8 +66,10 @@ public:
     std::string get_port_name(BspPort port_num);
     /// parses a buffer received from a serial port read
     void parse_buffer(unsigned char* message, size_t buff_len);
-    /// parses a single line received from the buffer
-    std::vector<float> parse_line(std::string line);
+    /// parses a single line with unnamed data received from the buffer
+    std::vector<float> parse_unnamed_data_line(std::string line);
+    /// parses a single line with named data received from the buffer
+    std::vector<NamedSerialData> parse_named_data_line(std::string line);
 
     bool comport_valid();
 
